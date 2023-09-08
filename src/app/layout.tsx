@@ -5,7 +5,7 @@ import type {Metadata} from 'next'
 import {ChakraProvider, extendTheme} from '@chakra-ui/react'
 import {poppins} from "@/app/fonts";
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
     title: 'Nwadike Philip | epicdevler ',
     description: 'Nwadike Phiip\'s Portfolio',
     keywords: ['Nwadike Philip', 'epicdevler', 'devler', 'cedars', 'android developer', 'android'],

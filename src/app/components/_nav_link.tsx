@@ -3,7 +3,10 @@ import style from './_nav_link.module.css'
 export default function NavLink(
     {
         label,
-        isActive
+        isActive = false
+    }: {
+        label: string,
+        isActive?: boolean
     }
 ) {
     const isActiveState = isActive ? "block" : "none"

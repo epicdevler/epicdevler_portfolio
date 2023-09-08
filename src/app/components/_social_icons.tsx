@@ -2,7 +2,11 @@ import {IconButton} from "@chakra-ui/react";
 import Image from "next/image";
 
 export default function SocialIcon(
-    {iconUrl, alt}
+    {
+        iconUrl, alt = ""
+    }: {
+        iconUrl: string, alt?: string
+    }
 ) {
     return (
         <IconButton bg={"white"} padding={"10px"} borderRadius={"100"} aria-label={alt}>

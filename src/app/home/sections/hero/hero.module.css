@@ -9,6 +9,7 @@
     max-height: auto;
     position: relative;
     height: fit-content();
+    overflow-x: hidden;
 }
 
 .hero .glass {

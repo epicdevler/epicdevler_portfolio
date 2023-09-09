@@ -4,13 +4,13 @@ import Image from "next/image";
 export function TechnologiesSection() {
     const technologies = [
         {
-            url: '/technologies/fastapi.svg',
-            alt: '',
+            url: '/technologies/FastAPI.svg',
+            alt: 'FastAPI Logo',
         },
         {url: '/technologies/Figma.svg', alt: 'Figma Logo'},
         {url: '/technologies/Firebase.svg', alt: 'Firebase Logo'},
         {url: '/technologies/Git.svg', alt: 'Git Logo'},
-        {url: '/technologies/Github.svg', alt: 'GitHub Logo'},
+        {url: '/technologies/GitHub.svg', alt: 'GitHub Logo'},
         {url: '/technologies/Kotlin.svg', alt: 'Kotlin Logo'},
         {url: '/technologies/Ktor.svg', alt: 'Ktor Logo'},
         {url: '/technologies/Python.svg', alt: 'Python Logo'},

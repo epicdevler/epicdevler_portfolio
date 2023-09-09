@@ -1,4 +1,4 @@
-import {Container, Grid, GridItem} from "@chakra-ui/react";
+import {Container, GridItem, SimpleGrid} from "@chakra-ui/react";
 import Image from "next/image";
 
 export function TechnologiesSection() {
@@ -28,18 +28,18 @@ export function TechnologiesSection() {
                 <h2>Technologies</h2>
                 <p>I have experience with</p>
 
-                <Grid mt={5} templateColumns='repeat(5, 1fr)' gap={5}>
+                <SimpleGrid mt={5} columns={{base: 3, sm: 3, lg: 5}} gap={5}>
                     {
                         technologies.map(
                             (technology, index) => {
                                 return <GridItem display={'flex'} justifyContent={'center'} alignItems={'center'}
                                                  colSpan={'auto'} key={index} style={{padding: '16px'}}>
-                                    <Image width={100} height={100} src={technology.url} alt={technology.alt}/>
+                                    <Image width={48} height={48} src={technology.url} alt={technology.alt}/>
                                 </GridItem>
                             }
                         )
                     }
-                </Grid>
+                </SimpleGrid>
             </Container>
         </section>
     );

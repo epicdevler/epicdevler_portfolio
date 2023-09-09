@@ -8,14 +8,37 @@ import {Around} from "@theme-toggles/react"
 export default function Navbar() {
     const {colorMode, toggleColorMode} = useColorMode()
 
+    const socialItems = [
+        {
+            url: "https://www.github.com/epicdevler",
+            imgUrl: "/icons/github.svg",
+            imgAlt: "GitHub Logo",
+        },
+        {
+            url: "https://www.linkedin.com/in/nwadikephilip",
+            imgUrl: "/icons/linkedin.svg",
+            imgAlt: "LinkedIn Logo",
+        },
+        {
+            url: "https://www.twitter.com/epicdevler",
+            imgUrl: "/icons/twitter_x.svg",
+            imgAlt: "X Logo",
+        },
+    ]
+
     return (
         <nav style={{padding: '10px 0px'}}>
             <Container maxW={'container.lg'}>
                 <Flex alignItems={'center'}>
                     <HStack>
-                        <SocialIcon iconUrl={'/icons/github.svg'} alt={'github x logo'}/>
-                        <SocialIcon iconUrl={'/icons/linkedin.svg'} alt={'linkedin x logo'}/>
-                        <SocialIcon iconUrl={'/icons/twitter_x.svg'} alt={'twitter x logo'}/>
+                        {
+                            socialItems.map(
+                                (item, index) => {
+                                    return <SocialIcon key={index} href={item.url} iconUrl={item.imgUrl}
+                                                       alt={item.imgAlt}/>
+                                }
+                            )
+                        }
                     </HStack>
                     <Spacer/>
                     <HStack hideBelow={"md"}>

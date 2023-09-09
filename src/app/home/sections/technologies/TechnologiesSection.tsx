@@ -1,13 +1,46 @@
-import {Container} from "@chakra-ui/react";
+import {Container, Grid, GridItem} from "@chakra-ui/react";
+import Image from "next/image";
 
 export function TechnologiesSection() {
+    const technologies = [
+        {
+            url: '/technologies/fastapi.svg',
+            alt: '',
+        },
+        {url: '/technologies/Figma.svg', alt: 'Figma Logo'},
+        {url: '/technologies/Firebase.svg', alt: 'Firebase Logo'},
+        {url: '/technologies/Git.svg', alt: 'Git Logo'},
+        {url: '/technologies/Github.svg', alt: 'GitHub Logo'},
+        {url: '/technologies/Kotlin.svg', alt: 'Kotlin Logo'},
+        {url: '/technologies/Ktor.svg', alt: 'Ktor Logo'},
+        {url: '/technologies/Python.svg', alt: 'Python Logo'},
+        {url: '/technologies/MongoDB.svg', alt: 'MongoDB Logo'},
+    ]
+
+    technologies.forEach(
+        value => {
+
+        }
+    )
     return (
-        <Container maxW={'container.lg'} py={100}>
-            <h2>Technologies</h2>
-            <p>I have experience with</p>
+        <section>
+            <Container maxW={'container.lg'} py={100}>
+                <h2>Technologies</h2>
+                <p>I have experience with</p>
 
-
-
-        </Container>
+                <Grid mt={5} templateColumns='repeat(5, 1fr)' gap={5}>
+                    {
+                        technologies.map(
+                            (technology, index) => {
+                                return <GridItem display={'flex'} justifyContent={'center'} alignItems={'center'}
+                                                 colSpan={'auto'} key={index} style={{padding: '16px'}}>
+                                    <Image width={100} height={100} src={technology.url} alt={technology.alt}/>
+                                </GridItem>
+                            }
+                        )
+                    }
+                </Grid>
+            </Container>
+        </section>
     );
 }

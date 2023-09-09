@@ -14,9 +14,9 @@ export default function Home() {
 
     return (
         <ChakraProvider theme={theme}>
+            <HeroSection/>
             <main>
-                <HeroSection/>
-                <TechnologiesSection />
+                <TechnologiesSection/>
             </main>
         </ChakraProvider>
     )

@@ -6,6 +6,7 @@
 
 .hero {
     position: relative;
+    overflow-x: hidden;
 }
 
 .hero .glass {
@@ -20,6 +21,9 @@
 
 .hero .artwork {
     /*position: absolute;*/
+    /*right: 0;*/
+    /*top: 0;*/
+    display: none;
 }
 
 .graphic1 {

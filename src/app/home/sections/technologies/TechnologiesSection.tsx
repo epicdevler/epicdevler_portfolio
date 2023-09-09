@@ -17,30 +17,23 @@ export function TechnologiesSection() {
         {url: '/technologies/MongoDB.svg', alt: 'MongoDB Logo'},
     ]
 
-    technologies.forEach(
-        value => {
-
-        }
-    )
     return (
-        <section>
-            <Container maxW={'container.lg'} py={100}>
-                <h2>Technologies</h2>
-                <p>I have experience with</p>
+        <Container as={'section'} maxW={'container.lg'} py={100}>
+            <h2 style={{fontSize: '24px', fontWeight: 600}}>Technologies</h2>
+            <p style={{fontSize: '14px', fontWeight: 400}}>I have experience with</p>
 
-                <SimpleGrid mt={5} columns={{base: 3, sm: 3, lg: 5}} gap={5}>
-                    {
-                        technologies.map(
-                            (technology, index) => {
-                                return <GridItem display={'flex'} justifyContent={'center'} alignItems={'center'}
-                                                 colSpan={'auto'} key={index} style={{padding: '16px'}}>
-                                    <Image width={48} height={48} src={technology.url} alt={technology.alt}/>
-                                </GridItem>
-                            }
-                        )
-                    }
-                </SimpleGrid>
-            </Container>
-        </section>
+            <SimpleGrid mt={5} columns={{base: 3, sm: 3, lg: 5}} gap={5}>
+                {
+                    technologies.map(
+                        (technology, index) => {
+                            return <GridItem display={'flex'} justifyContent={'center'} alignItems={'center'}
+                                             colSpan={'auto'} key={index} style={{padding: '16px'}}>
+                                <Image width={48} height={48} src={technology.url} alt={technology.alt}/>
+                            </GridItem>
+                        }
+                    )
+                }
+            </SimpleGrid>
+        </Container>
     );
 }

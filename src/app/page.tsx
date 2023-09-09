@@ -2,6 +2,7 @@
 import HeroSection from "@/app/home/sections/hero/Hero";
 import {ChakraProvider, extendTheme} from '@chakra-ui/react'
 import {TechnologiesSection} from "@/app/home/sections/technologies/TechnologiesSection";
+import ProjectsSections from "@/app/home/sections/projects/ProjectsSections";
 
 const theme = extendTheme({
         colors: {
@@ -17,6 +18,7 @@ export default function Home() {
             <HeroSection/>
             <main>
                 <TechnologiesSection/>
+                <ProjectsSections/>
             </main>
         </ChakraProvider>
     )

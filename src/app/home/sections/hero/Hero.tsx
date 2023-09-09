@@ -1,4 +1,3 @@
-'use client'
 import Navbar from "@/app/home/navbar/_navbar";
 import style from './hero.module.css';
 import Image from "next/image";

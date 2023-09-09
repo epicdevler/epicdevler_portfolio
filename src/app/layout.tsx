@@ -8,6 +8,9 @@ export const metadata: Metadata = {
     description: 'Nwadike Phiip\'s Portfolio',
     keywords: ['Nwadike Philip', 'epicdevler', 'devler', 'cedars', 'android developer', 'android'],
     creator: 'Nwadike Philip (epicdevler)',
+    openGraph: {
+        images: '/image_preview.svg',
+    }
 }
 
 export default function RootLayout({
@@ -15,9 +18,8 @@ export default function RootLayout({
                                    }: {
     children: React.ReactNode
 }) {
-    return (
+        return (
         <html lang="en">
-
         <body className={poppins.variable}>{children}</body>
 
         </html>

@@ -1,0 +1,18 @@
+.styled_title {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.styled_title p {
+    font-size: 128px;
+    font-family: var(--leckerliOne) !important;
+}
+
+.styled_title h1 {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    transform: translate(0%, -150%);
+    font-size: 36px;
+
+}

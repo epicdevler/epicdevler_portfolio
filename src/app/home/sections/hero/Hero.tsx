@@ -4,8 +4,32 @@ import style from './hero.module.css';
 import Image from "next/image";
 import {Button, Container, HStack} from "@chakra-ui/react";
 import {leckerliOne} from "@/app/fonts";
+import SectionTitle from "@/app/components/_section_title";
+import Typed from "typed.js";
+import { useEffect, useRef } from "react";
 
 export default function HeroSection() {
+
+    const el = useRef<HTMLParagraphElement>(null);
+    useEffect(() => {
+        const typed = new Typed(el.current, {
+            strings: ["<b>Android</b>", "Web", "Freelance", "Backend"], // Strings to display
+            // Speed settings, try diffrent values untill you get good results
+            startDelay: 300,
+            typeSpeed: 100,
+            backSpeed: 60,
+            backDelay: 3000,
+            loop: true,
+            showCursor: false,
+            smartBackspace: true
+        });
+
+        // Destropying
+        return () => {
+            typed.destroy();
+        };
+    }, []);
+
     return (
         <header className={style.hero}>
             <div className={style.graphicOverlay}>
@@ -28,13 +52,8 @@ export default function HeroSection() {
                 <Navbar/>
 
                 <Container className={""} maxW={'container.lg'} paddingY={100} textColor={"white"}>
-                    <div className={style.styled_title}>
-                        <p className={leckerliOne.variable} style={{opacity: 0.22}}>I am</p>
-                        <h1>Nwadike Philip</h1>
-                    </div>
-                    <p className={style.role}>
-                        Android Developer
-                    </p>
+                    <SectionTitle labelBehind={'I am'} labelInFront={'Nwadike Philip'} />
+                    <p className={style.role}><span ref={el}></span> Developer</p>
                     <p className={style.brief_intro}>
                         Lorem ipsum dolor sit amet consectetur. Eget lacinia nam at urna sed lectus. Nisl habitant
                         placerat neque donec aliquam bibendum tellus libero turpis. Turpis aliquam nullam venenatis

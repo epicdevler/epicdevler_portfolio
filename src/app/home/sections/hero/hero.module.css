@@ -1,5 +1,5 @@
 .graphicOverlay {
-    min-height: inherit;
+    height: inherit;
     position: relative;
     /*overflow: hidden;*/
 }
@@ -9,13 +9,12 @@
     max-height: auto;
     position: relative;
     height: fit-content();
-    overflow-x: hidden;
 }
 
 .hero .glass {
     min-height: inherit;
     background: rgba(35, 35, 35, 0.38);
-    backdrop-filter: blur(63px);
+    backdrop-filter: blur(53px);
     position: absolute;
     top: 0;
     left: 0;
@@ -30,43 +29,24 @@
     position: absolute;
     top: 0;
     left: 0;
-    /*transform: translate(20%, 20%);*/
+    transform: translate(0%, 0%);
 }
 
 .graphic2 {
     position: absolute;
     right: 0;
     bottom: 0;
-}
-
-
-.styled_title {
-    position: relative;
-    margin-bottom: 10px;
-}
-
-.styled_title p {
-    font-size: 128px;
-    font-family: var(--leckerliOne) !important;
-}
-
-.styled_title h1 {
-    position: absolute;
-    left: 0;
-    top: 100%;
-    transform: translate(0%, -150%);
-    font-size: 36px;
-
+    transform: translate(-10%, -10%);
 }
 
 .role {
-    font-size: 18px;
-    margin: 16px 0;
+    font-size: 22px;
     font-weight: 500;
 }
 
 .brief_intro {
-    font-weight: 500;
+    margin-top: 16px;
+    font-weight: lighter;
     line-height: 28px;
-    font-weight: 14px;
+    font-size: 14px;
 }

@@ -1,5 +1,6 @@
 import {Container, GridItem, SimpleGrid} from "@chakra-ui/react";
 import Image from "next/image";
+import SectionTitle from "@/app/components/_section_title";
 
 export function TechnologiesSection() {
     const technologies = [
@@ -19,7 +20,7 @@ export function TechnologiesSection() {
 
     return (
         <Container as={'section'} maxW={'container.lg'} py={100}>
-            <h2 style={{fontSize: '24px', fontWeight: 600}}>Technologies</h2>
+            <SectionTitle labelInFront={'Technology'} labelBehind={'Stacks'}/>
             <p style={{fontSize: '14px', fontWeight: 400}}>I have experience with</p>
 
             <SimpleGrid mt={5} columns={{base: 3, sm: 3, lg: 5}} gap={5}>

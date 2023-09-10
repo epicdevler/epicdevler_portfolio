@@ -1,4 +1,4 @@
-import {Leckerli_One, Poppins} from 'next/font/google'
+import {Jua, Leckerli_One, Poppins} from 'next/font/google'
 
 export const leckerliOne = Leckerli_One(
     {
@@ -7,7 +7,7 @@ export const leckerliOne = Leckerli_One(
         variable: "--leckerliOne"
     }
 )
-export const jua = Leckerli_One(
+export const jua = Jua(
     {
         weight: '400',
         subsets: ['latin'],

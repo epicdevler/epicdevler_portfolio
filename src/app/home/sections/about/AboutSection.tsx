@@ -11,7 +11,7 @@ const AboutSection = () => {
                 <Flex flexWrap={'wrap'}>
                     <Box maxW={'sm'}>
                         <SectionTitle labelInFrontColor={'white'} labelInFront={'About'} labelBehind={'Me'}/>
-                        <Text fontWeight={400} lineHeight={'28px'} my={'24px'} fontSize={'14px'}>
+                        <Text fontWeight={400} lineHeight={'28px'} my={'24px'} fontSize={'14px'} textColor={'white'}>
                             Lorem ipsum dolor sit amet consectetur. Eget lacinia nam at urna sed lectus. Nisl habitant
                             placerat
                             neque donec aliquam bibendum tellus libero turpis. Turpis aliquam nullam venenatis laoreet
@@ -20,7 +20,7 @@ const AboutSection = () => {
                             ultricies.
                         </Text>
 
-                        <Button bg={'white'} textColor={'brand'} px={16} mt={16} py={8} borderRadius={'full'}>
+                        <Button bg={'white'} textColor={'brand'}  borderRadius={'full'}>
                             Hire Me
                         </Button>
                     </Box>

@@ -2,7 +2,7 @@ import {Container, GridItem, SimpleGrid} from "@chakra-ui/react";
 import Image from "next/image";
 import SectionTitle from "@/app/components/_section_title";
 
-export function TechnologiesSection() {
+export default function TechnologiesSection() {
     const technologies = [
         {
             url: '/technologies/FastAPI.svg',

@@ -1,9 +1,12 @@
 'use client'
 import HeroSection from "@/app/home/sections/hero/Hero";
 import {ChakraProvider, extendTheme} from '@chakra-ui/react'
-import {TechnologiesSection} from "@/app/home/sections/technologies/TechnologiesSection";
+import TechnologiesSection from "@/app/home/sections/technologies/TechnologiesSection";
 import AboutSection from "@/app/home/sections/about/AboutSection";
 import ProjectsSection from "@/app/home/sections/projects/ProjectsSection";
+import WorkSection from "@/app/home/sections/work/WorkSection";
+import ContactSection from "@/app/home/sections/contact/ContactSection";
+import Footer from "@/app/home/footer/_footer";
 
 const theme = extendTheme({
         colors: {
@@ -21,7 +24,10 @@ export default function Home() {
                 <TechnologiesSection/>
                 <ProjectsSection/>
                 <AboutSection/>
+                <WorkSection />
+                <ContactSection />
             </main>
+            <Footer />
         </ChakraProvider>
     )
 }

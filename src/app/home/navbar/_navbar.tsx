@@ -4,6 +4,7 @@ import SocialIcon from "@/app/components/_social_icons";
 import NavLink from "@/app/components/_nav_link";
 import "@theme-toggles/react/css/Around.css"
 import {Around} from "@theme-toggles/react"
+import {faXTwitter, faGithub, faLinkedinIn} from "@fortawesome/free-brands-svg-icons";
 
 export default function Navbar() {
     const {colorMode, toggleColorMode} = useColorMode()
@@ -11,17 +12,17 @@ export default function Navbar() {
     const socialItems = [
         {
             url: "https://www.github.com/epicdevler",
-            imgUrl: "/icons/github.svg",
+            imgUrl: faGithub,
             imgAlt: "GitHub Logo",
         },
         {
             url: "https://www.linkedin.com/in/nwadikephilip",
-            imgUrl: "/icons/linkedin.svg",
+            imgUrl: faLinkedinIn,
             imgAlt: "LinkedIn Logo",
         },
         {
             url: "https://www.twitter.com/epicdevler",
-            imgUrl: "/icons/twitter_x.svg",
+            imgUrl: faXTwitter,
             imgAlt: "X Logo",
         },
     ]

@@ -1,0 +1,34 @@
+import {Box, Button, Container, Flex, Text} from "@chakra-ui/react";
+import SectionTitle from "@/app/components/_section_title";
+
+
+const AboutSection = () => {
+
+
+    return (
+        <Box as={'section'} bg={'brand'} borderRadius={'100px'} my={100} py={16}>
+            <Container maxW={'container.lg'}>
+                <Flex flexWrap={'wrap'}>
+                    <Box maxW={'sm'}>
+                        <SectionTitle labelInFrontColor={'white'} labelInFront={'About'} labelBehind={'Me'}/>
+                        <Text fontWeight={400} lineHeight={'28px'} my={'24px'} fontSize={'14px'}>
+                            Lorem ipsum dolor sit amet consectetur. Eget lacinia nam at urna sed lectus. Nisl habitant
+                            placerat
+                            neque donec aliquam bibendum tellus libero turpis. Turpis aliquam nullam venenatis laoreet
+                            suscipit
+                            mattis duis venenatis iaculis. Viverra vitae mattis molestie enim nisl leo volutpat
+                            ultricies.
+                        </Text>
+
+                        <Button bg={'white'} textColor={'brand'} px={16} mt={16} py={8} borderRadius={'full'}>
+                            Hire Me
+                        </Button>
+                    </Box>
+                </Flex>
+            </Container>
+
+        </Box>
+    )
+}
+
+export default AboutSection

@@ -49,7 +49,7 @@ const _projects = [
     },
 ]
 
-const ProjectsSections = () => {
+const ProjectsSection = () => {
     const [activeFilter, setActiveFilter] = useState("All");
     const projectFilterOptions = ['All', 'Android', 'Web', 'Database', 'UI/UX']
     const [projects, setProjects] = useState(_projects);
@@ -92,7 +92,7 @@ const ProjectsSections = () => {
                                 fontSize={'14px'}
                                 textColor={activeFilter === filterOption ? 'white' : '#636363'}
                                 px={'16px'}
-                                style={{transition: 'background-color .1s ease-in-out'}}
+                                style={{transition: 'All .1s ease-in-out'}}
                                 onClick={
                                     (e) => {
                                         handleProjectFiltering(filterOption)
@@ -141,7 +141,7 @@ const ProjectsSections = () => {
                                                     <div>
                                                         <Text textColor={'rgba(246,246,246,0.6)'} fontSize={'12px'}
                                                               fontWeight={'300'}>Start</Text>
-                                                        <Text fontWeight={'300'}
+                                                        <Text textColor={'white'} fontWeight={'300'}
                                                               fontSize={'12px'}>{project.startDate}</Text>
                                                     </div>
                                                     :
@@ -152,7 +152,7 @@ const ProjectsSections = () => {
                                                     <div>
                                                         <Text textColor={'rgba(246,246,246,0.6)'} fontSize={'12px'}
                                                               fontWeight={'300'}>End</Text>
-                                                        <Text fontWeight={'300'}
+                                                        <Text textColor={'white'} fontWeight={'300'}
                                                               fontSize={'12px'}>{project.endDate}</Text>
                                                     </div>
                                                     :
@@ -174,4 +174,4 @@ const ProjectsSections = () => {
     )
 }
 
-export default ProjectsSections
+export default ProjectsSection

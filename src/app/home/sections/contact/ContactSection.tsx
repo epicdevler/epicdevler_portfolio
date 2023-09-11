@@ -28,7 +28,7 @@ export function ContactMeans(
     }
 ) {
     return (
-        <Flex alignItems={'center'} mt={5}>
+        <Flex id={'contact'} alignItems={'center'} mt={5}>
             <SocialIcon href={url} iconUrl={iconUrl}/>
 
             <Text as={'a'} href={url} target={'_blank'} ms={'3'}>

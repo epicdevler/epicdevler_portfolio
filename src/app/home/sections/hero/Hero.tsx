@@ -8,7 +8,7 @@ import Typed from 'react-typed';
 export default function HeroSection() {
 
     return (
-        <header className={style.hero}>
+        <header className={style.hero} id={'home'}>
             <div>
                 <Container className={style.graphicOverlay} maxW={'container.xl'}>
                     <Image className={style.artwork} src={'/hero_two_sided.png'} alt={"img"} width={50} height={50}/>

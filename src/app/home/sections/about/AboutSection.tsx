@@ -6,7 +6,7 @@ const AboutSection = () => {
 
 
     return (
-        <Box as={'section'} py={100}>
+        <Box as={'section'} py={100} id={'about'}>
             <Box bg={'brand'} borderRadius={[50, 50, 100, 100]} py={16}>
                 <Container maxW={'container.lg'} px={10}>
                     <Flex flexWrap={'wrap'}>

@@ -9,6 +9,7 @@ import ContactSection from "@/app/home/sections/contact/ContactSection";
 import Footer from "@/app/home/footer/_footer";
 import {useState} from "react";
 import {NavBarContext} from "@/app/context/_navbar_state_context";
+import {FullScreenNav} from "@/app/home/navbar/_navbar";
 
 const theme = extendTheme({
     colors: {
@@ -29,6 +30,7 @@ export default function Home() {
     return (
         <ChakraProvider theme={theme}>
             <NavBarContext.Provider value={{isToggled: isToggled, toggle: toggle}}>
+                <FullScreenNav/>
                 <HeroSection/>
                 <main>
                     <TechnologiesSection/>

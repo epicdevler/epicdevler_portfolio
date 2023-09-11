@@ -66,7 +66,7 @@ const ProjectsSection = () => {
     }
 
     return (
-        <Container as={'section'} maxW={'container.lg'} py={100}>
+        <Container id={'projects'} as={'section'} maxW={'container.lg'} py={100}>
             <SectionTitle labelInFrontColor={'brand'} labelInFront={'Projects'} labelBehind={'My'}/>
             <Text fontWeight={400} lineHeight={'28px'} my={'24px'} fontSize={'14px'}>
                 Lorem ipsum dolor sit amet consectetur. Consectetur porttitor ac volutpat imperdiet at quam senectus

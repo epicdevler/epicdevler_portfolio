@@ -1,12 +1,16 @@
 'use client'
-import {Button, Container, Flex, HStack, Spacer, useColorMode,} from "@chakra-ui/react";
+import {Button, Container, Flex, HStack, IconButton, Spacer, useColorMode,} from "@chakra-ui/react";
 import SocialIcon from "@/app/components/_social_icons";
 import NavLink from "@/app/components/_nav_link";
 import "@theme-toggles/react/css/Around.css"
 import {Around} from "@theme-toggles/react"
-import {faXTwitter, faGithub, faLinkedinIn} from "@fortawesome/free-brands-svg-icons";
+import {faGithub, faLinkedinIn, faXTwitter} from "@fortawesome/free-brands-svg-icons";
+import {useGlobalNavbarStateContext} from "@/app/page";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faBars} from "@fortawesome/free-solid-svg-icons/faBars";
 
 export default function Navbar() {
+    const {isToggled, toggle} = useGlobalNavbarStateContext()
     const {colorMode, toggleColorMode} = useColorMode()
 
     const socialItems = [
@@ -27,6 +31,9 @@ export default function Navbar() {
         },
     ]
 
+    const handleNavToggle = () => {
+        toggle()
+    }
     return (
         <nav style={{padding: '10px 0px'}}>
             <Container maxW={'container.lg'}>
@@ -60,11 +67,13 @@ export default function Navbar() {
                             border: "1px solid white",
                             color: "white",
                             padding: "9px",
-                            fontSize: 22
-                        }} duration={750}/>
+                            fontSize: 20
+                        }} duration={3000}/>
 
-                        <Button hideFrom={'md'} borderRadius={100} bg={'brand'} borderWidth={0} textColor={"white"}>
-                        </Button>
+                        <IconButton hideFrom={'md'} bg={'transparent'} borderRadius={100} borderWidth={1}
+                                    borderColor={'white'} textColor={"white"} _hover={{}} onClick={handleNavToggle}>
+                            <FontAwesomeIcon icon={faBars}/>
+                        </IconButton>
                     </HStack>
                 </Flex>
             </Container>

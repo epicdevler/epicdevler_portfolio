@@ -10,7 +10,7 @@ import {faBars} from "@fortawesome/free-solid-svg-icons/faBars";
 import {useGlobalNavbarStateContext} from "@/app/context/_navbar_state_context";
 
 export default function Navbar() {
-    const {isToggled, toggle} = useGlobalNavbarStateContext()
+    const {toggle} = useGlobalNavbarStateContext()
     const {colorMode, toggleColorMode} = useColorMode()
 
     const socialItems = [

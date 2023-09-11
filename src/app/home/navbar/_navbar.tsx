@@ -123,7 +123,7 @@ export default function Navbar() {
 
 export function FullScreenNav() {
     const bgColor = useColorModeValue('rgba(145,145,145,0.5)', 'rgba(30,31,34,0.5)')
-    const textColor = useColorModeValue('rgba(37,37,37,0.5)', 'rgba(180,180,180,0.5)')
+
     const {isToggled, toggle} = useGlobalNavbarStateContext()
     const [scale, setScale] = useState(0)
     const [borderRadius, setBorderRadius] = useState(0)
@@ -154,8 +154,8 @@ export function FullScreenNav() {
             {
                 navLinks.map(
                     link => {
-                        return <Box width={'full'} textAlign={'center'}>
-                            <NavLink key={link.label} label={link.label} href={link.href}
+                        return <Box key={link.label} width={'full'} textAlign={'center'}>
+                            <NavLink label={link.label} href={link.href}
                                      isActive={link.label === "Home"}/>
                         </Box>
                     }

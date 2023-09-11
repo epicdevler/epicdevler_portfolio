@@ -71,7 +71,8 @@ export default function Navbar() {
                         }} duration={3000}/>
 
                         <IconButton hideFrom={'md'} bg={'transparent'} borderRadius={100} borderWidth={1}
-                                    borderColor={'white'} textColor={"white"} _hover={{}} onClick={handleNavToggle}>
+                                    borderColor={'white'} textColor={"white"} _hover={{}} onClick={handleNavToggle}
+                                    aria-label={'toggle icon'}>
                             <FontAwesomeIcon icon={faBars}/>
                         </IconButton>
                     </HStack>

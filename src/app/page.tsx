@@ -7,7 +7,8 @@ import ProjectsSection from "@/app/home/sections/projects/ProjectsSection";
 import WorkSection from "@/app/home/sections/work/WorkSection";
 import ContactSection from "@/app/home/sections/contact/ContactSection";
 import Footer from "@/app/home/footer/_footer";
-import {createContext, useContext, useState} from "react";
+import {useState} from "react";
+import {NavBarContext} from "@/app/context/_navbar_state_context";
 
 const theme = extendTheme({
     colors: {
@@ -16,17 +17,6 @@ const theme = extendTheme({
     },
 })
 
-export type NavbarState = {
-    isToggled: boolean,
-    toggle: () => void
-}
-const NavBarContext = createContext({
-    isToggled: false,
-    toggle: () => {
-    }
-});
-
-export const useGlobalNavbarStateContext = () => useContext(NavBarContext);
 
 export default function Home() {
 
@@ -35,7 +25,6 @@ export default function Home() {
     const toggle = () => {
         setIsToggled(!isToggled)
     }
-
 
     return (
         <ChakraProvider theme={theme}>

@@ -5,9 +5,9 @@ import NavLink from "@/app/components/_nav_link";
 import "@theme-toggles/react/css/Around.css"
 import {Around} from "@theme-toggles/react"
 import {faGithub, faLinkedinIn, faXTwitter} from "@fortawesome/free-brands-svg-icons";
-import {useGlobalNavbarStateContext} from "@/app/page";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBars} from "@fortawesome/free-solid-svg-icons/faBars";
+import {useGlobalNavbarStateContext} from "@/app/context/_navbar_state_context";
 
 export default function Navbar() {
     const {isToggled, toggle} = useGlobalNavbarStateContext()

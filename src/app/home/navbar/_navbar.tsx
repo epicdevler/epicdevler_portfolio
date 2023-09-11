@@ -128,14 +128,14 @@ export function FullScreenNav() {
     const [scale, setScale] = useState(0)
     const [borderRadius, setBorderRadius] = useState(0)
 
+
     useEffect(() => {
+        const handleToggle = () => {
+            setScale(isToggled ? 1 : 0)
+            setBorderRadius(isToggled ? 0 : 8)
+        }
         handleToggle()
     }, [isToggled]);
-
-    const handleToggle = () => {
-        setScale(isToggled ? 1 : 0)
-        setBorderRadius(isToggled ? 0 : 8)
-    }
 
     const handleOnClose = () => {
         toggle()

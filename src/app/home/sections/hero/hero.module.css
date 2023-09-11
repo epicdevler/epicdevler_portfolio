@@ -1,19 +1,21 @@
 .graphicOverlay {
     position: relative;
     height: inherit;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 .hero {
     position: relative;
     overflow-x: hidden;
+    min-height: 100vh;
 }
 
 .hero .glass {
-    height: -webkit-fill-available;
+    height: inherit;
     background: rgba(35, 35, 35, 0.38);
     backdrop-filter: blur(53px);
     position: absolute;
+    padding: 20px 0;
     top: 0;
     left: 0;
     width: 100%;

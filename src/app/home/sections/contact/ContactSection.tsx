@@ -3,14 +3,13 @@ import {
     Button,
     Container,
     Flex,
-    FormControl, FormErrorMessage,
-    FormLabel,
     GridItem,
     Input,
     SimpleGrid,
-    Text, Textarea, useColorModeValue
+    Text,
+    Textarea,
+    useColorModeValue
 } from "@chakra-ui/react";
-import {Formik, Form, Field, ErrorMessage} from 'formik';
 import {useState} from "react";
 import SocialIcon from "@/app/components/_social_icons";
 import {faEnvelope} from "@fortawesome/free-regular-svg-icons";
@@ -108,31 +107,36 @@ export default function ContactSection() {
 
                     </Box>
                 </GridItem>
-                <GridItem>
+                <GridItem mt={[10, 10, 0, 0]}>
                     <Flex flexDirection={'column'}>
-                        <Input value={fullName} focusBorderColor={'brand'} fontSize={14} fontWeight={400} _placeholder={{textColor: '#626262'}} textColor={inputTextColor} bg={inputBg} borderRadius={8} type="text"
+                        <Input value={fullName} focusBorderColor={'brand'} fontSize={14} fontWeight={400}
+                               _placeholder={{textColor: '#626262'}} textColor={inputTextColor} bg={inputBg}
+                               borderRadius={8} type="text"
                                placeholder={'Full Name'}
                                onChange={(e) => {
                                    setFullName(e.target.value)
                                }}
                         />
-                        <Input value={email} focusBorderColor={'brand'} fontSize={14} fontWeight={400} _placeholder={{textColor: '#626262'}} textColor={inputTextColor} bg={inputBg} borderRadius={8} type="email"
+                        <Input value={email} focusBorderColor={'brand'} fontSize={14} fontWeight={400}
+                               _placeholder={{textColor: '#626262'}} textColor={inputTextColor} bg={inputBg}
+                               borderRadius={8} type="email"
                                placeholder={'Email Address'} my={5}
                                onChange={(e) => {
                                    setEmail(e.target.value)
                                }}
                         />
-                        <Textarea value={message} focusBorderColor={'brand'} fontSize={14} fontWeight={400} _placeholder={{textColor: '#626262'}} textColor={inputTextColor} bg={inputBg} borderRadius={8}
+                        <Textarea value={message} focusBorderColor={'brand'} fontSize={14} fontWeight={400}
+                                  _placeholder={{textColor: '#626262'}} textColor={inputTextColor} bg={inputBg}
+                                  borderRadius={8}
                                   placeholder={'Message'} name="message" id="message" cols={5} rows={13} resize={'none'}
                                   onChange={(e) => {
                                       setMessage(e.target.value)
                                   }}></Textarea>
 
-                        <Box>
-                            <Button bg={'brand'} textColor={'white'} _hover={{}} fontWeight={400} fontSize={14} borderRadius={'full'} mt={5}>
-                                Send
-                            </Button>
-                        </Box>
+                        <Button mt={10} bg={'brand'} textColor={'white'} _hover={{}} fontWeight={400} fontSize={14}
+                                borderRadius={8} mt={5}>
+                            Send
+                        </Button>
                     </Flex>
                 </GridItem>
             </SimpleGrid>

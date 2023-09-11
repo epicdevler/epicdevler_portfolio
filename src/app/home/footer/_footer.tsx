@@ -1,8 +1,8 @@
 'use client'
-import {Box, Text, Container, Flex, HStack, Spacer, useColorMode, SimpleGrid, GridItem,} from "@chakra-ui/react";
+import {Box, Container, GridItem, HStack, SimpleGrid, Text, useColorMode,} from "@chakra-ui/react";
 import SocialIcon from "@/app/components/_social_icons";
 import "@theme-toggles/react/css/Around.css"
-import {faXTwitter, faGithub, faLinkedinIn} from "@fortawesome/free-brands-svg-icons";
+import {faGithub, faLinkedinIn, faXTwitter} from "@fortawesome/free-brands-svg-icons";
 import {leckerliOne} from "@/app/fonts";
 
 export default function Footer() {
@@ -29,27 +29,30 @@ export default function Footer() {
     return (
         <Box as={'footer'} py={3} bg={'brand'} mt={100} borderTopRadius={100}>
             <Container maxW={'container.lg'} px={100}>
-                <SimpleGrid columns={{base: 1, sm: 3, md:3, lg: 3}} alignItems={'center'} justifyContent={'space-between'}>
+                <SimpleGrid hideBelow={'md'} columns={{lg: 3}} alignItems={'center'}
+                            justifyContent={'space-between'}>
                     <GridItem>
                         <Text
                             fontWeight={400}
-                            fontSize={14}>
+                            fontSize={14}
+                            textAlign={{md: 'center', lg: 'left'}}
+                        >
                             © 2023
                             <Text as={'span'} ms={1} className={leckerliOne.className}>
                                 aminnali
                             </Text>
                         </Text>
                     </GridItem>
-                   <GridItem  textAlign={'center'}>
-                       <Text
-                           fontWeight={500}
-                           fontSize={14}
-                           textAlign={'center'}
-                       >
-                           Made with ❤️
-                       </Text>
-                   </GridItem>
-                    <GridItem  display={'flex'} justifyContent={'end'}>
+                    <GridItem textAlign={'center'}>
+                        <Text
+                            fontWeight={500}
+                            fontSize={14}
+                            textAlign={'center'}
+                        >
+                            Made with ❤️
+                        </Text>
+                    </GridItem>
+                    <GridItem display={'flex'} justifyContent={'end'}>
                         <HStack>
                             {
                                 socialItems.map(
@@ -60,6 +63,44 @@ export default function Footer() {
                                 )
                             }
                         </HStack>
+                    </GridItem>
+                </SimpleGrid>
+
+
+                <SimpleGrid hideFrom={'md'} columns={{md: 1}} alignItems={'center'}
+                            justifyContent={'center'}>
+                    <GridItem textAlign={'center'}>
+                        <Text
+                            fontWeight={500}
+                            fontSize={14}
+                            textAlign={'center'}
+                        >
+                            Made with ❤️
+                        </Text>
+                    </GridItem>
+                    <GridItem display={'flex'} justifyContent={'center'} my={6}>
+                        <HStack>
+                            {
+                                socialItems.map(
+                                    (item, index) => {
+                                        return <SocialIcon key={index} href={item.url} iconUrl={item.imgUrl}
+                                                           alt={item.imgAlt}/>
+                                    }
+                                )
+                            }
+                        </HStack>
+                    </GridItem>
+                    <GridItem>
+                        <Text
+                            fontWeight={400}
+                            fontSize={14}
+                            textAlign={'center'}
+                        >
+                            © 2023
+                            <Text as={'span'} ms={1} className={leckerliOne.className}>
+                                aminnali
+                            </Text>
+                        </Text>
                     </GridItem>
                 </SimpleGrid>
             </Container>

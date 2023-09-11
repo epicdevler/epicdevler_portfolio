@@ -134,7 +134,7 @@ export default function ContactSection() {
                                   }}></Textarea>
 
                         <Button mt={10} bg={'brand'} textColor={'white'} _hover={{}} fontWeight={400} fontSize={14}
-                                borderRadius={8} mt={5}>
+                                borderRadius={8}>
                             Send
                         </Button>
                     </Flex>

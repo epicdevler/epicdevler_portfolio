@@ -17,6 +17,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@sanity/vision": "^3.16.4",
     "@theme-toggles/react": "^4.1.0",
     "@types/node": "20.5.9",
     "@types/react": "18.2.21",
@@ -26,9 +27,12 @@
     "formik": "^2.4.4",
     "framer-motion": "^10.16.4",
     "next": "13.4.19",
+    "next-sanity": "^5.5.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-typed": "^1.2.0",
+    "sanity": "^3.16.4",
+    "swiper": "^10.2.0",
     "typed.js": "^2.0.16",
     "typescript": "5.2.2"
   }

@@ -1,0 +1,21 @@
+.list {
+    display: flex;
+    flex-direction: column;
+}
+
+.list li {
+    padding: 10px;
+    list-style: none;
+    font-weight: 500;
+}
+
+.list a {
+    text-decoration: none;
+}
+
+.line {
+    width: 50px;
+    height: 3px;
+    border-radius: 100px;
+    transition: All 1s ease-in-out;
+}

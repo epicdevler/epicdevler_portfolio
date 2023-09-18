@@ -29,7 +29,7 @@ export default function Footer() {
     return (
         <Box as={'footer'} py={3} bg={'brand'} mt={100} borderTopRadius={100}>
             <Container maxW={'container.lg'} px={100}>
-                <SimpleGrid hideBelow={'md'}  w={'full'} columns={3} alignItems={'center'}
+                <SimpleGrid hideBelow={'md'}  columns={3} alignItems={'center'}
                             justifyContent={'space-between'}>
                     <GridItem>
                         <Text
@@ -67,7 +67,7 @@ export default function Footer() {
                 </SimpleGrid>
 
 
-                <SimpleGrid hideFrom={'md'} w={'full'} columns={1} alignItems={'center'}
+                <SimpleGrid hideFrom={'md'} columns={1} alignItems={'center'}
                             justifyContent={'center'}>
                     <GridItem textAlign={'center'}>
                         <Text

@@ -48,10 +48,7 @@ export default function HeroSection() {
                         volutpat ultricies.
                     </p>
                     <HStack mt={10} spacing={8}>
-                        <Button borderRadius={100} bg={'brand'} borderWidth={0} fontWeight={500} textColor={"white"}>
-                            Hire Me
-                        </Button>
-                        <Button borderRadius={100} bg={'transparent'} borderColor={'white'} fontWeight={500}
+                        <Button _hover={{}} borderRadius={100} bg={'transparent'} borderColor={'white'} fontWeight={500}
                                 borderWidth={1}
                                 textColor={"white"}>
                             my CV

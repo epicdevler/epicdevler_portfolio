@@ -43,8 +43,8 @@ const navLinks = [
 ]
 
 export default function Navbar() {
-    const {toggle} = useGlobalNavbarStateContext()
     const {colorMode, toggleColorMode} = useColorMode()
+    const [isToggled, setIsToggled] = useState<boolean>(false)
 
     const socialItems = [
         {
@@ -65,10 +65,11 @@ export default function Navbar() {
     ]
 
     const handleNavToggle = () => {
-        toggle()
+        setIsToggled(!isToggled)
     }
     return (
         <nav style={{padding: '10px 0px'}}>
+            <FullScreenNav onToggle={isToggled} unToggle={handleNavToggle} />
             <Container maxW={'container.lg'}>
                 <Flex alignItems={'center'}>
                     <HStack>
@@ -95,18 +96,24 @@ export default function Navbar() {
                     </HStack>
                     <Spacer/>
                     <HStack>
-                        <Button hideBelow={"md"} borderRadius={100} fontWeight={500} bg={'brand'} borderWidth={0}
+                        {/* <Button hideBelow={"md"} borderRadius={100} fontWeight={500} bg={'brand'} borderWidth={0}
                                 textColor={"white"}>
                             Hire Me
-                        </Button>
+                        </Button> */}
 
-                        <Around toggled={colorMode === 'light'} onToggle={toggleColorMode} style={{
+                        <Around toggle={
+                            (state) =>{
+                                toggleColorMode()
+                            }
+                        }
+                        forceMotion={true}
+                         toggled={colorMode === 'light'} style={{
                             borderRadius: 100,
                             border: "1px solid white",
                             color: "white",
                             padding: "9px",
                             fontSize: 20
-                        }} duration={3000}/>
+                        }} duration={750}/>
 
                         <IconButton hideFrom={'md'} bg={'transparent'} borderRadius={100} borderWidth={1}
                                     borderColor={'white'} textColor={"white"} _hover={{}} onClick={handleNavToggle}
@@ -120,33 +127,27 @@ export default function Navbar() {
     )
 }
 
+export function FullScreenNav({onToggle, unToggle}:{onToggle: boolean, unToggle: () => void}) {
+    const bgColor = useColorModeValue('rgba(145,145,145,0.10)', 'rgba(30,31,34,0.10)')
 
-export function FullScreenNav() {
-    const bgColor = useColorModeValue('rgba(145,145,145,0.5)', 'rgba(30,31,34,0.5)')
-
-    const {isToggled, toggle} = useGlobalNavbarStateContext()
     const [scale, setScale] = useState(0)
     const [borderRadius, setBorderRadius] = useState(0)
 
 
     useEffect(() => {
         const handleToggle = () => {
-            setScale(isToggled ? 1 : 0)
-            setBorderRadius(isToggled ? 0 : 8)
+            setScale(onToggle ? 1 : 0)
+            setBorderRadius(onToggle ? 0 : 8)
         }
         handleToggle()
-    }, [isToggled]);
-
-    const handleOnClose = () => {
-        toggle()
-    }
+    }, [onToggle]);
 
     return (
 
         <VStack align={'end'} bg={bgColor} hideFrom={'md'} className={style.fullScreenNav} style={{scale: scale}}
-                borderRadius={borderRadius} p={10}>
+                borderRadius={borderRadius} py={8} px={3}>
             <IconButton hideFrom={'md'} bg={'transparent'} borderRadius={100} borderWidth={1}
-                        borderColor={'white'} textColor={"white"} _hover={{}} onClick={handleOnClose}
+                        borderColor={'white'} textColor={"white"} _hover={{}} onClick={unToggle}
                         aria-label={'toggle icon'} mb={10}>
                 <FontAwesomeIcon icon={faClose}/>
             </IconButton>

@@ -1,3 +1,4 @@
+'use client'
 import {Button, Container, Flex, GridItem, SimpleGrid, Text} from "@chakra-ui/react";
 import SectionTitle from "@/app/components/_section_title";
 import {useState} from "react";

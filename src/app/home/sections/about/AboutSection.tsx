@@ -24,8 +24,8 @@ const AboutSection = () => {
                                 ultricies.
                             </Text>
 
-                            <Button bg={'white'} textColor={'brand'} borderRadius={'full'}>
-                                Hire Me
+                            <Button bg={'transparent'} _hover={{}} fontWeight={500} textColor={'white'} borderWidth={1} borderColor={'white'} borderRadius={'full'}>
+                                Contact Me
                             </Button>
                         </Box>
                     </Flex>

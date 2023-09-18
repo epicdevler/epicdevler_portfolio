@@ -21,16 +21,9 @@ const theme = extendTheme({
 
 export default function Home() {
 
-    const [isToggled, setIsToggled] = useState<boolean>(false)
-
-    const toggle = () => {
-        setIsToggled(!isToggled)
-    }
 
     return (
         <ChakraProvider theme={theme}>
-            <NavBarContext.Provider value={{isToggled: isToggled, toggle: toggle}}>
-                <FullScreenNav/>
                 <HeroSection/>
                 <main>
                     <TechnologiesSection/>
@@ -40,7 +33,6 @@ export default function Home() {
                     <ContactSection/>
                 </main>
                 <Footer/>
-            </NavBarContext.Provider>
         </ChakraProvider>
     )
 }

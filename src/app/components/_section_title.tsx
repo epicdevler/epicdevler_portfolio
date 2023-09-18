@@ -16,7 +16,7 @@ export default function SectionTitle(
 ) {
     return (
         <div className={style.styled_title}>
-            <p className={leckerliOne.variable} style={{opacity: 0.22}}>{labelBehind}</p>
+            <p className={leckerliOne.className} style={{opacity: 0.22}}>{labelBehind}</p>
             <Text as={'h1'} textColor={labelInFrontColor}>{labelInFront}</Text>
         </div>
     )

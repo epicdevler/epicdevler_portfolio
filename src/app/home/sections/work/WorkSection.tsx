@@ -27,8 +27,7 @@ const WorkSection = ({ data }: { data: WorkExperience[] }) => {
             <Container maxW={'container.lg'}>
                 <SectionTitle labelInFront={'Experience'} labelBehind={'Work'} />
                 <Text maxW={'lg'} fontWeight={400} lineHeight={'28px'} my={'24px'} fontSize={'14px'}>
-                    Lorem ipsum dolor sit amet consectetur. Eget lacinia nam at urna sed lectus. Nisl habitant
-                    placerat neque donec aliquam bibendum tellus libero turpis.
+                    I have gained valueable insight colloborating with teams of different backgrounds within and outside an organization, national and internationally.
                 </Text>
 
                 <Swiper

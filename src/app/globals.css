@@ -14,8 +14,8 @@ html {
     scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: dark) {
     html {
-        color-scheme: light;
+        color-scheme: dark;
     }
-}
+} */

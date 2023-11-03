@@ -29,7 +29,7 @@ export function ContactMeans(
     }
 ) {
     return (
-        <Flex id={'contact'} alignItems={'center'} mt={5}>
+        <Flex alignItems={'center'} mt={5}>
             <SocialIcon href={url} iconUrl={iconUrl}/>
 
             <Text as={'a'} href={url} target={'_blank'} ms={'3'}>
@@ -79,7 +79,7 @@ export default function ContactSection() {
     }
 
     return (
-        <Container as={'section'} maxW={'container.lg'} py={200}>
+        <Container id="contact"  as={'section'} maxW={'container.lg'} py={200}>
             <SimpleGrid columns={{base: 1, md: 2}}>
                 <GridItem>
                     <Box>
@@ -98,9 +98,9 @@ export default function ContactSection() {
                         </Text>
 
 
-                        <ContactMeans label={'+234 808 0366 089'} url={'tel:+234 808 0366 089'}
+                        <ContactMeans label={'+234 913 6908 869'} url={'tel:+234 913 6908 869'}
                                       iconUrl={faPhone}/>
-                        <ContactMeans label={'+234 808 0366 089'} url={'https://wa.me/+2348080366089'}
+                        <ContactMeans label={'+234 913 6908 869'} url={'https://wa.me/+23491369088699'}
                                       iconUrl={faWhatsapp}/>
                         <ContactMeans label={'dev.epicdevler@gmail.com'} url={'mailto:dev.epicdevler@gmail.com'}
                                       iconUrl={faEnvelope}/>

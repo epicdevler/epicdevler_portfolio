@@ -9,3 +9,6 @@
     backdrop-filter: blur(90px);
     background: rgba(30,31,34,0.10) !important;
 }
+.nav li{
+    font-weight: lighter;
+}

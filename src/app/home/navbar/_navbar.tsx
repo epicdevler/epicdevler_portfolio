@@ -68,7 +68,7 @@ export default function Navbar() {
         setIsToggled(!isToggled)
     }
     return (
-        <nav style={{padding: '10px 0px'}}>
+        <nav className={style.nav} style={{padding: '10px 0px'}}>
             <FullScreenNav onToggle={isToggled} unToggle={handleNavToggle} />
             <Container maxW={'container.lg'}>
                 <Flex alignItems={'center'}>
@@ -94,14 +94,13 @@ export default function Navbar() {
                         }
 
                     </HStack>
-                    <Spacer/>
                     <HStack>
                         {/* <Button hideBelow={"md"} borderRadius={100} fontWeight={500} bg={'brand'} borderWidth={0}
                                 textColor={"white"}>
                             Hire Me
                         </Button> */}
 
-                        <Around toggle={
+                        {/* <Around toggle={
                             (state) =>{
                                 toggleColorMode()
                             }
@@ -113,7 +112,7 @@ export default function Navbar() {
                             color: "white",
                             padding: "9px",
                             fontSize: 20
-                        }} duration={750}/>
+                        }} duration={750}/> */}
 
                         <IconButton hideFrom={'md'} bg={'transparent'} borderRadius={100} borderWidth={1}
                                     borderColor={'white'} textColor={"white"} _hover={{}} onClick={handleNavToggle}

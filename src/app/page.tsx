@@ -1,6 +1,6 @@
 'use client'
 import HeroSection from "@/app/home/sections/hero/Hero";
-import {ChakraProvider, extendTheme} from '@chakra-ui/react'
+import {ChakraProvider, DarkMode, ThemeConfig, extendTheme, useColorMode, useColorModeValue} from '@chakra-ui/react'
 import TechnologiesSection from "@/app/home/sections/technologies/TechnologiesSection";
 import AboutSection from "@/app/home/sections/about/AboutSection";
 import ProjectsSection from "@/app/home/sections/projects/ProjectsSection";
@@ -14,7 +14,12 @@ import { Technology, TechnologyItem } from "../../sanity/schemas/technology";
 import { WorkExperience } from "../../sanity/schemas/workExperience";
 import { getPortfolioData } from "../../sanity/utils/utils";
 
+const config: ThemeConfig = {
+    initialColorMode: 'dark',
+    useSystemColorMode: false,
+  }
 const theme = extendTheme({
+    config,
     colors: {
         brand: '#6842EF',
         white: '#F6F6F6'

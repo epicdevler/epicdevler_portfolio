@@ -110,7 +110,7 @@ export default function ContactSection() {
                 </GridItem>
                 <GridItem mt={[10, 10, 0, 0]}>
                     <Flex flexDirection={'column'}>
-                        <Input value={fullName} focusBorderColor={'brand'} fontSize={14} fontWeight={400}
+                        <Input disabled={true} value={fullName} focusBorderColor={'brand'} fontSize={14} fontWeight={400}
                                _placeholder={{textColor: '#626262'}} textColor={inputTextColor} bg={inputBg}
                                borderRadius={8} type="text"
                                placeholder={'Full Name'}
@@ -118,7 +118,7 @@ export default function ContactSection() {
                                    setFullName(e.target.value)
                                }}
                         />
-                        <Input value={email} focusBorderColor={'brand'} fontSize={14} fontWeight={400}
+                        <Input disabled={true} value={email} focusBorderColor={'brand'} fontSize={14} fontWeight={400}
                                _placeholder={{textColor: '#626262'}} textColor={inputTextColor} bg={inputBg}
                                borderRadius={8} type="email"
                                placeholder={'Email Address'} my={5}
@@ -126,7 +126,7 @@ export default function ContactSection() {
                                    setEmail(e.target.value)
                                }}
                         />
-                        <Textarea value={message} focusBorderColor={'brand'} fontSize={14} fontWeight={400}
+                        <Textarea disabled={true} value={message} focusBorderColor={'brand'} fontSize={14} fontWeight={400}
                                   _placeholder={{textColor: '#626262'}} textColor={inputTextColor} bg={inputBg}
                                   borderRadius={8}
                                   placeholder={'Message'} name="message" id="message" cols={5} rows={13} resize={'none'}
@@ -134,7 +134,7 @@ export default function ContactSection() {
                                       setMessage(e.target.value)
                                   }}></Textarea>
 
-                        <Button disabled mt={10} bg={'brand'} textColor={'white'} _hover={{}} fontWeight={400} fontSize={14}
+                        <Button disabled={true} mt={10} colorScheme={'brand'} textColor={'white'} _hover={{}} fontWeight={400} fontSize={14}
                                 borderRadius={8}>
                             You can reach me via WhatsApp, phone call or email.
                         </Button>

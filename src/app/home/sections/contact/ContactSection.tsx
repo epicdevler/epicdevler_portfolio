@@ -134,9 +134,9 @@ export default function ContactSection() {
                                       setMessage(e.target.value)
                                   }}></Textarea>
 
-                        <Button mt={10} bg={'brand'} textColor={'white'} _hover={{}} fontWeight={400} fontSize={14}
+                        <Button disabled mt={10} bg={'brand'} textColor={'white'} _hover={{}} fontWeight={400} fontSize={14}
                                 borderRadius={8}>
-                            Send
+                            You can reach me via WhatsApp, phone call or email.
                         </Button>
                     </Flex>
                 </GridItem>

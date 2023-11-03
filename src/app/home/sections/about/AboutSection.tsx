@@ -22,7 +22,7 @@ const AboutSection = () => {
                             <Text as={'p'} fontWeight={400} lineHeight={'28px'} my={'24px'} fontSize={'14px'}
                                 textColor={'white'}>
                                 {
-                                    `I'm a self-taught Web developer and Mobile App Developer with experience in designing new features from ideation to high performance software applications. I take into consideration the user experience while writing reusable, scalable and efficient code. I passionately combine good design, technology, and innovation in all my projects, which I like to accompany from the first idea to release. I'm main focused on the App Development with Kotlin and Jetpack Compose.`
+                                    `I'm a Web developer and Mobile App Developer with experience in designing new features from ideation to high performance software applications. I take into consideration the user experience while writing reusable, scalable and efficient code. I passionately combine good design, technology, and innovation in all my projects. I'm mainly focused on  Mobile App Development with Kotlin and Jetpack Compose.`
                                 }
                             </Text>
 

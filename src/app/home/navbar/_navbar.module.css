@@ -1,0 +1,14 @@
+.fullScreenNav {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    z-index: 999;
+    transition: all 0.1s linear;
+    backdrop-filter: blur(90px);
+    background: rgba(30,31,34,0.10) !important;
+}
+.nav li{
+    font-weight: lighter;
+}

@@ -1,33 +1,33 @@
-'use client'
 import './globals.css'
 
-import type {Metadata} from 'next'
-import {ChakraProvider, extendTheme} from '@chakra-ui/react'
-import {poppins} from "@/app/fonts";
+import type { Metadata } from 'next'
+import { poppins } from "@/app/fonts";
+import { Suspense } from 'react';
+import { DarkMode } from '@chakra-ui/react';
 
 export const metadata: Metadata = {
     title: 'Nwadike Philip | epicdevler ',
     description: 'Nwadike Phiip\'s Portfolio',
     keywords: ['Nwadike Philip', 'epicdevler', 'devler', 'cedars', 'android developer', 'android'],
     creator: 'Nwadike Philip (epicdevler)',
+    openGraph: {
+        images: '/image_preview.svg',
+    }
 }
 
-const theme = extendTheme({
-    colors: {
-        brand: '#6842EF',
-        white: '#F6F6F6'
-    },
-})
 export default function RootLayout({
-                                       children,
-                                   }: {
+    children,
+}: {
     children: React.ReactNode
 }) {
     return (
         <html lang="en">
-        <ChakraProvider theme={theme}>
-            <body className={poppins.variable}>{children}</body>
-        </ChakraProvider>
+                <body className={poppins.variable}>
+                    <Suspense fallback={<p>Loadding Page</p>} >
+                        {children}
+                    </Suspense>
+                </body>
+
         </html>
     )
 }

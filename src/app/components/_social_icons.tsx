@@ -1,12 +1,18 @@
 import {IconButton} from "@chakra-ui/react";
-import Image from "next/image";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {IconDefinition} from "@fortawesome/free-brands-svg-icons";
 
 export default function SocialIcon(
-    {iconUrl, alt}
+    {
+        href, iconUrl, alt = ""
+    }: {
+        href: string, iconUrl: IconDefinition, alt?: string
+    }
 ) {
     return (
-        <IconButton bg={"white"} padding={"10px"} borderRadius={"100"} aria-label={alt}>
-            <Image src={iconUrl} alt={alt} width={20} height={20}/>
+        <IconButton as={'a'} href={href} target={'_blank'} padding={"10px"} borderRadius={"100"}
+                    aria-label={alt}>
+            <FontAwesomeIcon icon={iconUrl} />
         </IconButton>
     )
 }

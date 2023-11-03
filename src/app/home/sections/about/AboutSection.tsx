@@ -1,7 +1,7 @@
 import { Box, Button, Container, Flex, Text } from "@chakra-ui/react";
 import SectionTitle from "@/app/components/_section_title";
 import Image from "next/image";
-import epicdevlerImg from '../../../../../public/epicdevler.jpg'
+import epicdevlerImg from '../../../../../public/epicdevler.png'
 import Link from "next/link";
 
 

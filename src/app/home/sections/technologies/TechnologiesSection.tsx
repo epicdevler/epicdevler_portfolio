@@ -7,7 +7,6 @@ import Link from "next/link";
 export default function TechnologiesSection({ data }: { data: Technology[] }) {
     const errorTextColor = useColorModeValue("blackAlpha.400", "whiteAlpha.400")
     let mainData;
-    console.log(data)
     if (data.length > 0) {
         const technology = data[0]
 

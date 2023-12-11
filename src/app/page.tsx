@@ -66,7 +66,6 @@ export default function Home() {
             (value) => {
                 setWorkExperience(value.works)
                 setTechnologies(value.technology)
-                console.log(value)
             },
             (reason) => {
                 console.log(`${reason}`)

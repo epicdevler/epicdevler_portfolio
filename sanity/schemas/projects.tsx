@@ -1,35 +1,36 @@
-export type Technology = {
-    briefMessage: string,
-    technologies: TechnologyItem[]
-}
-export type TechnologyItem = {
-    iconUrl: string,
-    alt: string,
-    refUrl: string
-}
 
-const technologySchema = {
-    name: 'technology',
-    title: 'Technology',
+
+export type Project = {
+    type: string,
+    title: string,
+    startDate: string,
+    endDate: string,
+    imgUrl: string,
+    alt: string,
+    descr: string,
+    githubUrl: string,
+    link?: string,
+}
+const projectSchema = {
+    name: 'project',
+    title: 'Projects',
     type: 'document',
-    fields: [
-        {name: 'message', type: 'string', title: 'Brief Message'},
+    groups: [
         {
-            type: 'array',
-            name: 'technologies',
-            title: 'Technologies',
-            of: [
-                {
-                    type: 'document',
-                    fields: [
-                        {name: 'alt', type: 'string', title: 'Alternate Name'},
-                        {name: 'imgUrl', type: 'image', title: 'Image'},
-                        {name: 'refUrl', type: 'url', title: 'Reference URL'},
-                    ]
-                },
-            ]
-        }
+            name: 'dates',
+            title: "Dates"
+        },
+    ],
+    fields: [
+        { name: 'alt', type: 'string', title: 'Alternate Name' },
+        { name: 'imgUrl', type: 'image', title: 'Image' },
+        { name: 'descr', type: 'string', title: 'Description' },
+        { name: 'type', type: 'string', title: 'Type' },
+        { name: 'githubUrl', type: 'url', title: 'GitHub Link' },
+        { name: 'link', type: 'url', title: 'Download / Link' },
+        { name: 'startDate', group: 'dates', type: 'string', title: 'Start Date' },
+        { name: 'endDate', group: 'dates', type: 'string', title: 'End Date' },
     ]
 }
 
-export default technologySchema
+export default projectSchema

@@ -1,19 +1,35 @@
 'use client'
-import { Button, Container, Flex, GridItem, SimpleGrid, Text, Tooltip } from "@chakra-ui/react";
+import { Button, Container, Flex, GridItem, SimpleGrid, Text, Box } from "@chakra-ui/react";
 import SectionTitle from "@/app/components/_section_title";
 import { useEffect, useState } from "react";
 import { jua } from "@/app/fonts";
+import Link from "next/link";
+import { Project } from "../../../../../sanity/schemas/projects";
 
-const sampleProject = {
-    id: "0",
-    type: "Android",
-    title: "Aminote (minote)",
-    startDate: "Aug 2023",
-    endDate: "Continues Development",
-    imgUrl: "/project_sample_graphic.png",
-}
-const _projects = [
-    sampleProject,
+
+const _projects: Project[] = [
+    {
+        type: "Android",
+        title: "Aminote (minote)",
+        startDate: "Aug 2022",
+        endDate: "Continues Development",
+        imgUrl: "/projects/minote_graphics.png",
+        alt: "Aminote Image Graphic",
+        descr: "",
+        githubUrl: "https://github.com/epicdevler/aminote.git",
+        link: "",
+    },
+    {
+        type: "Web",
+        title: "FoodApp | Resturant Ordering System",
+        startDate: "Aug 2023",
+        endDate: "Nov 2023",
+        imgUrl: "/projects/foodapp_graphics.png",
+        alt: "FoodApp Image Graphic",
+        descr: "",
+        githubUrl: "https://github.com/epicdevler/csp-foodapp.git",
+        link: "https://decutleries.vercel.app/",
+    }
 ]
 
 const ProjectsSection = () => {
@@ -50,9 +66,9 @@ const ProjectsSection = () => {
     }
 
     return (
-        <Container  as={'section'} maxW={'container.lg'} py={100}>
+        <Container as={'section'} maxW={'container.lg'} py={100}>
             <div id={'projects'}>
-            <SectionTitle labelInFrontColor={'brand'} labelInFront={'Projects'} labelBehind={'My'} />
+                <SectionTitle labelInFrontColor={'brand'} labelInFront={'Projects'} labelBehind={'My'} />
             </div>
             <Text fontWeight={400} lineHeight={'28px'} my={'24px'} fontSize={'14px'}>
                 This endeavor was more than just lines of code; it was a passionate exploration of possibilities. Iterative development and adaptability are the cornerstones that keep us on the cutting edge.
@@ -92,67 +108,95 @@ const ProjectsSection = () => {
                 }
             </Flex>
 
-            <SimpleGrid columns={{ base: 2, lg: 3 }} gap={5}>
+            <SimpleGrid columns={{ base: 1, md: 2, lg: 2 }} gap={5}>
                 {
                     projects.length > 0 ?
                         projects.map(
                             (project, index) => {
                                 return <GridItem
+                                    w='full'
                                     key={index}
-                                    backgroundImage={`url(${project.imgUrl})`}
-                                    backgroundPosition={'center'}
-                                    backgroundSize={'cover'}
-                                    borderRadius={'8px'}
                                 >
-                                    <Flex
-                                        alignItems={'start'}
-                                        _hover={{
-                                            backdropFilter: 'blur(0px)'
-                                        }}
+                                    <Box
+                                        w='full'
+                                        backgroundImage={`url(${project.imgUrl})`}
+                                        backgroundPosition={'center'}
+                                        backgroundSize={'cover'}
                                         borderRadius={'8px'}
-                                        flexDirection={'column'}
-                                        justifyContent={'space-between'}
-                                        p={'10px'}
-                                        h={'250px'}
-                                        style={{ backdropFilter: 'blur(2px)' }}
-                                        background={'linear-gradient(180deg, rgb(0 0 0 / 39%) 17.71%, rgb(0 0 0 / 76%) 71.87%)'}>
-                                        <Text textColor={'rgba(246,246,246,0.6)'} fontSize={'12px'}
-                                            fontWeight={'300'}>{project.type}</Text>
-                                        <div>
-                                            <Text className={jua.className} mb={'16px'} fontSize={'16px'}
-                                                fontWeight={400}
-                                                textColor={'white'}>
-                                                {project.title}
-                                            </Text>
-                                            {
-                                                project.startDate !== "" ?
-                                                    <div>
-                                                        <Text textColor={'rgba(246,246,246,0.6)'} fontSize={'12px'}
-                                                            fontWeight={'300'}>Start</Text>
-                                                        <Text textColor={'white'} fontWeight={'300'}
-                                                            fontSize={'12px'}>{project.startDate}</Text>
-                                                    </div>
-                                                    :
-                                                    <></>
-                                            }
-                                            {
-                                                project.endDate !== "" ?
-                                                    <div>
-                                                        <Text textColor={'rgba(246,246,246,0.6)'} fontSize={'12px'}
-                                                            fontWeight={'300'}>End</Text>
+                                    >
 
-                                                        <Text
-                                                            textColor={'white'}
-                                                            fontWeight={'300'}
-                                                            fontSize={'12px'}>
-                                                            {project.endDate}
+                                        <Flex
+                                            w='full'
+                                            bg='red'
+                                            alignItems={'start'}
+                                            _hover={{
+                                                backdropFilter: 'blur(0px)'
+                                            }}
+                                            borderRadius={'8px'}
+                                            flexDirection={'column'}
+                                            justifyContent={'space-between'}
+                                            p={'10px'}
+                                            h={'290px'}
+                                            backdropFilter={'blur(2px)'}
+                                            background={'linear-gradient(180deg, rgb(0 0 0 / 39%) 17.71%, rgb(0 0 0 / 76%) 71.87%)'}>
+                                            <Text textColor={'rgba(246,246,246,0.6)'} fontSize={'12px'}
+                                                fontWeight={'300'}>{project.type}</Text>
+                                            <Box w={'full'}>
+                                                <Text w='full' className={jua.className} mb={'16px'} fontSize={'16px'}
+                                                    fontWeight={400}
+                                                    textColor={'white'}>
+                                                    {project.title}
+                                                </Text>
+                                                <Flex w='full' justifyContent={'space-between'}>
+                                                    {
+                                                        project.startDate !== "" ?
+                                                            <div >
+                                                                <Text textColor={'rgba(246,246,246,0.6)'} fontSize={'12px'}
+                                                                    fontWeight={'300'}>Start</Text>
+                                                                <Text textColor={'white'} fontWeight={'300'}
+                                                                    fontSize={'12px'}>{project.startDate}</Text>
+                                                            </div>
+                                                            :
+                                                            <></>
+                                                    }
+                                                    {
+                                                        project.endDate !== "" ?
+                                                            <div className="mt-5">
+                                                                <Text textColor={'rgba(246,246,246,0.6)'} fontSize={'12px'}
+                                                                    fontWeight={'300'}>End</Text>
 
-                                                        </Text>
-                                                    </div>
-                                                    :
-                                                    <></>
-                                            }
-                                        </div>
+                                                                <Text
+                                                                    textColor={'white'}
+                                                                    fontWeight={'300'}
+                                                                    fontSize={'12px'}>
+                                                                    {project.endDate}
+
+                                                                </Text>
+                                                            </div>
+                                                            :
+                                                            <></>
+                                                    }
+                                                </Flex>
+                                            </Box>
+                                        </Flex>
+                                    </Box>
+                                    <Flex
+                                        mt="5"
+                                    >
+                                        {
+                                            project.link !== "" ?
+                                                <Button fontWeight={'normal'} fontSize={'14'} me='2' borderRadius={'full'}  as={Link} target='_blank' href={project.link!!}>
+                                                    View
+                                                </Button>
+                                                : <></>
+                                        }
+                                        {
+                                            project.githubUrl !== "" ?
+                                                <Button fontWeight={'normal'} fontSize={'14'} borderRadius={'full'}  as={Link} target='_blank' href={project.githubUrl}>
+                                                    GitHub
+                                                </Button>
+                                                : <></>
+                                        }
                                     </Flex>
                                 </GridItem>
                             }

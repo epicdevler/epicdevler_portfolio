@@ -2,8 +2,7 @@ import './globals.css'
 
 import type { Metadata } from 'next'
 import { poppins } from "@/app/fonts";
-import { Suspense } from 'react';
-import { DarkMode } from '@chakra-ui/react';
+import { Analytics } from '@vercel/analytics/react';
 
 export const metadata: Metadata = {
     title: 'Nwadike Philip | epicdevler ',
@@ -22,11 +21,10 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
-                <body className={poppins.variable}>
-                    <Suspense fallback={<p>Loadding Page</p>} >
-                        {children}
-                    </Suspense>
-                </body>
+            <body className={poppins.variable}>
+                {children}
+                <Analytics />
+            </body>
 
         </html>
     )

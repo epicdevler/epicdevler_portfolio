@@ -47,7 +47,7 @@ const navLinks = [
 ]
 
 export default function Navbar() {
-    var path = useSearchParams()
+    var path = window.location.href
     var bodyRef = useRef()
     const [activeSection, setActiveSection] = useState("/")
 
@@ -71,7 +71,7 @@ export default function Navbar() {
     ]
 
     useEffect(() => {
-        console.log(path.entries())
+        console.log(path)
     }, [path])
 
 

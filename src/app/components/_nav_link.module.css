@@ -1,21 +1,33 @@
+.list{
+    --navbar_line_width: 50%
+}
 .list {
     display: flex;
     flex-direction: column;
+
+}
+.list:hover > .line{
+    width: var(--navbar_line_width);
+}
+.active > .line{
+    width: var(--navbar_line_width);
 }
 
 .list li {
-    padding: 10px;
+    padding: 10px 0;
     list-style: none;
     font-weight: 500;
+    margin-right: 16px;
 }
 
 .list a {
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 .line {
-    width: 50px;
+    width: 0;
+    background-color: white;
     height: 3px;
     border-radius: 100px;
-    transition: All 1s ease-in-out;
+    transition: All .3s ease-in-out;
 }

@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Project } from "../../../../../sanity/schemas/projects";
 
 
+
 const _projects: Project[] = [
     {
         type: "Android",
@@ -24,7 +25,7 @@ const _projects: Project[] = [
         title: "FoodApp | Resturant Ordering System",
         startDate: "Aug 2023",
         endDate: "Nov 2023",
-        imgUrl: "/projects/foodapp_graphics.png",
+        imgUrl: "/projects/foodApp_graphics.png",
         alt: "FoodApp Image Graphic",
         descr: "",
         githubUrl: "https://github.com/epicdevler/csp-foodapp.git",
@@ -129,6 +130,8 @@ const ProjectsSection = () => {
                                             w='full'
                                             bg='red'
                                             alignItems={'start'}
+                                            transitionProperty={'background'}
+                                            transitionDuration={'.5s'}
                                             _hover={{
                                                 backdropFilter: 'blur(0px)'
                                             }}
@@ -207,10 +210,6 @@ const ProjectsSection = () => {
                         </Text>
                 }
             </SimpleGrid>
-
-            <Text fontWeight={400} textAlign={'center'} lineHeight={'28px'} my={'24px'} fontSize={'14px'}>
-                Still preparing project graphics for upload... more coming soon.
-            </Text>
 
         </Container>
     )

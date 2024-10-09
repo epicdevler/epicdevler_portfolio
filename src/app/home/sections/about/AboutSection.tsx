@@ -1,4 +1,4 @@
-import { Box, Button, Container, Flex, Text } from "@chakra-ui/react";
+import {Box, Button, Container, Flex, Spacer, Text} from "@chakra-ui/react";
 import SectionTitle from "@/app/components/_section_title";
 import Image from "next/image";
 import epicdevlerImg from '../../../../../public/epicdevler.png'
@@ -25,13 +25,15 @@ const AboutSection = () => {
                                     `I'm a Web developer and Mobile App Developer with experience in designing new features from ideation to high performance software applications. I take into consideration the user experience while writing reusable, scalable and efficient code. I passionately combine good design, technology, and innovation in all my projects. I'm mainly focused on  Mobile App Development with Kotlin and Jetpack Compose.`
                                 }
                             </Text>
-
+                            <Spacer height={'15px'} />
                             <Link
                                 href={"#contact"}
+
                                 style={{
                                     padding: '10px',
                                     borderRadius: '100px',
-                                    border: '1px solid white'
+                                    border: '1px solid white',
+                                    color: "white",
                                 }}
                             >
                                 Contact Me

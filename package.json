@@ -24,17 +24,23 @@
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
     "@vercel/analytics": "^1.1.1",
+    "dotenv": "^16.4.5",
     "eslint": "8.48.0",
     "eslint-config-next": "13.4.19",
     "formik": "^2.4.4",
     "framer-motion": "^10.16.4",
+    "mailtrap": "^3.4.0",
     "next": "13.4.19",
     "next-sanity": "^5.5.3",
+    "nodemailer": "^6.9.15",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "sanity": "^3.16.4",
     "swiper": "^10.2.0",
     "typed.js": "^2.0.16",
     "typescript": "5.2.2"
+  },
+  "devDependencies": {
+    "@types/nodemailer": "^6.4.16"
   }
 }

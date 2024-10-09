@@ -7,6 +7,7 @@ import {
     HStack,
     IconButton,
     Spacer,
+    Text,
     useColorMode,
     useColorModeValue,
     VStack,
@@ -20,13 +21,16 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBars, faClose} from "@fortawesome/free-solid-svg-icons";
 import {useGlobalNavbarStateContext} from "@/app/context/_navbar_state_context";
 import style from './_navbar.module.css'
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
+
+import {leckerliOne} from "@/app/fonts";
+import {useParams, usePathname, useSearchParams, useSelectedLayoutSegment} from "next/navigation";
 
 
 const navLinks = [
     {
         label: 'Home',
-        href: '#home'
+        href: '#start'
     },
     {
         label: 'Projects',
@@ -43,9 +47,11 @@ const navLinks = [
 ]
 
 export default function Navbar() {
-    const {colorMode, toggleColorMode} = useColorMode()
-    const [isToggled, setIsToggled] = useState<boolean>(false)
+    var path = useSearchParams()
+    var bodyRef = useRef()
+    const [activeSection, setActiveSection] = useState("/")
 
+    const [isToggled, setIsToggled] = useState<boolean>(false)
     const socialItems = [
         {
             url: "https://www.github.com/epicdevler",
@@ -64,14 +70,22 @@ export default function Navbar() {
         },
     ]
 
+    useEffect(() => {
+        console.log(path.entries())
+    }, [path])
+
+
     const handleNavToggle = () => {
+        setIsToggled(!isToggled)
+    }
+    const recordNavigation = () => {
         setIsToggled(!isToggled)
     }
     return (
         <nav className={style.nav} style={{padding: '10px 0px'}}>
-            <FullScreenNav onToggle={isToggled} unToggle={handleNavToggle} />
+            <FullScreenNav  onToggle={isToggled} unToggle={handleNavToggle} />
             <Container maxW={'container.lg'}>
-                <Flex alignItems={'center'}>
+                <Flex alignItems={'center'} flexDirection={'row-reverse'}>
                     <HStack>
                         {
                             socialItems.map(
@@ -127,11 +141,9 @@ export default function Navbar() {
 }
 
 export function FullScreenNav({onToggle, unToggle}:{onToggle: boolean, unToggle: () => void}) {
-    const bgColor = useColorModeValue('rgba(145,145,145,0.10)', 'rgba(30,31,34,0.10)')
 
     const [scale, setScale] = useState(0)
     const [borderRadius, setBorderRadius] = useState(0)
-
 
     useEffect(() => {
         const handleToggle = () => {
@@ -143,13 +155,17 @@ export function FullScreenNav({onToggle, unToggle}:{onToggle: boolean, unToggle:
 
     return (
 
-        <VStack align={'end'} bg={bgColor} hideFrom={'md'} className={style.fullScreenNav} style={{scale: scale}}
+        <VStack aria-modal='true' align={'end'} backgroundColor={"brand"} hideFrom={'md'} className={style.fullScreenNav} style={{scale: scale}}
                 borderRadius={borderRadius} py={8} px={3}>
             <IconButton hideFrom={'md'} bg={'transparent'} borderRadius={100} borderWidth={1}
                         borderColor={'white'} textColor={"white"} _hover={{}} onClick={unToggle}
                         aria-label={'toggle icon'} mb={10}>
                 <FontAwesomeIcon icon={faClose}/>
             </IconButton>
+
+            <Text w={'full'} textAlign={'center'} p={5} fontSize={'3xl'} className={leckerliOne.className} color={'white'} >
+                epicdevler
+            </Text>
 
             {
                 navLinks.map(

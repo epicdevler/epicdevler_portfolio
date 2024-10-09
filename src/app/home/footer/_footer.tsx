@@ -28,7 +28,7 @@ export default function Footer() {
 
     return (
         <Box as={'footer'} py={3} bg={'brand'} mt={100} borderTopRadius={100}>
-            <Container maxW={'container.lg'} px={100}>
+            <Container maxW={'container.lg'} px={100} textColor={'white'}>
                 <SimpleGrid hideBelow={'md'}  columns={3} alignItems={'center'}
                             justifyContent={'space-between'}>
                     <GridItem>

@@ -1,5 +1,5 @@
 import style from './_nav_link.module.css'
-import {Box} from "@chakra-ui/react";
+import {Box, Link} from "@chakra-ui/react";
 
 export default function NavLink(
     {
@@ -12,11 +12,14 @@ export default function NavLink(
         isActive?: boolean
     }
 ) {
-    const isActiveState = isActive ? "block" : "none"
+    const isActiveState = isActive ? style.active : ""
     return (
-        <Box className={style.list}>
-            <li><a style={{color: "white"}} href={href}>{label}</a></li>
-            <div className={`${style.line}`} style={{background: "brand", display: isActiveState}}></div>
+        <Box className={`${style.list} ${isActiveState}`}>
+            <li><Link color={'white'} style={{color: "white"}} href={href}>{label}</Link></li>
+            {
+                <Box className={`${style.line}`}  /* bg={isActive ? 'white' :"transparent"} */ ></Box>
+    
+            }
         </Box>
     )
 }

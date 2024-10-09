@@ -9,13 +9,19 @@ import {
     SimpleGrid,
     Text,
     Textarea,
-    useColorModeValue
+    useColorModeValue,
+    useToast
 } from "@chakra-ui/react";
-import {useState} from "react";
+import {FormEvent, useState} from "react";
 import SocialIcon from "@/app/components/_social_icons";
 import {faEnvelope} from "@fortawesome/free-regular-svg-icons";
 import {faWhatsapp, IconDefinition} from "@fortawesome/free-brands-svg-icons";
 import {faPhone} from '@fortawesome/free-solid-svg-icons';
+
+import * as dotenv from 'dotenv'
+
+dotenv.config()
+
 
 export function ContactMeans(
     {
@@ -41,6 +47,9 @@ export function ContactMeans(
 
 export default function ContactSection() {
 
+    const toast = useToast()
+    const disableInputs = true
+    const [loading, setLoading] = useState(false);
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
@@ -54,24 +63,84 @@ export default function ContactSection() {
         "#c4c4c4",
     );
 
-    function validateName(value: string) {
-        let error
+    const handleSubmit =  async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+
+        setLoading(true)
+        console.log(process.env.EMAIL_USER)
+        
+        var errorMsg: string | null = null
+        var fullNameError = validateName(fullName)
+        var emailError = validateEmail(email)
+        var messageError = validateMessage(message)
+
+        if(fullNameError != null){
+            errorMsg = fullNameError
+        }
+        else if(emailError != null){
+            errorMsg = emailError
+        }
+        else if(messageError != null){
+            errorMsg = messageError
+        }else{
+            errorMsg = null
+        }
+
+        if(errorMsg != null){
+            showToast("error", "Input Error", errorMsg)
+        }else{
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({"name": fullName, "email": email, "message": message }),
+              });
+              if(res.ok){
+                setFullName("")
+                setEmail("")
+                setMessage("")
+              }
+              if (res.status === 200) {
+                showToast("success", "Success", "I'm so excited to see what you sent :)")
+                
+              }
+              else {
+                showToast("error", "Something went wrong", 'Failed to send message.');
+              }
+        }
+        setLoading(false)
+    }
+
+    const showToast = (status : "error" | "info" | "warning" | "success" | "loading" | undefined, title : string, message : string) => {
+        toast({
+            title: title,
+            description: message,
+            status: status,
+            duration: 2000,
+            isClosable: true,
+          })
+    }
+
+
+    function validateName(value: string): string | null {
+        let error = null
         if (!value) {
             error = 'Full Name is required'
         }
         return error
     }
 
-    function validateEmail(value: string) {
-        let error
+    function validateEmail(value: string): string | null {
+        let error = null
         if (!value) {
             error = 'Email is required'
         }
         return error
     }
 
-    function validateMessage(value: string) {
-        let error
+    function validateMessage(value: string): string | null {
+        let error = null
         if (!value) {
             error = 'Message is required'
         }
@@ -98,9 +167,9 @@ export default function ContactSection() {
                         </Text>
 
 
-                        <ContactMeans label={'+234 913 6908 869'} url={'tel:+234 913 6908 869'}
+                        <ContactMeans label={'+234 808 0366 089'} url={'tel:+234 808 0366 089'}
                                       iconUrl={faPhone}/>
-                        <ContactMeans label={'+234 913 6908 869'} url={'https://wa.me/+23491369088699'}
+                        <ContactMeans label={'+234 808 0366 089'} url={'https://wa.me/+2348080366089'}
                                       iconUrl={faWhatsapp}/>
                         <ContactMeans label={'dev.epicdevler@gmail.com'} url={'mailto:dev.epicdevler@gmail.com'}
                                       iconUrl={faEnvelope}/>
@@ -109,8 +178,9 @@ export default function ContactSection() {
                     </Box>
                 </GridItem>
                 <GridItem mt={[10, 10, 0, 0]}>
+                    <form onSubmit={handleSubmit}>
                     <Flex flexDirection={'column'}>
-                        <Input disabled={true} value={fullName} focusBorderColor={'brand'} fontSize={14} fontWeight={400}
+                        <Input disabled={disableInputs} value={fullName} focusBorderColor={'brand'} fontSize={14} fontWeight={400}
                                _placeholder={{textColor: '#626262'}} textColor={inputTextColor} bg={inputBg}
                                borderRadius={8} type="text"
                                placeholder={'Full Name'}
@@ -118,7 +188,7 @@ export default function ContactSection() {
                                    setFullName(e.target.value)
                                }}
                         />
-                        <Input disabled={true} value={email} focusBorderColor={'brand'} fontSize={14} fontWeight={400}
+                        <Input disabled={disableInputs} value={email} focusBorderColor={'brand'} fontSize={14} fontWeight={400}
                                _placeholder={{textColor: '#626262'}} textColor={inputTextColor} bg={inputBg}
                                borderRadius={8} type="email"
                                placeholder={'Email Address'} my={5}
@@ -126,7 +196,7 @@ export default function ContactSection() {
                                    setEmail(e.target.value)
                                }}
                         />
-                        <Textarea disabled={true} value={message} focusBorderColor={'brand'} fontSize={14} fontWeight={400}
+                        <Textarea disabled={disableInputs} value={message} focusBorderColor={'brand'} fontSize={14} fontWeight={400}
                                   _placeholder={{textColor: '#626262'}} textColor={inputTextColor} bg={inputBg}
                                   borderRadius={8}
                                   placeholder={'Message'} name="message" id="message" cols={5} rows={13} resize={'none'}
@@ -134,11 +204,22 @@ export default function ContactSection() {
                                       setMessage(e.target.value)
                                   }}></Textarea>
 
-                        <Button disabled={true} mt={10} colorScheme={'brand'} textColor={'white'} _hover={{}} fontWeight={400} fontSize={14}
-                                borderRadius={8}>
-                            You can reach me via WhatsApp, phone call or email.
-                        </Button>
+{
+                                disableInputs ?
+                                
+                        <Button isLoading={loading}  mt={10} colorScheme={'brand'} _hover={{}} textColor={'white'} fontWeight={400} fontSize={14}
+                        borderRadius={8}>
+                    You can reach me through, email, whatsapp or phone call"
+                </Button>
+                                :
+                                
+                        <Button isDisabled={disableInputs} isLoading={loading} type="submit"  mt={10} bg={'brand'} _hover={{}} textColor={'white'} fontWeight={400} fontSize={14}
+                        borderRadius={8}>
+                    Send
+                </Button>
+                            }
                     </Flex>
+                    </form>
                 </GridItem>
             </SimpleGrid>
         </Container>

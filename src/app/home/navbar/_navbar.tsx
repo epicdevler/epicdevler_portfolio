@@ -1,78 +1,38 @@
 'use client'
-import {
-    Box,
-    Button,
-    Container,
-    Flex,
-    HStack,
-    IconButton,
-    Spacer,
-    Text,
-    useColorMode,
-    useColorModeValue,
-    VStack,
-} from "@chakra-ui/react";
+import {Box, Container, Flex, HStack, IconButton, Spacer, Text, VStack,} from "@chakra-ui/react";
 import SocialIcon from "@/app/components/_social_icons";
 import NavLink from "@/app/components/_nav_link";
 import "@theme-toggles/react/css/Around.css"
-import {Around} from "@theme-toggles/react"
 import {faGithub, faLinkedinIn, faXTwitter} from "@fortawesome/free-brands-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBars, faClose} from "@fortawesome/free-solid-svg-icons";
-import {useGlobalNavbarStateContext} from "@/app/context/_navbar_state_context";
 import style from './_navbar.module.css'
 import {useEffect, useRef, useState} from "react";
 
 import {leckerliOne} from "@/app/fonts";
-import {useParams, usePathname, useSearchParams, useSelectedLayoutSegment} from "next/navigation";
 
 
-const navLinks = [
-    {
-        label: 'Home',
-        href: '#start'
-    },
-    {
-        label: 'Projects',
-        href: '#projects'
-    },
-    {
-        label: 'About',
-        href: '#about'
-    },
-    {
-        label: 'Contact',
-        href: '#contact'
-    },
-]
+const navLinks = [{
+    label: 'Home', href: '#start'
+}, {
+    label: 'Projects', href: '#projects'
+}, {
+    label: 'About', href: '#about'
+}, {
+    label: 'Contact', href: '#contact'
+},]
 
 export default function Navbar() {
-    var path = window.location.href
-    var bodyRef = useRef()
     const [activeSection, setActiveSection] = useState("/")
 
     const [isToggled, setIsToggled] = useState<boolean>(false)
-    const socialItems = [
-        {
-            url: "https://www.github.com/epicdevler",
-            imgUrl: faGithub,
-            imgAlt: "GitHub Logo",
-        },
-        {
-            url: "https://www.linkedin.com/in/nwadikephilip",
-            imgUrl: faLinkedinIn,
-            imgAlt: "LinkedIn Logo",
-        },
-        {
-            url: "https://www.twitter.com/epicdevler",
-            imgUrl: faXTwitter,
-            imgAlt: "X Logo",
-        },
-    ]
-
-    useEffect(() => {
-        console.log(path)
-    }, [path])
+    const socialItems = [{
+        url: "https://www.github.com/epicdevler", imgUrl: faGithub, imgAlt: "GitHub Logo",
+    }, {
+        url: "https://www.linkedin.com/in/nwadikephilip", imgUrl: faLinkedinIn, imgAlt: "LinkedIn Logo",
+    }, {
+        url: "https://www.twitter.com/epicdevler", imgUrl: faXTwitter, imgAlt: "X Logo",
+    },]
 
 
     const handleNavToggle = () => {
@@ -81,31 +41,22 @@ export default function Navbar() {
     const recordNavigation = () => {
         setIsToggled(!isToggled)
     }
-    return (
-        <nav className={style.nav} style={{padding: '10px 0px'}}>
-            <FullScreenNav  onToggle={isToggled} unToggle={handleNavToggle} />
+    return (<nav className={style.nav} style={{padding: '10px 0px'}}>
+            <FullScreenNav onToggle={isToggled} unToggle={handleNavToggle}/>
             <Container maxW={'container.lg'}>
                 <Flex alignItems={'center'} flexDirection={'row-reverse'}>
                     <HStack>
-                        {
-                            socialItems.map(
-                                (item, index) => {
-                                    return <SocialIcon key={index} href={item.url} iconUrl={item.imgUrl}
-                                                       alt={item.imgAlt}/>
-                                }
-                            )
-                        }
+                        {socialItems.map((item, index) => {
+                            return <SocialIcon key={index} href={item.url} iconUrl={item.imgUrl}
+                                               alt={item.imgAlt}/>
+                        })}
                     </HStack>
                     <Spacer/>
                     <HStack hideBelow={"md"}>
-                        {
-                            navLinks.map(
-                                link => {
-                                    return <NavLink key={link.label} href={link.href} label={link.label}
-                                                    isActive={link.label === "Home"}/>
-                                }
-                            )
-                        }
+                        {navLinks.map(link => {
+                            return <NavLink key={link.label} href={link.href} label={link.label}
+                                            isActive={link.label === "Home"}/>
+                        })}
 
                     </HStack>
                     <HStack>
@@ -136,11 +87,10 @@ export default function Navbar() {
                     </HStack>
                 </Flex>
             </Container>
-        </nav>
-    )
+        </nav>)
 }
 
-export function FullScreenNav({onToggle, unToggle}:{onToggle: boolean, unToggle: () => void}) {
+export function FullScreenNav({onToggle, unToggle}: { onToggle: boolean, unToggle: () => void }) {
 
     const [scale, setScale] = useState(0)
     const [borderRadius, setBorderRadius] = useState(0)
@@ -155,7 +105,8 @@ export function FullScreenNav({onToggle, unToggle}:{onToggle: boolean, unToggle:
 
     return (
 
-        <VStack aria-modal='true' align={'end'} backgroundColor={"brand"} hideFrom={'md'} className={style.fullScreenNav} style={{scale: scale}}
+        <VStack aria-modal='true' align={'end'} backgroundColor={"brand"} hideFrom={'md'}
+                className={style.fullScreenNav} style={{scale: scale}}
                 borderRadius={borderRadius} py={8} px={3}>
             <IconButton hideFrom={'md'} bg={'transparent'} borderRadius={100} borderWidth={1}
                         borderColor={'white'} textColor={"white"} _hover={{}} onClick={unToggle}
@@ -163,21 +114,17 @@ export function FullScreenNav({onToggle, unToggle}:{onToggle: boolean, unToggle:
                 <FontAwesomeIcon icon={faClose}/>
             </IconButton>
 
-            <Text w={'full'} textAlign={'center'} p={5} fontSize={'3xl'} className={leckerliOne.className} color={'white'} >
+            <Text w={'full'} textAlign={'center'} p={5} fontSize={'3xl'} className={leckerliOne.className}
+                  color={'white'}>
                 epicdevler
             </Text>
 
-            {
-                navLinks.map(
-                    link => {
-                        return <Box key={link.label} width={'full'} textAlign={'center'}>
-                            <NavLink label={link.label} href={link.href}
-                                     isActive={link.label === "Home"}/>
-                        </Box>
-                    }
-                )
-            }
+            {navLinks.map(link => {
+                return <Box key={link.label} width={'full'} textAlign={'center'}>
+                    <NavLink label={link.label} href={link.href}
+                             isActive={link.label === "Home"}/>
+                </Box>
+            })}
 
-        </VStack>
-    )
+        </VStack>)
 }

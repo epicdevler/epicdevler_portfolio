@@ -1,4 +1,37 @@
-export const APP_DATA = {
+export type Project = {
+    type: string,
+    title: string,
+    startDate: string,
+    endDate: string,
+    imgUrl: string,
+    alt: string,
+    descr: string,
+    githubUrl: string,
+    link?: string,
+}
+type Category = {
+    title: string,
+    refUrl: string | undefined
+}
+export type WorkExperience = {
+    role: string,
+    company: string,
+    year: string,
+    categories: Category[],
+    description: string
+  }
+
+export type Technology = {
+    name: string,
+    imgUrl?: string | undefined,
+}
+
+type APP_DATA_TYPE = {
+    experience: WorkExperience[],
+    technologies: Technology[]
+}
+
+export const APP_DATA: APP_DATA_TYPE = {
     experience: [
         {
             role: "Intern",

@@ -1,22 +1,19 @@
 'use client'
 import HeroSection from "@/app/home/sections/hero/Hero";
-import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 import TechnologiesSection from "@/app/home/sections/technologies/TechnologiesSection";
 import AboutSection from "@/app/home/sections/about/AboutSection";
 import ProjectsSection from "@/app/home/sections/projects/ProjectsSection";
 import WorkSection from "@/app/home/sections/work/WorkSection";
 import ContactSection from "@/app/home/sections/contact/ContactSection";
-import { use, useEffect, useState } from "react";
-import { Technology } from "../../sanity/schemas/technology";
-import { WorkExperience } from "../../sanity/schemas/workExperience";
+import {  useEffect, useState } from "react";
 import ReactFullpage, { fullpageApi } from '@fullpage/react-fullpage';
 import Navbar from "./home/navbar/_navbar";
+import { APP_DATA } from "@/data/data/appData";
 
 
 export default function Home() {
 
-    const [workExperience, setWorkExperience] = useState<WorkExperience[]>([])
-    const [technologies, setTechnologies] = useState<Technology[]>([])
+    const appData = APP_DATA
     const [api, setApi] = useState<null | fullpageApi>(null)
     const [sectionCount, setSectionCount] = useState<number>(0)
     const [initialized, setInitialized] = useState<boolean>(false)
@@ -72,8 +69,8 @@ export default function Home() {
                         <ReactFullpage.Wrapper>
                             <HeroSection />
                             <AboutSection />
-                            <TechnologiesSection data={technologies} />
-                            <WorkSection data={workExperience} />
+                            <TechnologiesSection technologies={appData.technologies}  />
+                            <WorkSection workItems={appData.experience}  />
                             <ProjectsSection />
                             <ContactSection />
 

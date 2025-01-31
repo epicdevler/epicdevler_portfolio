@@ -1,11 +1,11 @@
 import { Box, Container, Flex, GridItem, HStack, SimpleGrid, Text, useColorModeValue } from "@chakra-ui/react";
 import Image from "next/image";
 import SectionTitle from "@/app/components/_section_title";
-import { Technology, TechnologyItem } from "../../../../../sanity/schemas/technology";
-import Link from "next/link";
-import { APP_DATA } from "@/data/data/appData";
 
-export default function TechnologiesSection({ data }: { data: Technology[] }) {
+import Link from "next/link";
+import { APP_DATA, Technology } from "@/data/data/appData";
+
+export default function TechnologiesSection({ technologies }: { technologies: Technology[] }) {
  
     return (
         <Box id="stacks" as={'section'} textColor={'white'} h='full' bg={'blackAlpha.900'} className="section">
@@ -17,7 +17,7 @@ export default function TechnologiesSection({ data }: { data: Technology[] }) {
                                      
                     <SimpleGrid mt={5} columns={{ base: 3, sm: 3, lg: 5 }} gap={5}>
                         {
-                            APP_DATA.technologies.map(
+                            technologies.map(
                                 (tech, index: number) => {
                                     return <GridItem key={index} display={'flex'} justifyContent={'center'}
                                         alignItems={'center'}

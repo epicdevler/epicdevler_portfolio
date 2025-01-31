@@ -4,7 +4,7 @@ import SectionTitle from "@/app/components/_section_title";
 import { useEffect, useState } from "react";
 import { jua } from "@/app/fonts";
 import Link from "next/link";
-import { Project } from "../../../../../sanity/schemas/projects";
+import { Project } from "@/data/data/appData";
 
 
 

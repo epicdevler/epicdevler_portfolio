@@ -9,8 +9,9 @@ import { Suspense, useEffect, useState } from "react";
 import ReactFullpage, { fullpageApi } from "@fullpage/react-fullpage";
 import Navbar from "./home/navbar/_navbar";
 import { APP_DATA } from "@/data/data/appData";
-import Loading from "./loading";
+import Loading from "./components/loading";
 import { MotionConfig } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 
 export default function Home() {
@@ -19,37 +20,39 @@ export default function Home() {
   const [sectionCount, setSectionCount] = useState<number>(0);
   const [initialized, setInitialized] = useState<boolean>(false);
 
-  useEffect(() => {
-    const currentHash = window.location.hash;
-    if (api != null || api != undefined) {
-      switch (currentHash) {
-        case "#about":
-          api.moveTo(2);
-          break;
-        case "#projects":
-          api.moveTo(3 + 2);
-          break;
-        case "#contact":
-          api.moveTo(4 + 2);
-          break;
-        default:
-          break;
-      }
-    }
-  }, [initialized, api]);
+//   useEffect(() => {
+//     const currentHash = window.location.hash;
+//     if (api != null || api != undefined) {
+//       switch (currentHash) {
+//         case "#about":
+//           api.moveTo(2);
+//           break;
+//         case "#projects":
+//           api.moveTo(3 + 2);
+//           break;
+//         case "#contact":
+//           api.moveTo(4 + 2);
+//           break;
+//         default:
+//           break;
+//       }
+//     }
+//   }, [initialized, api]);
+
+
 
   return (
     <Suspense fallback={<Loading />}>
       <Navbar fullpageSectionCount={sectionCount} fullpageApi={api} />
+      <MotionConfig transition={{ duration: 0.3 }}>
+        <HeroSection />
+        <AboutSection />
+        <TechnologiesSection technologies={appData.technologies} />
+        <WorkSection workItems={appData.experience} />
+        <ProjectsSection />
+        <ContactSection />
 
-      {/* <HeroSection />
-      <AboutSection />
-      <TechnologiesSection technologies={appData.technologies} />
-      <WorkSection workItems={appData.experience} />
-      <ProjectsSection />
-      <ContactSection /> */}
-      <MotionConfig transition={{ duration: .3 }}>
-      <ReactFullpage
+        {/* <ReactFullpage
         lockAnchors={true}
         licenseKey={""}
         afterLoad={function (origin, destination, direction) {
@@ -82,9 +85,8 @@ export default function Home() {
             </ReactFullpage.Wrapper>
           );
         }}
-      />
+      /> */}
       </MotionConfig>
-
     </Suspense>
   );
 }

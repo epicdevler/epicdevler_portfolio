@@ -1,5 +1,5 @@
 import { Center, Spinner, Text } from "@chakra-ui/react";
-import { leckerliOne } from "./fonts";
+import { leckerliOne } from "../fonts";
 
 export default function Loading() {
   // You can add any UI inside Loading, including a Skeleton.

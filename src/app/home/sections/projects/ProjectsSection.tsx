@@ -67,11 +67,12 @@ const ProjectsSection = () => {
     }
 
     return (
-        <Container as={'section'} maxW={'container.lg'} py={100}>
-            <div id={'projects'}>
-                <SectionTitle labelInFrontColor={'brand'} labelInFront={'Projects'} labelBehind={'My'} />
-            </div>
-            <Text fontWeight={400} lineHeight={'28px'} my={'24px'} fontSize={'14px'}>
+        <Box id="projects" as={'section'} h='full' bg={'blackAlpha.900'} className="section">
+        <Container as={'section'}  maxW={'container.lg'} py={100}>
+            <Box textColor='white'>
+                <SectionTitle  labelInFrontColor={'brand'} labelInFront={'Projects'} labelBehind={'My'} />
+            </Box>
+            <Text fontWeight={400} textColor={'whiteAlpha.900'} lineHeight={'28px'} my={'24px'} fontSize={'14px'}>
                 This endeavor was more than just lines of code; it was a passionate exploration of possibilities. Iterative development and adaptability are the cornerstones that keep us on the cutting edge.
                 Integration of diverse technical skills from front-end to back-end collectively brings together a spectrum of talents to ensure comprehensive and efficient development.
             </Text>
@@ -109,7 +110,7 @@ const ProjectsSection = () => {
                 }
             </Flex>
 
-            <SimpleGrid columns={{ base: 1, md: 2, lg: 2 }} gap={5}>
+            <SimpleGrid columns={{ base: 1, sm:2, md: 2, lg: 2 }} gap={5}>
                 {
                     projects.length > 0 ?
                         projects.map(
@@ -117,13 +118,14 @@ const ProjectsSection = () => {
                                 return <GridItem
                                     w='full'
                                     key={index}
+                                    role="group"
                                 >
                                     <Box
                                         w='full'
                                         backgroundImage={`url(${project.imgUrl})`}
                                         backgroundPosition={'center'}
                                         backgroundSize={'cover'}
-                                        borderRadius={'8px'}
+                                        borderRadius={'8px'}                                        
                                     >
 
                                         <Flex
@@ -133,7 +135,7 @@ const ProjectsSection = () => {
                                             transitionProperty={'background'}
                                             transitionDuration={'.5s'}
                                             _hover={{
-                                                backdropFilter: 'blur(0px)'
+                                                backdropFilter: 'blur(0px)',                                                
                                             }}
                                             borderRadius={'8px'}
                                             flexDirection={'column'}
@@ -188,14 +190,32 @@ const ProjectsSection = () => {
                                     >
                                         {
                                             project.link !== "" ?
-                                                <Button fontWeight={'normal'} fontSize={'14'} me='2' borderRadius={'full'}  as={Link} target='_blank' href={project.link!!}>
+                                                <Button
+                                                py={4}
+                                                px={6}
+                                                _hover={{bg:'brand', borderColor:'brand'}}
+                                                textColor={'white'}
+                                                transitionDuration={'.3s'}
+                                                borderWidth={1}
+                                                borderColor={'white'}
+                                                bg={'transparent'}
+                                                 fontWeight={'normal'} fontSize={'14'} me='2' borderRadius={'full'}  as={Link} target='_blank' href={project.link!!}>
                                                     View
                                                 </Button>
                                                 : <></>
                                         }
                                         {
                                             project.githubUrl !== "" ?
-                                                <Button fontWeight={'normal'} fontSize={'14'} borderRadius={'full'}  as={Link} target='_blank' href={project.githubUrl}>
+                                                <Button
+                                                py={4}
+                                                px={6}
+                                                bg={'transparent'}
+                                                _hover={{bg:'brand', borderColor:'brand'}}
+                                                textColor={'white'}
+                                                transitionDuration={'.3s'}
+                                                borderWidth={1}
+                                                borderColor={'white'}
+                                                 fontWeight={'normal'} fontSize={'14'} borderRadius={'full'}  as={Link} target='_blank' href={project.githubUrl}>
                                                     GitHub
                                                 </Button>
                                                 : <></>
@@ -212,6 +232,7 @@ const ProjectsSection = () => {
             </SimpleGrid>
 
         </Container>
+        </Box>
     )
 }
 

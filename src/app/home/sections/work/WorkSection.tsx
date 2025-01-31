@@ -1,19 +1,15 @@
-import { Box, Container, Flex, Text, useColorMode } from "@chakra-ui/react";
+'use client'
+import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Avatar, Box, Center, Circle, Collapse, Container, Flex, HStack, Icon, IconButton, SimpleGrid, Spacer, Text, useColorMode, VStack } from "@chakra-ui/react";
 import SectionTitle from "@/app/components/_section_title";
-import Image from 'next/image'
+import {ChevronUpIcon, ChevronDownIcon} from '@chakra-ui/icons'
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-
-// import './styles.css';
 
 // import required modules
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { WorkExperience } from "../../../../../sanity/schemas/workExperience";
+import { APP_DATA } from "@/data/data/appData";
+import Link from "next/link";
+import { useState } from "react";
+import MarkdownPreview from '@uiw/react-markdown-preview';
 
 
 const WorkSection = ({ data }: { data: WorkExperience[] }) => {
@@ -23,89 +19,83 @@ const WorkSection = ({ data }: { data: WorkExperience[] }) => {
     const { colorMode } = useColorMode()
 
     return (
-        <Box as={'section'} py={100}>
-            <Container maxW={'container.lg'}>
-                <SectionTitle labelInFront={'Experience'} labelBehind={'Work'} />
-                <Text maxW={'lg'} fontWeight={400} lineHeight={'28px'} my={'24px'} fontSize={'14px'}>
-                    I have gained valueable insight colloborating with teams of different backgrounds within and outside an organization, national and internationally.
-                </Text>
+        <Box id="work" as={'section'} bg={'blackAlpha.900'} textColor={'white'} className="section">
+            <Container maxW={'container.lg'} py={100}>
+                <SimpleGrid columns={[1, null, 1]}>
+                    <Box>
+                        <SectionTitle labelInFront={'Experience'} labelBehind={'Work'} />
+                        <Text maxW={'lg'} fontWeight={400} lineHeight={'28px'} my={'24px'} fontSize={'14px'}>
+                            I have gained valueable insight colloborating with teams of different backgrounds within and outside an organization, national and internationally.
+                        </Text>
+                    </Box>
+                    <Box pt={50}>
+                        <VStack gap={0}>
+                            {
+                                APP_DATA.experience.map((item, index) => {
+                                    const [show, setShow] = useState(false)
 
-                <Swiper
-                    spaceBetween={30}
-                    centeredSlides={true}
-                    autoplay={{
-                        delay: 2500,
-                        disableOnInteraction: false,
-                    }}
-                    pagination={{
-                        clickable: true,
-                    }}
-                    navigation={true}
-                    modules={[Autoplay, Pagination, Navigation]}
-                    className="mySwiper"
-                >
-                    {
-                        works.map(
-                            (work, index) => {
-                                return <SwiperSlide key={index}>
-                                    <Box w={'full'} py={50}>
-                                        <Flex flexDirection={'column'} alignItems={'center'}>
-                                            <Box p={5}>
-                                                <Image
-                                                    src={
-                                                        colorMode === 'light' ? work.lightLogo : work.darkLogo == null ? work.lightLogo : work.darkLogo
-                                                    }
-                                                    width={150}
-                                                    height={150}
-                                                    alt={`${work.name} Logo`
-                                                    }
-                                                />
+                                    const handleToggle = () => setShow(!show)
+
+                                    return (
+                                        <Flex key={index} w={'full'} gap={2}>
+                                            <VStack gap={0} >
+                                                <Center p={2} rounded={'full'} bg={'whiteAlpha.100'}>
+                                                    <Avatar name={item.role} loading={'lazy'} />
+                                                </Center>
+                                                <Box h='full' width={'1'} rounded={'full'} background={'whiteAlpha.100'} />
+                                            </VStack>
+
+                                            <Box rounded={'md'} background={'whiteAlpha.100'} w='full' p={3} mb={APP_DATA.experience.length -1 == index ? 2 : 5}>
+                                                <HStack alignItems={'flex-start'}>
+                                                    <Box w='full' >
+                                                        <Text fontWeight={'bold'} fontSize={'lg'}>
+                                                            {item.role}
+                                                        </Text>
+                                                        <HStack mb={3} fontSize={'sm'} gap={3}>
+                                                            <Text fontWeight={'semibold'}>{item.company}</Text>
+                                                            <Text>-</Text>
+                                                            <Text>{item.year}</Text>
+                                                        </HStack>
+                                                        <Flex flexWrap={'wrap'}>
+                                                            {
+                                                                item.categories.map((category, index) => {
+                                                                    return category.refUrl != undefined ?
+                                                                        <Text key={index} _hover={{ textColor: 'brand' }} as={Link} href={`${category.refUrl}`}>
+                                                                            {category.title}
+                                                                            <Text as={'span'} hidden={item.categories.length - 1 == index}>{`,`}&nbsp;</Text>
+                                                                        </Text>
+                                                                        : <Text key={index}>
+                                                                            {category.title}
+                                                                            <Text as={'span'} hidden={item.categories.length - 1 == index}>{`,`}&nbsp;</Text>
+                                                                        </Text>
+                                                                })
+                                                            }
+                                                        </Flex>
+                                                    </Box>
+                                                    <IconButton textColor={'white'} aria-label="toggle" _hover={{}} variant={''} onClick={handleToggle} w={'fit-content'}>
+                                                        {
+                                                            show == true ? <ChevronUpIcon /> : <ChevronDownIcon />                                                            
+                                                        }                                                        
+                                                    </IconButton>
+                                                </HStack>
+                                                {
+                                                    <Collapse startingHeight={115}  in={show}>
+                                                        <MarkdownPreview disableCopy={true} source={item.description} style={{ background:'transparent', marginTop:'32px' , color:"white"}} />
+                                                        {/* <Text mt={5} ps={0} fontSize={'sm'} >{item.description}</Text> */}
+                                                    </Collapse>
+                                                }
                                             </Box>
 
-                                            <Text as={'a'} mt={5} href={work.websiteUrl} target={'_blank'}
-                                                fontWeight={600}
-                                                fontSize={24} textAlign={'center'} textDecoration={'underline'}>
-                                                {work.name}
-                                            </Text>
-
-                                            <Text fontWeight={600} my={3} fontSize={18}>
-                                                {work.role}
-                                            </Text>
-
-                                            <Text fontWeight={400} fontSize={14}>
-                                                {work.duration}
-                                            </Text>
-
                                         </Flex>
-                                    </Box>
-                                </SwiperSlide>
+
+
+
+                                    )
+                                })
                             }
-                        )
-                    }
-                </Swiper>
-
-                <Box pt={100} hidden={true}>
-                    <Flex flexDirection={'column'} alignItems={'center'}>
-                        <Box p={5} bg={colorMode === 'light' ? 'transparent' : 'rgba(192,192,192,0.84)'}
-                            borderRadius={'full'}>
-                            <Image src={'/work/cedars_logo.png'} width={150} height={150} alt={'Cedars Logo'} />
-                        </Box>
-
-                        <Text as={'a'} mt={5} href={'https://www.cedarsprohub.com'} target={'_blank'} fontWeight={600}
-                            fontSize={24} textAlign={'center'} textDecoration={'underline'}>
-                            Cedars Productivity Centre
-                        </Text>
-
-                        <Text fontWeight={600} my={3} fontSize={18}>
-                            Android Developer
-                        </Text>
-
-                        <Text fontWeight={400} fontSize={14}>
-                            2020 - 2023
-                        </Text>
-
-                    </Flex>
-                </Box>
+                        </VStack>
+                    </Box>
+                </SimpleGrid>
             </Container>
         </Box>
 

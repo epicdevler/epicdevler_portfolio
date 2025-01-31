@@ -1,41 +1,33 @@
-import { Box, Container, GridItem, SimpleGrid, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box, Container, Flex, GridItem, HStack, SimpleGrid, Text, useColorModeValue } from "@chakra-ui/react";
 import Image from "next/image";
 import SectionTitle from "@/app/components/_section_title";
 import { Technology, TechnologyItem } from "../../../../../sanity/schemas/technology";
 import Link from "next/link";
+import { APP_DATA } from "@/data/data/appData";
 
 export default function TechnologiesSection({ data }: { data: Technology[] }) {
-    const errorTextColor = useColorModeValue("blackAlpha.400", "whiteAlpha.400")
-    let mainData;
-    if (data.length > 0) {
-        const technology = data[0]
-
-        mainData = (
-            technology.technologies.length < 1
-                ? <Box
-                    py={10}
-                    w={'full'}
-                    textAlign={'center'}
-                    textColor={errorTextColor}
-                >
-                    <Text>
-                        No Technologies yet
-                    </Text>
-                </Box>
-                :
+ 
+    return (
+        <Box id="stacks" as={'section'} textColor={'white'} h='full' bg={'blackAlpha.900'} className="section">
+            
+        <Container maxW={'container.lg'} py={100} textColor={'white'}>
+            <div id="myStacks">
+                <SectionTitle labelInFront={'Technology'} labelBehind={'Stacks'} />
                 <Box>
-                    <p style={{ fontSize: '14px', fontWeight: 400 }}>{technology.briefMessage}</p>
-                  
+                                     
                     <SimpleGrid mt={5} columns={{ base: 3, sm: 3, lg: 5 }} gap={5}>
                         {
-                            technology.technologies.map(
-                                (technology: TechnologyItem, index: number) => {
-                                    return <GridItem display={'flex'} justifyContent={'center'}
+                            APP_DATA.technologies.map(
+                                (tech, index: number) => {
+                                    return <GridItem key={index} display={'flex'} justifyContent={'center'}
                                         alignItems={'center'}
-                                        colSpan={'auto'} key={index} style={{ padding: '16px' }}>
+                                        colSpan={'auto'}>
 
-                                        <Image width={48} height={48} src={technology.iconUrl}
-                                            alt={technology.alt} />
+                                        <HStack transitionDuration={'.2s'} _hover={{bg:"whiteAlpha.100", borderColor:'whiteAlpha.50'}} borderWidth={1} borderColor={'whiteAlpha.100'} bg={'whiteAlpha.50'} w='full' h={'full'} rounded={'md'} p={2}>
+                                        <Image width={32} height={32} src={`/techs/${tech.name}.svg`}
+                                            alt={tech.name} />
+                                            <Text>{tech.name}</Text>
+                                        </HStack>
                                     </GridItem>
                                 }
                             )
@@ -61,25 +53,9 @@ export default function TechnologiesSection({ data }: { data: Technology[] }) {
                             done?
                         </Link> with this technologies</p>
                 </Box>
-        )
-    } else {
-        mainData = <Box
-            py={10}
-            w={'full'}
-            textAlign={'center'}
-            textColor={errorTextColor}
-        >
-            <Text>
-                No Technologies yet
-            </Text>
-        </Box>
-    }
-    return (
-        <Container as={'section'} maxW={'container.lg'} py={100}>
-            <div id="myStacks">
-                <SectionTitle labelInFront={'Technology'} labelBehind={'Stacks'} />
-                {mainData}
             </div>
         </Container>
+
+        </Box>
     );
 }

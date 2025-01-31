@@ -1,5 +1,5 @@
 .list{
-    --navbar_line_width: 50%
+    --navbar_line_width: 10%
 }
 .list {
     display: flex;
@@ -29,5 +29,6 @@
     background-color: white;
     height: 3px;
     border-radius: 100px;
+    margin: 0 auto;
     transition: All .3s ease-in-out;
 }

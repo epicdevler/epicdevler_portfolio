@@ -1,8 +1,11 @@
-import './globals.css'
+import './globals.css';
 
-import type { Metadata } from 'next'
+
 import { poppins } from "@/app/fonts";
 import { Analytics } from '@vercel/analytics/react';
+import type { Metadata } from 'next';
+import ThemeProvider from './providers/chakraProvider';
+import Script from 'next/script';
 
 export const metadata: Metadata = {
     title: 'Nwadike Philip | epicdevler',
@@ -62,10 +65,15 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
+            
             <body className={poppins.variable}>
-                {children}
+                <ThemeProvider>
+                    
+                    {children}
+                </ThemeProvider>
                 <Analytics />
             </body>
+
 
         </html>
     )

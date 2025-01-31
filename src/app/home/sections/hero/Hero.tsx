@@ -1,22 +1,23 @@
 import Navbar from "@/app/home/navbar/_navbar";
 import style from "./hero.module.css";
-import { Container, HStack, Text } from "@chakra-ui/react";
+import { Center, Container, Heading, HStack, Text } from "@chakra-ui/react";
 import SectionTitle from "@/app/components/_section_title";
 import Link from "next/link";
 export default function HeroSection() {
   return (
-    <header className={style.hero} id={"start"}>
+    <header className={`section ${style.hero}`} id={"start"}>
 
-      <div className={style.glass}>
-        <Navbar />
+      <div className={style.glass}>       
 
-        <Container maxW={"container.lg"} paddingY={100} textColor={"white"}>
-          <SectionTitle labelBehind={"I am"} labelInFront={"Nwadike Philip"} />
-
-          <Text fontSize='large' maxW={{base:'full', md:'md'}} className={style.brief_intro}>
+        <Container maxW={"container.lg"} pb={100} pt={170} textAlign={'center'} textColor={"white"} as={Center} flexDir={'column'}>
+          <Heading as={'h1'} size='3xl' maxW={'3xl'}>
+            Passionately Developing Apps That Improves Lives 
+            {/* Apps that improve lives */}
+          </Heading>
+          <Text mt={7} textColor={'whiteAlpha.800'} fontSize='medium' maxW={{base:'full', md:'md'}} className={style.brief_intro}>
             Inspired by passion, motivated for the future, building solutions to stand the test of time.
           </Text>
-          <HStack mt={10} spacing={8}>
+          <HStack mt={7} spacing={7}>
             <Text
               style={{
                 fontWeight: 'normal',

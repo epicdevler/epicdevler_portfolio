@@ -1,7 +1,7 @@
 .hero {
     /*position: relative;*/
     overflow-x: hidden;
-    background-color: #1D5CE3;
+    background-color: black;
     height: 100dvh;
 }
 @media screen and (max-height: 568px) {

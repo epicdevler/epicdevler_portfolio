@@ -11,6 +11,7 @@ import Navbar from "./home/navbar/_navbar";
 import { APP_DATA } from "@/data/data/appData";
 import Loading from "./loading";
 import { MotionConfig } from "framer-motion";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export default function Home() {
   const appData = APP_DATA;

@@ -1,6 +1,6 @@
 import style from './_section_title.module.css';
 import {leckerliOne} from "@/app/fonts";
-import {Text} from '@chakra-ui/react'
+import {Box, Heading, Text} from '@chakra-ui/react'
 
 export default function SectionTitle(
     {
@@ -17,9 +17,9 @@ export default function SectionTitle(
         }
 ) {
     return (
-        <div className={style.styled_title}>
-            <Text className={leckerliOne.className} textColor={labelInBehindColor} style={{opacity: 0.22}}>{labelBehind}</Text>
-            <Text as={'h1'} textColor={labelInFrontColor}>{labelInFront}</Text>
-        </div>
+        <Box className={style.styled_title}>
+            <Text fontSize={{base:'8xl',md:'9xl'}} className={leckerliOne.className} textColor={labelInBehindColor} style={{opacity: 0.22}}>{labelBehind}</Text>
+            <Heading as={'h1'} textColor={labelInFrontColor}>{labelInFront}</Heading>
+        </Box>
     )
 }

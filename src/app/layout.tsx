@@ -5,7 +5,7 @@ import { poppins } from "@/app/fonts";
 import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
 import ThemeProvider from './providers/chakraProvider';
-import Script from 'next/script';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
     title: 'Nwadike Philip | epicdevler',
@@ -72,6 +72,7 @@ export default function RootLayout({
                     {children}
                 </ThemeProvider>
                 <Analytics />
+                <SpeedInsights />
             </body>
 
 

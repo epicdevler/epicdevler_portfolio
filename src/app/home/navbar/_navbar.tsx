@@ -39,7 +39,6 @@ const navLinks = fullNavLinks.filter((value) => {
     }
 })
 
-
 export default function Navbar(
     {fullpageApi, fullpageSectionCount}:{fullpageApi: null | fullpageApi, fullpageSectionCount: number}
 ) {
@@ -54,7 +53,6 @@ export default function Navbar(
         url: "https://www.twitter.com/epicdevler", imgUrl: faXTwitter, imgAlt: "X Logo", hoverBg: undefined, hoverContentColor: undefined,
     },]
 
-
     const handleNavToggle = () => {
         setIsToggled(!isToggled)
     }
@@ -68,6 +66,7 @@ export default function Navbar(
             fullpageApi?.moveTo(sectionIndex + 1)
         }
     }
+
     return (<Box as={'nav'} className={style.nav}
         w={'full'} py={4} bg={{ base: 'brand', lg: 'none' }} boxShadow={{ base: 'md', lg: 'none' }}
     >
@@ -140,14 +139,13 @@ export function FullScreenNav({ onNavItemClicked, onToggle, unToggle }: { onTogg
 
         <VStack aria-modal='true' align={'end'} backgroundColor={"brand"} hideFrom={'md'}
             className={style.fullScreenNav} style={{ scale: scale }}
-            borderRadius={borderRadius} py={8} px={3}>
-            <IconButton hideFrom={'md'} bg={'transparent'} borderRadius={100} borderWidth={1}
-                borderColor={'white'} textColor={"white"} _hover={{}} onClick={unToggle}
-                aria-label={'toggle icon'} mb={10}>
-                <FontAwesomeIcon icon={faClose} />
+            borderRadius={borderRadius} py={3} px={3}>
+            <IconButton variant={'ghost'} p={1}  rounded={'full'} textColor={"white"} _hover={{}} onClick={unToggle}
+                aria-label={'toggle icon'} mb={4}>
+                <FontAwesomeIcon fontSize={18} icon={faClose} />
             </IconButton>
 
-            <Text w={'full'} textAlign={'center'} p={5} fontSize={'3xl'} className={leckerliOne.className}
+            <Text w={'full'} textAlign={'center'} p={0} fontSize={'3xl'} className={leckerliOne.className}
                 color={'white'}>
                 epicdevler
             </Text>

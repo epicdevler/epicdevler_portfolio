@@ -1,48 +1,13 @@
-.graphicOverlay {
-    position: relative;
-    height: inherit;
-    /*overflow: hidden;*/
-}
-
 .hero {
     /*position: relative;*/
     overflow-x: hidden;
+    background-color: black;
     height: 100vh;
 }
 @media screen and (max-height: 568px) {
     .hero{
         height: auto
     }
-}
-
-.hero .glass {
-    height: inherit;
-    background: rgba(35, 35, 35, 0.38);
-    backdrop-filter: blur(53px);
-    position: absolute;
-    padding: 20px 0;
-    top: 0;
-    left: 0;
-    width: 100%;
-}
-
-.hero .artwork {
-    /*position: absolute;*/
-    /*right: 0;*/
-    /*top: 0;*/
-    display: none;
-}
-
-.graphic1 {
-    /*position: absolute;*/
-    top: 0;
-    left: 0;
-}
-
-.graphic2 {
-    position: absolute;
-    right: 0;
-    bottom: 0;
 }
 
 .role {
@@ -52,7 +17,6 @@
 }
 
 .brief_intro {
-    font-weight: lighter;
     line-height: 28px;
     font-size: 14px;
 }

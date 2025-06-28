@@ -1,115 +1,174 @@
-import { Box, Container, Flex, Text, useColorMode } from "@chakra-ui/react";
+"use client";
 import SectionTitle from "@/app/components/_section_title";
-import Image from 'next/image'
+import {
+  Avatar,
+  Box,
+  Center,
+  Collapsible,
+  Flex,
+  HStack,
+  IconButton,
+  SimpleGrid,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
+import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 
-import { Swiper, SwiperSlide } from 'swiper/react';
+import Container from "@/app/components/container";
+import { MotionBox, MotionHStack } from "@/app/components/motion";
+import { APP_DATA, WorkExperience } from "@/data/data/appData";
+import MarkdownPreview from "@uiw/react-markdown-preview";
+import Link from "next/link";
+import { useState } from "react";
 
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
+const WorkSection = ({ workItems }: { workItems: WorkExperience[] }) => {
+  return (
+    <Box
+      id="work"
+      as={"section"}
+      bg={"blackAlpha.900"}
+      color={"white"}
+      className="section observe_view"
+    >
+      <Container py={100}>
+        <SimpleGrid columns={[1, null, 1]}>
+          <MotionBox initial={{ x: -100 }} whileInView={{ x: 0 }}>
+            <SectionTitle labelInFront={"Experience"} labelBehind={"Work"} />
+            <Text
+              maxW={"lg"}
+              fontWeight={400}
+              lineHeight={"28px"}
+              my={"24px"}
+              fontSize={"14px"}
+            >
+              I have gained valueable insight colloborating with teams of
+              different backgrounds within and outside an organization, national
+              and internationally.
+            </Text>
+          </MotionBox>
+          <Box pt={50}>
+            <VStack gap={0}>
+              {workItems.map((item, index) => {
+                return <WorkItem key={index} index={index} item={item} />;
+              })}
+            </VStack>
+          </Box>
+        </SimpleGrid>
+      </Container>
+    </Box>
+  );
+};
 
-// import './styles.css';
+export default WorkSection;
 
-// import required modules
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import { WorkExperience } from "../../../../../sanity/schemas/workExperience";
+export function WorkItem({
+  index,
+  item,
+}: {
+  index: number;
+  item: WorkExperience;
+}) {
+  const [show, setShow] = useState(false);
 
+  const handleToggle = () => setShow(!show);
+  return (
+    <MotionHStack
+      w={"full"}
+      gap={2}
+      initial={{ y: 100 }}
+      whileInView={{ y: 0 }}
+    >
+      <VStack gap={0}>
+        <Center p={2} rounded={"full"} bg={"whiteAlpha.100"}>
+          <Avatar.Root>
+            <Avatar.Fallback name={item.role} />
+            {/* <Avatar.Image src="https://bit.ly/sage-adebayo" /> */}
+          </Avatar.Root>
+        </Center>
+        <Box
+          h="full"
+          width={"1"}
+          rounded={"full"}
+          background={"whiteAlpha.100"}
+        />
+      </VStack>
 
-const WorkSection = ({ data }: { data: WorkExperience[] }) => {
-
-    const works = data
-
-    const { colorMode } = useColorMode()
-
-    return (
-        <Box as={'section'} py={100}>
-            <Container maxW={'container.lg'}>
-                <SectionTitle labelInFront={'Experience'} labelBehind={'Work'} />
-                <Text maxW={'lg'} fontWeight={400} lineHeight={'28px'} my={'24px'} fontSize={'14px'}>
-                    I have gained valueable insight colloborating with teams of different backgrounds within and outside an organization, national and internationally.
+      <Box
+        rounded={"md"}
+        background={"whiteAlpha.100"}
+        w="full"
+        p={3}
+        mb={APP_DATA.experience.length - 1 == index ? 2 : 5}
+      >
+        <Box w="full">
+          <HStack>
+            <Text fontWeight={"bold"} fontSize={"lg"} w="full">
+              {item.role}
+            </Text>
+            <IconButton
+              p={1}
+              h={"fit-content"}
+              color={"white"}
+              aria-label="toggle"
+              _hover={{}}
+              variant={"ghost"}
+              onClick={handleToggle}
+              w={"fit-content"}
+            >
+              {show == true ? <ChevronUpIcon /> : <ChevronDownIcon />}
+            </IconButton>
+          </HStack>
+          <HStack flexWrap={"wrap"} mb={3} fontSize={"sm"} gap={[1, null, 3]}>
+            <Text fontWeight={"semibold"}>{item.company}</Text>
+            <Text hideBelow={"md"}>-</Text>
+            <Text>{item.year}</Text>
+          </HStack>
+          <Flex flexWrap={"wrap"}>
+            {item.categories.map((category, index) => {
+              return category.refUrl != undefined ? (
+                <Text key={index} _hover={{ color: "brand" }} asChild>
+                  <Link href={`${category.refUrl}`}>
+                    {category.title}
+                    <Text
+                      as={"span"}
+                      hidden={item.categories.length - 1 == index}
+                    >
+                      {`,`}&nbsp;
+                    </Text>
+                  </Link>
                 </Text>
-
-                <Swiper
-                    spaceBetween={30}
-                    centeredSlides={true}
-                    autoplay={{
-                        delay: 2500,
-                        disableOnInteraction: false,
-                    }}
-                    pagination={{
-                        clickable: true,
-                    }}
-                    navigation={true}
-                    modules={[Autoplay, Pagination, Navigation]}
-                    className="mySwiper"
-                >
-                    {
-                        works.map(
-                            (work, index) => {
-                                return <SwiperSlide key={index}>
-                                    <Box w={'full'} py={50}>
-                                        <Flex flexDirection={'column'} alignItems={'center'}>
-                                            <Box p={5}>
-                                                <Image
-                                                    src={
-                                                        colorMode === 'light' ? work.lightLogo : work.darkLogo == null ? work.lightLogo : work.darkLogo
-                                                    }
-                                                    width={150}
-                                                    height={150}
-                                                    alt={`${work.name} Logo`
-                                                    }
-                                                />
-                                            </Box>
-
-                                            <Text as={'a'} mt={5} href={work.websiteUrl} target={'_blank'}
-                                                fontWeight={600}
-                                                fontSize={24} textAlign={'center'} textDecoration={'underline'}>
-                                                {work.name}
-                                            </Text>
-
-                                            <Text fontWeight={600} my={3} fontSize={18}>
-                                                {work.role}
-                                            </Text>
-
-                                            <Text fontWeight={400} fontSize={14}>
-                                                {work.duration}
-                                            </Text>
-
-                                        </Flex>
-                                    </Box>
-                                </SwiperSlide>
-                            }
-                        )
-                    }
-                </Swiper>
-
-                <Box pt={100} hidden={true}>
-                    <Flex flexDirection={'column'} alignItems={'center'}>
-                        <Box p={5} bg={colorMode === 'light' ? 'transparent' : 'rgba(192,192,192,0.84)'}
-                            borderRadius={'full'}>
-                            <Image src={'/work/cedars_logo.png'} width={150} height={150} alt={'Cedars Logo'} />
-                        </Box>
-
-                        <Text as={'a'} mt={5} href={'https://www.cedarsprohub.com'} target={'_blank'} fontWeight={600}
-                            fontSize={24} textAlign={'center'} textDecoration={'underline'}>
-                            Cedars Productivity Centre
-                        </Text>
-
-                        <Text fontWeight={600} my={3} fontSize={18}>
-                            Android Developer
-                        </Text>
-
-                        <Text fontWeight={400} fontSize={14}>
-                            2020 - 2023
-                        </Text>
-
-                    </Flex>
-                </Box>
-            </Container>
+              ) : (
+                <Text key={index}>
+                  {category.title}
+                  <Text
+                    as={"span"}
+                    hidden={item.categories.length - 1 == index}
+                  >
+                    {`,`}&nbsp;
+                  </Text>
+                </Text>
+              );
+            })}
+          </Flex>
         </Box>
 
-    )
+        {
+          <Collapsible.Root>
+            <Collapsible.Trigger>Open</Collapsible.Trigger>
+            <Collapsible.Content>
+              <MarkdownPreview
+                disableCopy={true}
+                source={item.description}
+                style={{
+                  background: "transparent",
+                  marginTop: "32px",
+                  color: "white",
+                }}
+              />
+            </Collapsible.Content>
+          </Collapsible.Root>
+        }
+      </Box>
+    </MotionHStack>
+  );
 }
-
-export default WorkSection

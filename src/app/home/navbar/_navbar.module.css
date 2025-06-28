@@ -6,9 +6,11 @@
     bottom: 0;
     z-index: 999;
     transition: all 0.1s linear;
-    backdrop-filter: blur(90px);
-    background: rgba(30,31,34,0.10) !important;
+    overflow-y: scroll;
 }
-.nav li{
-    font-weight: lighter;
+.nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
 }

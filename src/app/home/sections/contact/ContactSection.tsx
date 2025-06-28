@@ -1,146 +1,305 @@
-'use client'
-import {
-    Box,
-    Button,
-    Container,
-    Flex,
-    GridItem,
-    Input,
-    SimpleGrid,
-    Text,
-    Textarea,
-    useColorModeValue
-} from "@chakra-ui/react";
-import {useState} from "react";
+"use client";
 import SocialIcon from "@/app/components/_social_icons";
-import {faEnvelope} from "@fortawesome/free-regular-svg-icons";
-import {faWhatsapp, IconDefinition} from "@fortawesome/free-brands-svg-icons";
-import {faPhone} from '@fortawesome/free-solid-svg-icons';
+import Container from "@/app/components/container";
+import {
+  Box,
+  Flex,
+  Input,
+  SimpleGrid,
+  Text,
+  Textarea
+} from "@chakra-ui/react";
+import { FormEvent, useState } from "react";
 
-export function ContactMeans(
-    {
-        label,
-        url,
-        iconUrl
-    }: {
-        label: string,
-        url: string,
-        iconUrl: IconDefinition,
-    }
-) {
-    return (
-        <Flex alignItems={'center'} mt={5}>
-            <SocialIcon href={url} iconUrl={iconUrl}/>
 
-            <Text as={'a'} href={url} target={'_blank'} ms={'3'}>
-                {label}
-            </Text>
-        </Flex>
-    )
+import {
+  MotionBox,
+  MotionButton,
+  MotionGridItem,
+} from "@/app/components/motion";
+import { toaster } from "@/components/ui/toaster";
+import * as dotenv from "dotenv";
+import { MailIcon, PhoneIcon } from "lucide-react";
+import Link from "next/link";
+import Footer from "../../footer/_footer";
+
+dotenv.config();
+
+import { ComponentType, SVGProps } from "react";
+
+export function ContactMeans({
+  label,
+  url,
+  iconUrl,
+  hoverBg,
+  hoverContentColor,
+}: {
+  label: string;
+  url: string;
+  iconUrl: ComponentType<SVGProps<SVGSVGElement>>;
+  hoverBg?: string;
+  hoverContentColor?: string;
+}) {
+  return (
+    <Flex alignItems={"center"} mt={5}>
+      <SocialIcon
+        showBorder={true}
+        hoverBg={hoverBg}
+        hoverContentColor={hoverContentColor}
+        href={url}
+        iconUrl={iconUrl}
+      />
+
+      <Text asChild ms={"3"}>
+        <Link href={url} target={"_blank"}>
+          {label}
+        </Link>
+      </Text>
+    </Flex>
+  );
 }
 
 export default function ContactSection() {
+  const toast = toaster;
+  const [loading, setLoading] = useState(false);
+  const [previewMsg, setPreviewMsg] = useState(false);
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
-    const [fullName, setFullName] = useState('');
-    const [email, setEmail] = useState('');
-    const [message, setMessage] = useState('');
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-    const inputBg = useColorModeValue(
-        "rgba(98,98,98,0.14)",
-        "rgba(30,31,34,0.34)",
-    );
-    const inputTextColor = useColorModeValue(
-        "#1e1e1e",
-        "#c4c4c4",
-    );
-
-    function validateName(value: string) {
-        let error
-        if (!value) {
-            error = 'Full Name is required'
-        }
-        return error
+    if (!previewMsg) {
+      setPreviewMsg(true);
+      return;
     }
 
-    function validateEmail(value: string) {
-        let error
-        if (!value) {
-            error = 'Email is required'
-        }
-        return error
+    setLoading(true);
+
+    var errorMsg: string | null;
+    var fullNameError = validateName(fullName);
+    var emailError = validateEmail(email);
+    var messageError = validateMessage(message);
+
+    if (fullNameError != null) {
+      errorMsg = fullNameError;
+    } else if (emailError != null) {
+      errorMsg = emailError;
+    } else if (messageError != null) {
+      errorMsg = messageError;
+    } else {
+      errorMsg = null;
     }
 
-    function validateMessage(value: string) {
-        let error
-        if (!value) {
-            error = 'Message is required'
-        }
-        return error
+    if (errorMsg != null) {
+      showToast("error", "Input Error", errorMsg);
+    } else {
+      fetch("https://getform.io/f/amddzedb", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: fullName,
+          email: email,
+          message: message,
+        }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(() => {
+          showToast(
+            "success",
+            "Message Sent",
+            "Thank you for reaching out, I will get back to you ASAP!"
+          );
+          setLoading(false);
+        })
+        .catch((error) => {
+          showToast("success", "Sending Error", error);
+          setLoading(false);
+        });
     }
+  };
 
-    return (
-        <Container id="contact"  as={'section'} maxW={'container.lg'} py={200}>
-            <SimpleGrid columns={{base: 1, md: 2}}>
-                <GridItem>
-                    <Box>
-                        <Text
-                            fontWeight={500}
-                            fontSize={38}
-                        >
-                            Lets get in touch
-                        </Text>
-                        <Text
-                            fontWeight={400}
-                            fontSize={14}
-                            mb={16}
-                        >
-                            Fill out your details and I’ll get back to you ASAP
-                        </Text>
+  const showToast = (
+    status: "error" | "info" | "warning" | "success" | "loading" | undefined,
+    title: string,
+    message: string
+  ) => {
+    toast.create({
+      title: title,
+      description: message,
+      type: status,
+      duration: 2000,
+      closable: true,
+    });
+  };
 
+  function validateName(value: string): string | null {
+    let error = null;
+    if (!value) {
+      error = "Full Name is required";
+    }
+    return error;
+  }
 
-                        <ContactMeans label={'+234 913 6908 869'} url={'tel:+234 913 6908 869'}
-                                      iconUrl={faPhone}/>
-                        <ContactMeans label={'+234 913 6908 869'} url={'https://wa.me/+23491369088699'}
-                                      iconUrl={faWhatsapp}/>
-                        <ContactMeans label={'dev.epicdevler@gmail.com'} url={'mailto:dev.epicdevler@gmail.com'}
-                                      iconUrl={faEnvelope}/>
+  function validateEmail(value: string): string | null {
+    let error = null;
+    if (!value) {
+      error = "Email is required";
+    }
+    return error;
+  }
 
+  function validateMessage(value: string): string | null {
+    let error = null;
+    if (!value) {
+      error = "Message is required";
+    }
+    return error;
+  }
 
-                    </Box>
-                </GridItem>
-                <GridItem mt={[10, 10, 0, 0]}>
-                    <Flex flexDirection={'column'}>
-                        <Input disabled={true} value={fullName} focusBorderColor={'brand'} fontSize={14} fontWeight={400}
-                               _placeholder={{textColor: '#626262'}} textColor={inputTextColor} bg={inputBg}
-                               borderRadius={8} type="text"
-                               placeholder={'Full Name'}
-                               onChange={(e) => {
-                                   setFullName(e.target.value)
-                               }}
-                        />
-                        <Input disabled={true} value={email} focusBorderColor={'brand'} fontSize={14} fontWeight={400}
-                               _placeholder={{textColor: '#626262'}} textColor={inputTextColor} bg={inputBg}
-                               borderRadius={8} type="email"
-                               placeholder={'Email Address'} my={5}
-                               onChange={(e) => {
-                                   setEmail(e.target.value)
-                               }}
-                        />
-                        <Textarea disabled={true} value={message} focusBorderColor={'brand'} fontSize={14} fontWeight={400}
-                                  _placeholder={{textColor: '#626262'}} textColor={inputTextColor} bg={inputBg}
-                                  borderRadius={8}
-                                  placeholder={'Message'} name="message" id="message" cols={5} rows={13} resize={'none'}
-                                  onChange={(e) => {
-                                      setMessage(e.target.value)
-                                  }}></Textarea>
+  return (
+    <Box
+      id="contact"
+      className="section observe_view"
+      bg={"blackAlpha.900"}
+      color={"white"}
+      as={"section"}
+    >
+      <Container py={200}>
+        <SimpleGrid columns={{ base: 1, md: 2 }}>
+          <MotionGridItem initial={{ x: -100 }} whileInView={{ x: 0 }}>
+            <MotionBox
+              initial={{ y: 100 }}
+              whileInView={{ y: 0 }}
+              viewport={{ once: true }}
+            >
+              <Text fontWeight={500} fontSize={38}>
+                Lets get in touch
+              </Text>
+              <Text fontWeight={400} fontSize={14} mb={16}>
+                Fill out your details and I’ll get back to you ASAP
+              </Text>
+            </MotionBox>
 
-                        <Button disabled={true} mt={10} colorScheme={'brand'} textColor={'white'} _hover={{}} fontWeight={400} fontSize={14}
-                                borderRadius={8}>
-                            You can reach me via WhatsApp, phone call or email.
-                        </Button>
-                    </Flex>
-                </GridItem>
-            </SimpleGrid>
-        </Container>
-    )
+            <ContactMeans
+              label={"+234 808 0366 089"}
+              url={"tel:+234 808 0366 089"}
+              iconUrl={PhoneIcon}
+            />
+            <ContactMeans
+              label={"+234 808 0366 089"}
+              url={"https://wa.me/+2348080366089"}
+              iconUrl={MailIcon}
+            />
+            <ContactMeans
+              label={"dev.epicdevler@gmail.com"}
+              url={"mailto:dev.epicdevler@gmail.com"}
+              iconUrl={MailIcon}
+            />
+          </MotionGridItem>
+          <MotionGridItem
+            initial={{ x: 100 }}
+            whileInView={{ x: 0 }}
+            mt={[10, 10, 0, 0]}
+          >
+            <form onSubmit={handleSubmit}>
+              <Flex flexDirection={"column"}>
+                <Input
+                  value={fullName}
+                  focusRingColor={"brand"}
+                  fontSize={14}
+                  fontWeight={400}
+                  borderColor={"whiteAlpha.200"}
+                  _placeholder={{ color: "whiteAlpha.800" }}
+                  borderRadius={8}
+                  type="text"
+                  required
+                  placeholder={"Full Name"}
+                  onChange={(e) => {
+                    setFullName(e.target.value);
+                  }}
+                />
+                <Input
+                  value={email}
+                  focusRingColor={"brand"}
+                  fontSize={14}
+                  fontWeight={400}
+                  borderColor={"whiteAlpha.200"}
+                  _placeholder={{ color: "whiteAlpha.800" }}
+                  borderRadius={8}
+                  type="email"
+                  required={true}
+                  placeholder={"Email Address"}
+                  my={5}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
+                />
+                <Textarea
+                  value={message}
+                  focusRingColor={"brand"}
+                  fontSize={14}
+                  fontWeight={400}
+                  required
+                  borderColor={"whiteAlpha.200"}
+                  _placeholder={{ color: "whiteAlpha.800" }}
+                  borderRadius={8}
+                  placeholder={"Message"}
+                  name="message"
+                  id="message"
+                  cols={5}
+                  rows={13}
+                  resize={"none"}
+                  onChange={(e) => {
+                    setMessage(e.target.value);
+                  }}
+                />
+
+                <Text hidden={!previewMsg} py={3}>
+                  Hello, I&rsquo;m {fullName} and here is my email{" "}
+                  <Text as={"span"} color={"brand"}>
+                    {email}
+                  </Text>
+                  <br />
+                  <br />
+                  My Message:
+                  <br />
+                  {message}
+                </Text>
+
+                <Box>
+                  <MotionButton
+                    whileTap={{ scale: 0.9 }}
+                    loading={loading}
+                    type="submit"
+                    mt={10}
+                    w="full"
+                    bg={"brand"}
+                    _hover={{}}
+                    _active={{}}
+                    color={"white"}
+                    fontWeight={400}
+                    fontSize={14}
+                    borderRadius={8}
+                  >
+                    {!previewMsg ? "Preview Message" : "Send"}
+                  </MotionButton>
+                </Box>
+              </Flex>
+            </form>
+          </MotionGridItem>
+        </SimpleGrid>
+      </Container>
+      <Footer />
+    </Box>
+  );
 }

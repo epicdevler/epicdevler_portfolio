@@ -1,85 +1,117 @@
-import { Box, Container, GridItem, SimpleGrid, Text, useColorModeValue } from "@chakra-ui/react";
-import Image from "next/image";
 import SectionTitle from "@/app/components/_section_title";
-import { Technology, TechnologyItem } from "../../../../../sanity/schemas/technology";
+import Container from "@/app/components/container";
+import { Box, HStack, SimpleGrid, Text } from "@chakra-ui/react";
+import Image from "next/image";
+
+
+import {
+  MotionBox,
+  MotionCenter,
+  MotionGridItem,
+  MotionText,
+} from "@/app/components/motion";
+import { Technology } from "@/data/data/appData";
 import Link from "next/link";
 
-export default function TechnologiesSection({ data }: { data: Technology[] }) {
-    const errorTextColor = useColorModeValue("blackAlpha.400", "whiteAlpha.400")
-    let mainData;
-    if (data.length > 0) {
-        const technology = data[0]
+export default function TechnologiesSection({
+  technologies,
+}: {
+  technologies: Technology[];
+}) {
+  return (
+    <Box
+      id="stacks"
+      as={"section"}
+      color={"white"}
+      h="full"
+      bg={"blackAlpha.900"}
+      className="section observe_view"
+    >
+      <Container py={100} color={"white"}>
+        <div id="myStacks">
+          <MotionBox
+            initial={{
+              x: -100,
+            }}
+            whileInView={{
+              x: 0,
+            }}
+          >
+            <SectionTitle labelInFront={"Technology"} labelBehind={"Stacks"} />
+          </MotionBox>
 
-        mainData = (
-            technology.technologies.length < 1
-                ? <Box
-                    py={10}
-                    w={'full'}
-                    textAlign={'center'}
-                    textColor={errorTextColor}
-                >
-                    <Text>
-                        No Technologies yet
-                    </Text>
-                </Box>
-                :
-                <Box>
-                    <p style={{ fontSize: '14px', fontWeight: 400 }}>{technology.briefMessage}</p>
-                  
-                    <SimpleGrid mt={5} columns={{ base: 3, sm: 3, lg: 5 }} gap={5}>
-                        {
-                            technology.technologies.map(
-                                (technology: TechnologyItem, index: number) => {
-                                    return <GridItem display={'flex'} justifyContent={'center'}
-                                        alignItems={'center'}
-                                        colSpan={'auto'} key={index} style={{ padding: '16px' }}>
-
-                                        <Image width={48} height={48} src={technology.iconUrl}
-                                            alt={technology.alt} />
-                                    </GridItem>
-                                }
-                            )
-                        }
-                    </SimpleGrid>
-
-                    <p
-                        style={{
-                            fontWeight: 'normal',
-                            fontSize: '14px',
-                            marginTop: '100px',
-                            textAlign: 'center'
-                        }}
-                    >What have you <Link
-                        href={'#projects'}
-                        style={{
-                            fontWeight: '400',
-                            border: '1px solid white',
-                            borderRadius: '100px',
-                            padding: '5px'
-                        }}
+          <Box>
+            <SimpleGrid
+              mt={5}
+              columns={{ base: 2, sm: 3, md: 4, lg: 5 }}
+              gap={5}
+            >
+              {technologies.map((tech, index: number) => {
+                return (
+                  <MotionGridItem
+                    initial={{
+                      scale: 0.6,
+                    }}
+                    whileInView={{
+                      scale: 1,
+                    }}
+                    key={index}
+                    display={"flex"}
+                    justifyContent={"center"}
+                    alignItems={"center"}
+                    colSpan={"auto"}
+                  >
+                    <HStack
+                      transitionDuration={".2s"}
+                      _hover={{
+                        bg: "whiteAlpha.100",
+                        borderColor: "whiteAlpha.50",
+                      }}
+                      borderWidth={1}
+                      borderColor={"whiteAlpha.100"}
+                      bg={"whiteAlpha.50"}
+                      w="full"
+                      h={"full"}
+                      rounded={"md"}
+                      p={2}
                     >
-                            done?
-                        </Link> with this technologies</p>
-                </Box>
-        )
-    } else {
-        mainData = <Box
-            py={10}
-            w={'full'}
-            textAlign={'center'}
-            textColor={errorTextColor}
-        >
-            <Text>
-                No Technologies yet
-            </Text>
-        </Box>
-    }
-    return (
-        <Container as={'section'} maxW={'container.lg'} py={100}>
-            <div id="myStacks">
-                <SectionTitle labelInFront={'Technology'} labelBehind={'Stacks'} />
-                {mainData}
-            </div>
-        </Container>
-    );
+                      <Image
+                        width={32}
+                        height={32}
+                        src={`/techs/${tech.name}.svg`}
+                        alt={tech.name}
+                      />
+                      <Text>{tech.name}</Text>
+                    </HStack>
+                  </MotionGridItem>
+                );
+              })}
+            </SimpleGrid>
+
+            <MotionCenter
+              initial={{ y: 100 }}
+              whileInView={{ y: 0 }}
+              viewport={{ once: true }}
+              mt={12}
+              gap={1.5}
+              fontSize={"sm"}
+            >
+              <Text>What have you</Text>
+              <MotionText
+                whileTap={{ scale: 0.9 }}
+                asChild
+                fontWeight={400}
+                border={"1px solid white"}
+                rounded={"full"}
+                p={1.5}
+              >
+                <Link href={"#myStacks"}>done?</Link>
+              </MotionText>
+              <Text>with this technologies</Text>
+            </MotionCenter>
+          </Box>
+        </div>
+      </Container>
+    </Box>
+  );
 }

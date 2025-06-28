@@ -1,167 +1,244 @@
-'use client'
-import {
-    Box,
-    Button,
-    Container,
-    Flex,
-    HStack,
-    IconButton,
-    Spacer,
-    useColorMode,
-    useColorModeValue,
-    VStack,
-} from "@chakra-ui/react";
-import SocialIcon from "@/app/components/_social_icons";
+"use client";
 import NavLink from "@/app/components/_nav_link";
-import "@theme-toggles/react/css/Around.css"
-import {Around} from "@theme-toggles/react"
-import {faGithub, faLinkedinIn, faXTwitter} from "@fortawesome/free-brands-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBars, faClose} from "@fortawesome/free-solid-svg-icons";
-import {useGlobalNavbarStateContext} from "@/app/context/_navbar_state_context";
-import style from './_navbar.module.css'
-import {useEffect, useState} from "react";
+import SocialIcon from "@/app/components/_social_icons";
+import {
+  Box,
+  Flex,
+  HStack,
+  IconButton,
+  Spacer,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
+import { MouseEventHandler, useEffect, useState } from "react";
+import style from "./_navbar.module.css";
 
+import Container from "@/app/components/container";
+import { leckerliOne } from "@/app/fonts";
+import {
+  GithubIcon,
+  LinkedinIcon,
+  MenuIcon,
+  TwitterIcon,
+  XIcon,
+} from "lucide-react";
 
-const navLinks = [
+const fullNavLinks = [
+  {
+    label: "Home",
+    href: "",
+  },
+  {
+    label: "About",
+    href: "#about",
+  },
+  {
+    label: "Stacks",
+    href: "#stacks",
+  },
+  {
+    label: "Experience",
+    href: "#experience",
+  },
+  {
+    label: "Projects",
+    href: "#projects",
+  },
+  {
+    label: "Contact",
+    href: "#contact",
+  },
+];
+
+const navLinks = fullNavLinks.filter((value) => {
+  if (value.href != "#stacks" && value.href != "#experience") {
+    return value;
+  }
+});
+
+export default function Navbar({activeSection}: {activeSection: string}) {
+  const [isToggled, setIsToggled] = useState<boolean>(false);
+
+  const socialItems = [
     {
-        label: 'Home',
-        href: '#home'
+      url: "https://www.github.com/epicdevler",
+      imgUrl: GithubIcon,
+      imgAlt: "GitHub Logo",
+      hoverBg: undefined,
+      hoverContentColor: undefined,
     },
     {
-        label: 'Projects',
-        href: '#projects'
+      url: "https://www.linkedin.com/in/nwadikephilip",
+      imgUrl: LinkedinIcon,
+      imgAlt: "LinkedIn Logo",
+      hoverBg: undefined,
+      hoverContentColor: undefined,
     },
     {
-        label: 'About',
-        href: '#about'
+      url: "https://www.twitter.com/epicdevler",
+      imgUrl: TwitterIcon,
+      imgAlt: "X Logo",
+      hoverBg: undefined,
+      hoverContentColor: undefined,
     },
-    {
-        label: 'Contact',
-        href: '#contact'
-    },
-]
+  ];
 
-export default function Navbar() {
-    const {colorMode, toggleColorMode} = useColorMode()
-    const [isToggled, setIsToggled] = useState<boolean>(false)
+  const handleNavToggle = () => {
+    setIsToggled(!isToggled);
+  };
 
-    const socialItems = [
-        {
-            url: "https://www.github.com/epicdevler",
-            imgUrl: faGithub,
-            imgAlt: "GitHub Logo",
-        },
-        {
-            url: "https://www.linkedin.com/in/nwadikephilip",
-            imgUrl: faLinkedinIn,
-            imgAlt: "LinkedIn Logo",
-        },
-        {
-            url: "https://www.twitter.com/epicdevler",
-            imgUrl: faXTwitter,
-            imgAlt: "X Logo",
-        },
-    ]
+  function handleNavItemClick(event: {
+    currentTarget: any;
+    preventDefault: () => void;
+  }) {
+    const label = event.currentTarget.innerText;
+  }
 
-    const handleNavToggle = () => {
-        setIsToggled(!isToggled)
-    }
-    return (
-        <nav className={style.nav} style={{padding: '10px 0px'}}>
-            <FullScreenNav onToggle={isToggled} unToggle={handleNavToggle} />
-            <Container maxW={'container.lg'}>
-                <Flex alignItems={'center'}>
-                    <HStack>
-                        {
-                            socialItems.map(
-                                (item, index) => {
-                                    return <SocialIcon key={index} href={item.url} iconUrl={item.imgUrl}
-                                                       alt={item.imgAlt}/>
-                                }
-                            )
-                        }
-                    </HStack>
-                    <Spacer/>
-                    <HStack hideBelow={"md"}>
-                        {
-                            navLinks.map(
-                                link => {
-                                    return <NavLink key={link.label} href={link.href} label={link.label}
-                                                    isActive={link.label === "Home"}/>
-                                }
-                            )
-                        }
+  return (
+    <Box
+      as={"nav"}
+      className={style.nav}
+      w={"full"}
+      py={4}
+      px={3}
+      // bg={{ base: "brand", lg: "none" }}
+      // boxShadow={{ base: "md", lg: "none" }}
+    >
+      <FullScreenNav
+        onToggle={isToggled}
+        onNavItemClicked={handleNavItemClick}
+        unToggle={handleNavToggle}
+        activeSection={activeSection}
+      />
+      <Container
+        boxShadow={{ base: "md", lg: "md" }}        
+        rounded={{ base: "full", lg: "full" }}
+        dropShadow={"md"}
+        bg={"brand"}
+        py={{mdDown:'2'}}
+      >
+        <Flex alignItems={"center"} flexDirection={"row-reverse"}>
+          <HStack>
+            {socialItems.map((item, index) => {
+              return (
+                <SocialIcon
+                  hoverBg={item.hoverBg}
+                  hoverContentColor={item.hoverContentColor}
+                  key={index}
+                  href={item.url}
+                  iconUrl={item.imgUrl}
+                  alt={item.imgAlt}
+                />
+              );
+            })}
+          </HStack>
+          <Spacer />
+          <HStack hideBelow={"md"}>
+            {navLinks.map((link, index) => {
+              const active = activeSection === link.label.toLocaleLowerCase()
 
-                    </HStack>
-                    <HStack>
-                        {/* <Button hideBelow={"md"} borderRadius={100} fontWeight={500} bg={'brand'} borderWidth={0}
-                                textColor={"white"}>
-                            Hire Me
-                        </Button> */}
+              console.log("active", active, link.label, activeSection);
+              return (
+                <NavLink
+                  key={link.label}
+                  onClick={handleNavItemClick}
+                  href={link.href}
+                  label={link.label}
+                  isFirstChild={index == 0}
+                  isActive={active}
+                />
+              );
+            })}
+          </HStack>
+          <HStack>
 
-                        {/* <Around toggle={
-                            (state) =>{
-                                toggleColorMode()
-                            }
-                        }
-                        forceMotion={true}
-                         toggled={colorMode === 'light'} style={{
-                            borderRadius: 100,
-                            border: "1px solid white",
-                            color: "white",
-                            padding: "9px",
-                            fontSize: 20
-                        }} duration={750}/> */}
-
-                        <IconButton hideFrom={'md'} bg={'transparent'} borderRadius={100} borderWidth={1}
-                                    borderColor={'white'} textColor={"white"} _hover={{}} onClick={handleNavToggle}
-                                    aria-label={'toggle icon'}>
-                            <FontAwesomeIcon icon={faBars}/>
-                        </IconButton>
-                    </HStack>
-                </Flex>
-            </Container>
-        </nav>
-    )
+            <IconButton
+              hideFrom={"md"}
+              variant={"ghost"}
+              rounded={"full"}
+              _hover={{}}
+              onClick={handleNavToggle}
+              aria-label={"toggle icon"}
+            >
+              <MenuIcon />
+            </IconButton>
+          </HStack>
+        </Flex>
+      </Container>
+    </Box>
+  );
 }
 
-export function FullScreenNav({onToggle, unToggle}:{onToggle: boolean, unToggle: () => void}) {
-    const bgColor = useColorModeValue('rgba(145,145,145,0.10)', 'rgba(30,31,34,0.10)')
+export function FullScreenNav({
+  activeSection,
+  onNavItemClicked,
+  onToggle,
+  unToggle,
+}: {
+  activeSection: string;
+  onToggle: boolean;
+  unToggle: () => void;
+  onNavItemClicked: MouseEventHandler<HTMLParagraphElement>;
+}) {
+  const [scale, setScale] = useState(0);
+  const [borderRadius, setBorderRadius] = useState(0);
 
-    const [scale, setScale] = useState(0)
-    const [borderRadius, setBorderRadius] = useState(0)
+  useEffect(() => {
+    const handleToggle = () => {
+      setScale(onToggle ? 1 : 0);
+      setBorderRadius(onToggle ? 0 : 8);
+    };
+    handleToggle();
+  }, [onToggle]);
 
+  return (
+    <VStack
+      aria-modal="true"
+      align={"end"}
+      backgroundColor={"brand"}
+      hideFrom={"md"}
+      className={style.fullScreenNav}
+      style={{ scale: scale }}
+      borderRadius={borderRadius}
+      py={3}
+      px={3}
+    >
+      <IconButton
+        variant={"ghost"}
+        p={1}
+        rounded={"full"}
+        color={"white"}
+        _hover={{}}
+        onClick={unToggle}
+        aria-label={"toggle icon"}
+        mb={4}
+      >
+        <XIcon />
+      </IconButton>
 
-    useEffect(() => {
-        const handleToggle = () => {
-            setScale(onToggle ? 1 : 0)
-            setBorderRadius(onToggle ? 0 : 8)
-        }
-        handleToggle()
-    }, [onToggle]);
+      <Text
+        w={"full"}
+        textAlign={"center"}
+        p={0}
+        fontSize={"3xl"}
+        className={leckerliOne.className}
+        color={"white"}
+      >
+        epicdevler
+      </Text>
 
-    return (
-
-        <VStack align={'end'} bg={bgColor} hideFrom={'md'} className={style.fullScreenNav} style={{scale: scale}}
-                borderRadius={borderRadius} py={8} px={3}>
-            <IconButton hideFrom={'md'} bg={'transparent'} borderRadius={100} borderWidth={1}
-                        borderColor={'white'} textColor={"white"} _hover={{}} onClick={unToggle}
-                        aria-label={'toggle icon'} mb={10}>
-                <FontAwesomeIcon icon={faClose}/>
-            </IconButton>
-
-            {
-                navLinks.map(
-                    link => {
-                        return <Box key={link.label} width={'full'} textAlign={'center'}>
-                            <NavLink label={link.label} href={link.href}
-                                     isActive={link.label === "Home"}/>
-                        </Box>
-                    }
-                )
-            }
-
-        </VStack>
-    )
+      {navLinks.map((link) => {
+        return (
+          <Box key={link.label} width={"full"} textAlign={"center"}>
+            <NavLink
+              onClick={onNavItemClicked}
+              label={link.label}
+              href={link.href}
+              isActive={activeSection === link.label.toLocaleLowerCase()}
+            />
+          </Box>
+        );
+      })}
+    </VStack>
+  );
 }

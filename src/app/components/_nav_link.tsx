@@ -1,22 +1,40 @@
-import style from './_nav_link.module.css'
-import {Box} from "@chakra-ui/react";
+import Link from "next/link";
+import style from "./_nav_link.module.css";
+import { Box, Text } from "@chakra-ui/react";
+import { MouseEvent, MouseEventHandler } from "react";
 
-export default function NavLink(
-    {
-        label,
-        href,
-        isActive = false,
-    }: {
-        label: string,
-        href: string,
-        isActive?: boolean
-    }
-) {
-    const isActiveState = isActive ? "block" : "none"
-    return (
-        <Box className={style.list}>
-            <li><a style={{color: "white"}} href={href}>{label}</a></li>
-            <div className={`${style.line}`} style={{background: "brand", display: isActiveState}}></div>
-        </Box>
-    )
+export default function NavLink({
+  label,
+  href,
+  isActive = false,
+  isFirstChild = false,
+  onClick = undefined,
+}: {
+  label: string;
+  href: string;
+  isActive?: boolean;
+  isFirstChild?: boolean;
+  onClick?: undefined | MouseEventHandler<HTMLParagraphElement>;
+}) {
+  const isActiveState = isActive ? style.active : "";
+  return (
+    <Box
+      className={`${style.list} ${isActiveState}`}
+      borderColor={"white"}
+      borderRadius={"full"}
+    >
+      <Text
+        onClick={onClick}
+        asChild
+        style={{ padding: ".9em", color: "white" }}
+      >
+        <Link href={href}>{label}</Link>
+      </Text>
+      {
+        <Box
+          className={`${style.line}`} /* bg={isActive ? 'white' :"transparent"} */
+        ></Box>
+      }
+    </Box>
+  );
 }

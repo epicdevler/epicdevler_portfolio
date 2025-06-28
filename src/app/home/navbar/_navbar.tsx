@@ -1,7 +1,8 @@
 "use client";
+import NavLink from "@/app/components/_nav_link";
+import SocialIcon from "@/app/components/_social_icons";
 import {
   Box,
-  Container,
   Flex,
   HStack,
   IconButton,
@@ -9,20 +10,18 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import SocialIcon from "@/app/components/_social_icons";
-import NavLink from "@/app/components/_nav_link";
-import {
-  faGithub,
-  faLinkedinIn,
-  faXTwitter,
-} from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
-import style from "./_navbar.module.css";
 import { MouseEventHandler, useEffect, useState } from "react";
+import style from "./_navbar.module.css";
 
+import Container from "@/app/components/container";
 import { leckerliOne } from "@/app/fonts";
-import { fullpageApi } from "@fullpage/react-fullpage";
+import {
+  GithubIcon,
+  LinkedinIcon,
+  MenuIcon,
+  TwitterIcon,
+  XIcon,
+} from "lucide-react";
 
 const fullNavLinks = [
   {
@@ -57,33 +56,27 @@ const navLinks = fullNavLinks.filter((value) => {
   }
 });
 
-export default function Navbar({
-  fullpageApi,
-  fullpageSectionCount,
-}: {
-  fullpageApi: null | fullpageApi;
-  fullpageSectionCount: number;
-}) {
+export default function Navbar({activeSection}: {activeSection: string}) {
   const [isToggled, setIsToggled] = useState<boolean>(false);
 
   const socialItems = [
     {
       url: "https://www.github.com/epicdevler",
-      imgUrl: faGithub,
+      imgUrl: GithubIcon,
       imgAlt: "GitHub Logo",
       hoverBg: undefined,
       hoverContentColor: undefined,
     },
     {
       url: "https://www.linkedin.com/in/nwadikephilip",
-      imgUrl: faLinkedinIn,
+      imgUrl: LinkedinIcon,
       imgAlt: "LinkedIn Logo",
       hoverBg: undefined,
       hoverContentColor: undefined,
     },
     {
       url: "https://www.twitter.com/epicdevler",
-      imgUrl: faXTwitter,
+      imgUrl: TwitterIcon,
       imgAlt: "X Logo",
       hoverBg: undefined,
       hoverContentColor: undefined,
@@ -99,12 +92,6 @@ export default function Navbar({
     preventDefault: () => void;
   }) {
     const label = event.currentTarget.innerText;
-    if (fullpageApi != null) {
-      const sectionIndex = fullNavLinks.findIndex((value) => {
-        return value.label == label;
-      });
-      fullpageApi?.moveTo(sectionIndex + 1);
-    }
   }
 
   return (
@@ -113,20 +100,22 @@ export default function Navbar({
       className={style.nav}
       w={"full"}
       py={4}
-      bg={{ base: "brand", lg: "none" }}
-      boxShadow={{ base: "md", lg: "none" }}
+      mdDown={{px:3}}
+      // bg={{ base: "brand", lg: "none" }}
+      // boxShadow={{ base: "md", lg: "none" }}
     >
       <FullScreenNav
         onToggle={isToggled}
         onNavItemClicked={handleNavItemClick}
         unToggle={handleNavToggle}
+        activeSection={activeSection}
       />
       <Container
-        boxShadow={{ base: "none", lg: "md" }}
-        maxW={"container.lg"}
-        rounded={{ base: "0", lg: "full" }}
+        boxShadow={{ base: "md", lg: "md" }}        
+        rounded={{ base: "full", lg: "full" }}
         dropShadow={"md"}
         bg={"brand"}
+        py={{mdDown:'2'}}
       >
         <Flex alignItems={"center"} flexDirection={"row-reverse"}>
           <HStack>
@@ -146,6 +135,9 @@ export default function Navbar({
           <Spacer />
           <HStack hideBelow={"md"}>
             {navLinks.map((link, index) => {
+              const active = activeSection === link.label.toLocaleLowerCase()
+
+              console.log("active", active, link.label, activeSection);
               return (
                 <NavLink
                   key={link.label}
@@ -153,43 +145,22 @@ export default function Navbar({
                   href={link.href}
                   label={link.label}
                   isFirstChild={index == 0}
-                  isActive={false /*fullpageSectionCount === index*/}
+                  isActive={active}
                 />
               );
             })}
           </HStack>
           <HStack>
-            {/* <Button hideBelow={"md"} borderRadius={100} fontWeight={500} bg={'brand'} borderWidth={0}
-                                textColor={"white"}>
-                            Hire Me
-                        </Button> */}
-
-            {/* <Around toggle={
-                            (state) =>{
-                                toggleColorMode()
-                            }
-                        }
-                        forceMotion={true}
-                         toggled={colorMode === 'light'} style={{
-                            borderRadius: 100,
-                            border: "1px solid white",
-                            color: "white",
-                            padding: "9px",
-                            fontSize: 20
-                        }} duration={750}/> */}
 
             <IconButton
               hideFrom={"md"}
-              bg={"transparent"}
-              borderRadius={100}
-              borderWidth={1}
-              borderColor={"white"}
-              textColor={"white"}
+              variant={"ghost"}
+              rounded={"full"}
               _hover={{}}
               onClick={handleNavToggle}
               aria-label={"toggle icon"}
             >
-              <FontAwesomeIcon icon={faBars} />
+              <MenuIcon />
             </IconButton>
           </HStack>
         </Flex>
@@ -199,10 +170,12 @@ export default function Navbar({
 }
 
 export function FullScreenNav({
+  activeSection,
   onNavItemClicked,
   onToggle,
   unToggle,
 }: {
+  activeSection: string;
   onToggle: boolean;
   unToggle: () => void;
   onNavItemClicked: MouseEventHandler<HTMLParagraphElement>;
@@ -234,13 +207,13 @@ export function FullScreenNav({
         variant={"ghost"}
         p={1}
         rounded={"full"}
-        textColor={"white"}
+        color={"white"}
         _hover={{}}
         onClick={unToggle}
         aria-label={"toggle icon"}
         mb={4}
       >
-        <FontAwesomeIcon fontSize={18} icon={faClose} />
+        <XIcon />
       </IconButton>
 
       <Text
@@ -261,7 +234,7 @@ export function FullScreenNav({
               onClick={onNavItemClicked}
               label={link.label}
               href={link.href}
-              isActive={false /*link.label === "Home"*/}
+              isActive={activeSection === link.label.toLocaleLowerCase()}
             />
           </Box>
         );

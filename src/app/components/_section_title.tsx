@@ -18,8 +18,8 @@ export default function SectionTitle(
 ) {
     return (
         <Box className={style.styled_title}>
-            <Text fontSize={{base:'8xl',md:'9xl'}} className={leckerliOne.className} textColor={labelInBehindColor} style={{opacity: 0.22}}>{labelBehind}</Text>
-            <Heading as={'h1'} textColor={labelInFrontColor}>{labelInFront}</Heading>
+            <Text fontSize={{base:'8xl',md:'9xl'}} className={leckerliOne.className} color={labelInBehindColor} opacity={0.22}>{labelBehind}</Text>
+            <Heading as={'h1'} color={labelInFrontColor}>{labelInFront}</Heading>
         </Box>
     )
 }

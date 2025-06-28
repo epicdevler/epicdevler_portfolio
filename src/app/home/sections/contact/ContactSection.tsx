@@ -1,28 +1,31 @@
 "use client";
+import SocialIcon from "@/app/components/_social_icons";
+import Container from "@/app/components/container";
 import {
   Box,
-  Button,
-  Container,
   Flex,
-  GridItem,
   Input,
   SimpleGrid,
   Text,
-  Textarea,
-  useColorModeValue,
-  useToast,
+  Textarea
 } from "@chakra-ui/react";
-import { FormEvent, useEffect, useState } from "react";
-import SocialIcon from "@/app/components/_social_icons";
-import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
-import { faWhatsapp, IconDefinition } from "@fortawesome/free-brands-svg-icons";
-import { faPhone } from "@fortawesome/free-solid-svg-icons";
+import { FormEvent, useState } from "react";
 
+
+import {
+  MotionBox,
+  MotionButton,
+  MotionGridItem,
+} from "@/app/components/motion";
+import { toaster } from "@/components/ui/toaster";
 import * as dotenv from "dotenv";
+import { MailIcon, PhoneIcon } from "lucide-react";
+import Link from "next/link";
 import Footer from "../../footer/_footer";
-import { motion } from "framer-motion";
 
 dotenv.config();
+
+import { ComponentType, SVGProps } from "react";
 
 export function ContactMeans({
   label,
@@ -33,7 +36,7 @@ export function ContactMeans({
 }: {
   label: string;
   url: string;
-  iconUrl: IconDefinition;
+  iconUrl: ComponentType<SVGProps<SVGSVGElement>>;
   hoverBg?: string;
   hoverContentColor?: string;
 }) {
@@ -47,15 +50,17 @@ export function ContactMeans({
         iconUrl={iconUrl}
       />
 
-      <Text as={"a"} href={url} target={"_blank"} ms={"3"}>
-        {label}
+      <Text asChild ms={"3"}>
+        <Link href={url} target={"_blank"}>
+          {label}
+        </Link>
       </Text>
     </Flex>
   );
 }
 
 export default function ContactSection() {
-  const toast = useToast();
+  const toast = toaster;
   const [loading, setLoading] = useState(false);
   const [previewMsg, setPreviewMsg] = useState(false);
   const [fullName, setFullName] = useState("");
@@ -128,12 +133,12 @@ export default function ContactSection() {
     title: string,
     message: string
   ) => {
-    toast({
+    toast.create({
       title: title,
       description: message,
-      status: status,
+      type: status,
       duration: 2000,
-      isClosable: true,
+      closable: true,
     });
   };
 
@@ -164,20 +169,15 @@ export default function ContactSection() {
   return (
     <Box
       id="contact"
-      className="section"
+      className="section observe_view"
       bg={"blackAlpha.900"}
-      textColor={"white"}
+      color={"white"}
       as={"section"}
     >
-      <Container maxW={"container.lg"} py={200}>
+      <Container py={200}>
         <SimpleGrid columns={{ base: 1, md: 2 }}>
-          <GridItem
-            as={motion.div}
-            initial={{ x: -100 }}
-            whileInView={{ x: 0 }}
-          >
-            <Box
-              as={motion.div}
+          <MotionGridItem initial={{ x: -100 }} whileInView={{ x: 0 }}>
+            <MotionBox
               initial={{ y: 100 }}
               whileInView={{ y: 0 }}
               viewport={{ once: true }}
@@ -188,57 +188,56 @@ export default function ContactSection() {
               <Text fontWeight={400} fontSize={14} mb={16}>
                 Fill out your details and I’ll get back to you ASAP
               </Text>
-            </Box>
+            </MotionBox>
 
             <ContactMeans
               label={"+234 808 0366 089"}
               url={"tel:+234 808 0366 089"}
-              iconUrl={faPhone}
+              iconUrl={PhoneIcon}
             />
             <ContactMeans
               label={"+234 808 0366 089"}
               url={"https://wa.me/+2348080366089"}
-              iconUrl={faWhatsapp}
+              iconUrl={MailIcon}
             />
             <ContactMeans
               label={"dev.epicdevler@gmail.com"}
               url={"mailto:dev.epicdevler@gmail.com"}
-              iconUrl={faEnvelope}
+              iconUrl={MailIcon}
             />
-          </GridItem>
-          <GridItem
-            as={motion.div}
+          </MotionGridItem>
+          <MotionGridItem
             initial={{ x: 100 }}
             whileInView={{ x: 0 }}
-            mt={[10, 10, 0, 0]}            
+            mt={[10, 10, 0, 0]}
           >
             <form onSubmit={handleSubmit}>
               <Flex flexDirection={"column"}>
                 <Input
                   value={fullName}
-                  focusBorderColor={"brand"}
+                  focusRingColor={"brand"}
                   fontSize={14}
                   fontWeight={400}
                   borderColor={"whiteAlpha.200"}
-                  _placeholder={{ textColor: "whiteAlpha.800" }}
+                  _placeholder={{ color: "whiteAlpha.800" }}
                   borderRadius={8}
                   type="text"
+                  required
                   placeholder={"Full Name"}
-                  isRequired={true}
                   onChange={(e) => {
                     setFullName(e.target.value);
                   }}
                 />
                 <Input
                   value={email}
-                  focusBorderColor={"brand"}
+                  focusRingColor={"brand"}
                   fontSize={14}
                   fontWeight={400}
                   borderColor={"whiteAlpha.200"}
-                  _placeholder={{ textColor: "whiteAlpha.800" }}
+                  _placeholder={{ color: "whiteAlpha.800" }}
                   borderRadius={8}
                   type="email"
-                  isRequired={true}
+                  required={true}
                   placeholder={"Email Address"}
                   my={5}
                   onChange={(e) => {
@@ -247,12 +246,12 @@ export default function ContactSection() {
                 />
                 <Textarea
                   value={message}
-                  focusBorderColor={"brand"}
+                  focusRingColor={"brand"}
                   fontSize={14}
                   fontWeight={400}
-                  isRequired={true}
+                  required
                   borderColor={"whiteAlpha.200"}
-                  _placeholder={{ textColor: "whiteAlpha.800" }}
+                  _placeholder={{ color: "whiteAlpha.800" }}
                   borderRadius={8}
                   placeholder={"Message"}
                   name="message"
@@ -278,27 +277,26 @@ export default function ContactSection() {
                 </Text>
 
                 <Box>
-                  <Button
-                    as={motion.button}
+                  <MotionButton
                     whileTap={{ scale: 0.9 }}
-                    isLoading={loading}
+                    loading={loading}
                     type="submit"
                     mt={10}
-                    w='full'
+                    w="full"
                     bg={"brand"}
                     _hover={{}}
                     _active={{}}
-                    textColor={"white"}
+                    color={"white"}
                     fontWeight={400}
                     fontSize={14}
                     borderRadius={8}
                   >
                     {!previewMsg ? "Preview Message" : "Send"}
-                  </Button>
+                  </MotionButton>
                 </Box>
               </Flex>
             </form>
-          </GridItem>
+          </MotionGridItem>
         </SimpleGrid>
       </Container>
       <Footer />

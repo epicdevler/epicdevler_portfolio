@@ -1,28 +1,29 @@
-import { Box, Button, Container, Flex, Spacer, Text } from "@chakra-ui/react";
 import SectionTitle from "@/app/components/_section_title";
+import { MotionBox, MotionButton } from "@/app/components/motion";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import epicdevlerImg from "../../../../../public/epicdevler.png";
-import Link from "next/link";
-import { motion } from "framer-motion";
+import Container from "@/app/components/container";
+
 
 const AboutSection = () => {
   return (
-    <Box id="about" as={"section"} bg={"blackAlpha.900"} className="section">
-      <Container maxW={"container.lg"} py={100} px={10}>
+    <Box id="about" as={"section"} bg={"blackAlpha.900"} className="section observe_view">
+      <Container maxW={"6xl"} py={100} px={10}>
         <Flex
           flexWrap={"wrap-reverse"}
           alignItems={"center"}
           justifyContent={"space-between"}
         >
-          <Box
-            as={motion.div}
+          <MotionBox
             initial={{
               x: -150,
             }}
             whileInView={{
               x: 0,
             }}
-            maxW={"lg"}
+            maxW={{base:'full', md:"lg"}}
+            
           >
             <SectionTitle
               labelInBehindColor="white"
@@ -36,30 +37,55 @@ const AboutSection = () => {
               lineHeight={"28px"}
               my={"24px"}
               fontSize={"14px"}
-              textColor={"white"}
+              color={"white"}
             >
-              {`I'm a Web developer and Mobile App Developer with experience in designing new features from ideation to high performance software applications. I take into consideration the user experience while writing reusable, scalable and efficient code. I passionately combine good design, technology, and innovation in all my projects. I'm mainly focused on  Mobile App Development with Kotlin and Jetpack Compose.`}
+              Hi, I’m Nwadike Philip — a Mechatronics Engineering Technology
+              student and a passionate software developer.
+              <br />
+              I build practical, user-focused solutions that bridge hardware and
+              software.
+              <br />
+              <br />
+              My core skills include Android app development with{" "}
+              <strong>Kotlin</strong> and <strong>Jetpack Compose</strong>, as
+              well as modern web development with <strong>React.js</strong> and{" "}
+              <strong>Next.js</strong>.<br />
+              I enjoy designing clean architectures, writing maintainable code,
+              and solving real-world problems with technology.
+              <br />
+              <br />
+              Some of my recent projects range from a smart voting system and a
+              fintech app with offline-first capabilities to{" "}
+              <strong>KeepUp</strong>, a productivity app that helps students
+              stay organized and on schedule.
+              <br />
+              I believe in using tech to make everyday life easier and more
+              efficient.
+              <br />
+              <br />
+              When I’m not coding, I’m exploring ideas that combine sustainable
+              technology with real community impact.
+              <br />
+              I’m always open to new opportunities to learn, collaborate, and
+              build meaningful products.
+              <br />
+              <br />
+              Let’s connect and create something valuable together.
             </Text>
-            <motion.div whileTap={{ scale: 0.9 }} style={{width:'fit-content'}}>
-              <Button
-                p={7}
-                fontWeight={"normal"}
-                bg={"transparent"}
-                _hover={{ bg: "brand" }}
-                as={Link}
-                href={"#contact"}
-                rounded={"full"}
-                borderWidth={1}
-                borderColor={"white"}
-                textColor={"white"}
-              >
-                Contact Me
-              </Button>
-            </motion.div>
-          </Box>
+            <MotionButton
+              whileTap={{ scale: 0.9 }}
+              p={7}
+              fontWeight={"normal"}
+              _hover={{ bg: "brand" }}
+              rounded={"full"}
+              variant={"outline"}
+              // textColor={"white"}
+            >
+              Contact Me
+            </MotionButton>
+          </MotionBox>
 
-          <Box
-            as={motion.div}
+          <MotionBox
             initial={{
               x: 150,
             }}
@@ -82,7 +108,7 @@ const AboutSection = () => {
                 objectPosition: "center",
               }}
             />
-          </Box>
+          </MotionBox>
         </Flex>
       </Container>
     </Box>

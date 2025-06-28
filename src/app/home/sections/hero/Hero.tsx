@@ -1,60 +1,55 @@
-import style from "./hero.module.css";
-import {
-  Box,
-  Center,
-  Container,
-  Heading,
-  HStack,
-  VStack,
-  Text,
-} from "@chakra-ui/react";
+import Container from "@/app/components/container";
+import { MotionBox, MotionText, MotionVStack } from "@/app/components/motion";
+import { Box, Center, Heading, HStack, Text } from "@chakra-ui/react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import style from "./hero.module.css";
+
 export default function HeroSection() {
   return (
-    <Box as="header" className={`section ${style.hero}`} id={"start"}>
+    <Box
+      as="header"
+      className={`section observe_view ${style.hero}`}
+      id={"home"}
+    >
       <Container
-        maxW={"container.lg"}
         h="full"
         pb={100}
         pt={170}
         textAlign={"center"}
-        textColor={"white"}
+        color={"white"}
         as={Center}
         flexDir={"column"}
       >
-        <motion.div
-          initial={{ scale: 0.5 }}
-          whileInView={{
-            scale: 1,
-          }}
+        <MotionBox
+          initial={{ scale: 0.6 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.6, delay: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
         >
           <Heading
-            bgGradient="linear(to-r, silver, silver, brand, silver)"
-            bgClip="text"
+            color='white'
             as={"h1"}
             fontWeight={"black"}
-            boxShadow={"2xl"}
-            size={["2xl", "3xl"]}
+            size={["4xl", "6xl"]}            
             maxW={"3xl"}
           >
             Passionately Developing Apps That Improves Lives
             {/* Apps that improve lives */}
           </Heading>
-        </motion.div>
+        </MotionBox>
 
-        <VStack
-          as={motion.div}
+        <MotionVStack
           initial={{
             y: 100,
           }}
           whileInView={{
             y: 0,
           }}
+          viewport={{ once: true, amount: 0.1 }}
         >
           <Text
             mt={7}
-            textColor={"whiteAlpha.800"}
+            color={"whiteAlpha.800"}
             fontSize="medium"
             maxW={{ base: "full", md: "md" }}
             className={style.brief_intro}
@@ -62,7 +57,7 @@ export default function HeroSection() {
             Inspired by passion, motivated for the future, building solutions to
             stand the test of time.
           </Text>
-          <HStack mt={7} spacing={1}>
+          <HStack mt={7} gap={1}>
             <Text
               style={{
                 fontWeight: "normal",
@@ -71,20 +66,18 @@ export default function HeroSection() {
             >
               What are your{" "}
             </Text>
-            <motion.span whileTap={{ scale: 0.9 }}>
-              <Text
-                as={Link}
-                fontWeight={400}
-                border={"1px solid white"}
-                rounded={"full"}
-                p={1.5}
-                href={"#myStacks"}
-              >
-                stacks?
-              </Text>
-            </motion.span>
+            <MotionText
+              whileTap={{ scale: 0.9 }}
+              asChild
+              fontWeight={400}
+              border={"1px solid white"}
+              rounded={"full"}
+              p={1.5}
+            >
+              <Link href={"#myStacks"}> stacks?</Link>
+            </MotionText>
           </HStack>
-        </VStack>
+        </MotionVStack>
       </Container>
     </Box>
   );

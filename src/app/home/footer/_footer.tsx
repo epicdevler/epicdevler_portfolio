@@ -1,33 +1,33 @@
 'use client'
-import {Box, Container, GridItem, HStack, SimpleGrid, Text, useColorMode,} from "@chakra-ui/react";
+import {Box, Container, GridItem, HStack, SimpleGrid, Text,} from "@chakra-ui/react";
 import SocialIcon from "@/app/components/_social_icons";
-import {faGithub, faLinkedinIn, faXTwitter} from "@fortawesome/free-brands-svg-icons";
+// import {faGithub, faLinkedinIn, faXTwitter} from "@fortawesome/free-brands-svg-icons";
 import {leckerliOne} from "@/app/fonts";
+import { GithubIcon, LinkedinIcon, TwitterIcon } from "lucide-react";
 
-export default function Footer() {
-    const {colorMode, toggleColorMode} = useColorMode()
+export default function Footer() {    
 
     const socialItems = [
         {
             url: "https://www.github.com/epicdevler",
-            imgUrl: faGithub,
+            imgUrl: GithubIcon,
             imgAlt: "GitHub Logo",
         },
         {
             url: "https://www.linkedin.com/in/nwadikephilip",
-            imgUrl: faLinkedinIn,
+            imgUrl: LinkedinIcon,
             imgAlt: "LinkedIn Logo",
         },
         {
             url: "https://www.twitter.com/epicdevler",
-            imgUrl: faXTwitter,
+            imgUrl: TwitterIcon,
             imgAlt: "X Logo",
         },
     ]
 
     return (
         <Box as={'footer'} className="fp-auto-height-responsive" py={3} bg={'brand'} >
-            <Container maxW={'container.lg'} px={100} textColor={'white'}>
+            <Container maxW={'container.lg'} px={100} color={'white'}>
                 <SimpleGrid hideBelow={'md'}  columns={3} alignItems={'center'}
                             justifyContent={'space-between'}>
                     <GridItem>

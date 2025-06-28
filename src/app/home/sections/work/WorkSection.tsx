@@ -1,10 +1,10 @@
 "use client";
+import SectionTitle from "@/app/components/_section_title";
 import {
   Avatar,
   Box,
   Center,
-  Collapse,
-  Container,
+  Collapsible,
   Flex,
   HStack,
   IconButton,
@@ -12,14 +12,14 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import SectionTitle from "@/app/components/_section_title";
-import { ChevronUpIcon, ChevronDownIcon } from "@chakra-ui/icons";
+import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 
+import Container from "@/app/components/container";
+import { MotionBox, MotionHStack } from "@/app/components/motion";
 import { APP_DATA, WorkExperience } from "@/data/data/appData";
+import MarkdownPreview from "@uiw/react-markdown-preview";
 import Link from "next/link";
 import { useState } from "react";
-import MarkdownPreview from "@uiw/react-markdown-preview";
-import { motion } from "framer-motion";
 
 const WorkSection = ({ workItems }: { workItems: WorkExperience[] }) => {
   return (
@@ -27,15 +27,12 @@ const WorkSection = ({ workItems }: { workItems: WorkExperience[] }) => {
       id="work"
       as={"section"}
       bg={"blackAlpha.900"}
-      textColor={"white"}
-      className="section"
+      color={"white"}
+      className="section observe_view"
     >
-      <Container maxW={"container.lg"} py={100}>
+      <Container py={100}>
         <SimpleGrid columns={[1, null, 1]}>
-          <Box as={motion.div}
-          initial={{x:-100}}
-          whileInView={{x:0}}
-           >
+          <MotionBox initial={{ x: -100 }} whileInView={{ x: 0 }}>
             <SectionTitle labelInFront={"Experience"} labelBehind={"Work"} />
             <Text
               maxW={"lg"}
@@ -48,7 +45,7 @@ const WorkSection = ({ workItems }: { workItems: WorkExperience[] }) => {
               different backgrounds within and outside an organization, national
               and internationally.
             </Text>
-          </Box>
+          </MotionBox>
           <Box pt={50}>
             <VStack gap={0}>
               {workItems.map((item, index) => {
@@ -75,14 +72,18 @@ export function WorkItem({
 
   const handleToggle = () => setShow(!show);
   return (
-    <Flex w={"full"} gap={2}
-    as={motion.div}
-    initial={{y:100}}
-    whileInView={{y:0}}
+    <MotionHStack
+      w={"full"}
+      gap={2}
+      initial={{ y: 100 }}
+      whileInView={{ y: 0 }}
     >
       <VStack gap={0}>
         <Center p={2} rounded={"full"} bg={"whiteAlpha.100"}>
-          <Avatar name={item.role} loading={"lazy"} />
+          <Avatar.Root>
+            <Avatar.Fallback name={item.role} />
+            {/* <Avatar.Image src="https://bit.ly/sage-adebayo" /> */}
+          </Avatar.Root>
         </Center>
         <Box
           h="full"
@@ -107,7 +108,7 @@ export function WorkItem({
             <IconButton
               p={1}
               h={"fit-content"}
-              textColor={"white"}
+              color={"white"}
               aria-label="toggle"
               _hover={{}}
               variant={"ghost"}
@@ -125,19 +126,16 @@ export function WorkItem({
           <Flex flexWrap={"wrap"}>
             {item.categories.map((category, index) => {
               return category.refUrl != undefined ? (
-                <Text
-                  key={index}
-                  _hover={{ textColor: "brand" }}
-                  as={Link}
-                  href={`${category.refUrl}`}
-                >
-                  {category.title}
-                  <Text
-                    as={"span"}
-                    hidden={item.categories.length - 1 == index}
-                  >
-                    {`,`}&nbsp;
-                  </Text>
+                <Text key={index} _hover={{ color: "brand" }} asChild>
+                  <Link href={`${category.refUrl}`}>
+                    {category.title}
+                    <Text
+                      as={"span"}
+                      hidden={item.categories.length - 1 == index}
+                    >
+                      {`,`}&nbsp;
+                    </Text>
+                  </Link>
                 </Text>
               ) : (
                 <Text key={index}>
@@ -155,20 +153,22 @@ export function WorkItem({
         </Box>
 
         {
-          <Collapse startingHeight={115} in={show}>
-            <MarkdownPreview
-              disableCopy={true}
-              source={item.description}
-              style={{
-                background: "transparent",
-                marginTop: "32px",
-                color: "white",
-              }}
-            />
-            {/* <Text mt={5} ps={0} fontSize={'sm'} >{item.description}</Text> */}
-          </Collapse>
+          <Collapsible.Root>
+            <Collapsible.Trigger>Open</Collapsible.Trigger>
+            <Collapsible.Content>
+              <MarkdownPreview
+                disableCopy={true}
+                source={item.description}
+                style={{
+                  background: "transparent",
+                  marginTop: "32px",
+                  color: "white",
+                }}
+              />
+            </Collapsible.Content>
+          </Collapsible.Root>
         }
       </Box>
-    </Flex>
+    </MotionHStack>
   );
 }

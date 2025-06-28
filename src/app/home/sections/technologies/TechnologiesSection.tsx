@@ -1,20 +1,17 @@
-import {
-  Box,
-  Center,
-  Container,
-  Flex,
-  GridItem,
-  HStack,
-  SimpleGrid,
-  Text,
-  useColorModeValue,
-} from "@chakra-ui/react";
-import Image from "next/image";
 import SectionTitle from "@/app/components/_section_title";
+import Container from "@/app/components/container";
+import { Box, HStack, SimpleGrid, Text } from "@chakra-ui/react";
+import Image from "next/image";
 
+
+import {
+  MotionBox,
+  MotionCenter,
+  MotionGridItem,
+  MotionText,
+} from "@/app/components/motion";
+import { Technology } from "@/data/data/appData";
 import Link from "next/link";
-import { APP_DATA, Technology } from "@/data/data/appData";
-import { motion } from "framer-motion";
 
 export default function TechnologiesSection({
   technologies,
@@ -25,15 +22,14 @@ export default function TechnologiesSection({
     <Box
       id="stacks"
       as={"section"}
-      textColor={"white"}
+      color={"white"}
       h="full"
       bg={"blackAlpha.900"}
-      className="section"
+      className="section observe_view"
     >
-      <Container maxW={"container.lg"} py={100} textColor={"white"}>
+      <Container py={100} color={"white"}>
         <div id="myStacks">
-          <Box
-            as={motion.div}
+          <MotionBox
             initial={{
               x: -100,
             }}
@@ -42,7 +38,7 @@ export default function TechnologiesSection({
             }}
           >
             <SectionTitle labelInFront={"Technology"} labelBehind={"Stacks"} />
-          </Box>
+          </MotionBox>
 
           <Box>
             <SimpleGrid
@@ -52,8 +48,7 @@ export default function TechnologiesSection({
             >
               {technologies.map((tech, index: number) => {
                 return (
-                  <GridItem
-                    as={motion.div}
+                  <MotionGridItem
                     initial={{
                       scale: 0.6,
                     }}
@@ -88,13 +83,12 @@ export default function TechnologiesSection({
                       />
                       <Text>{tech.name}</Text>
                     </HStack>
-                  </GridItem>
+                  </MotionGridItem>
                 );
               })}
             </SimpleGrid>
 
-            <Center
-              as={motion.div}
+            <MotionCenter
               initial={{ y: 100 }}
               whileInView={{ y: 0 }}
               viewport={{ once: true }}
@@ -103,20 +97,18 @@ export default function TechnologiesSection({
               fontSize={"sm"}
             >
               <Text>What have you</Text>
-              <motion.span whileTap={{ scale: 0.9 }}>
-                <Text
-                  as={Link}
-                  fontWeight={400}
-                  border={"1px solid white"}
-                  rounded={"full"}
-                  p={1.5}
-                  href={"#myStacks"}
-                >
-                  done?
-                </Text>
-              </motion.span>
+              <MotionText
+                whileTap={{ scale: 0.9 }}
+                asChild
+                fontWeight={400}
+                border={"1px solid white"}
+                rounded={"full"}
+                p={1.5}
+              >
+                <Link href={"#myStacks"}>done?</Link>
+              </MotionText>
               <Text>with this technologies</Text>
-            </Center>
+            </MotionCenter>
           </Box>
         </div>
       </Container>

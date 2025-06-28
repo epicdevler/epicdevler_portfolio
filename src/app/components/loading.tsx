@@ -4,7 +4,7 @@ import { leckerliOne } from "../fonts";
 export default function Loading() {
   // You can add any UI inside Loading, including a Skeleton.
   const radius = 15
-  return <Center textAlign={'center'} flexDir={'column'} gap={'3'} h={'100vh'} textColor={'white'} bg={'black'}>
+  return <Center textAlign={'center'} flexDir={'column'} gap={'3'} h={'100vh'} color={'white'} bg={'black'}>
     <Spinner />
     <Text fontSize={'larger'} >
       Nwadike Philip

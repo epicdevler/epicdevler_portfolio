@@ -1,20 +1,25 @@
-"use client";
-import {
-  Button,
-  Container,
-  Flex,
-  GridItem,
-  SimpleGrid,
-  Text,
-  Box,
-} from "@chakra-ui/react";
 import SectionTitle from "@/app/components/_section_title";
 import { jua } from "@/app/fonts";
-import Link from "next/link";
 import { Project } from "@/data/data/appData";
-import { motion } from "framer-motion";
-import React from "react";
+import {
+  Box,
+  Flex,
+  SimpleGrid,
+  Text
+} from "@chakra-ui/react";
+import { motion } from "motion/react";
+import Link from "next/link";
+import Container from "@/app/components/container";
+
+
+import {
+  MotionBox,
+  MotionButton,
+  MotionGridItem,
+  MotionText,
+} from "@/app/components/motion";
 import Image from "next/image";
+import React from "react";
 
 const _projects: Project[] = [
   {
@@ -43,26 +48,21 @@ const _projects: Project[] = [
 
 const ProjectsSection = () => {
   return (
-    <Box id="projects" as={"section"} bg={"blackAlpha.900"} className="section">
-      <Container as={"section"} maxW={"container.lg"} py={100}>
-        <Box
-          as={motion.div}
-          initial={{ y: 100 }}
-          whileInView={{ y: 0 }}
-          textColor="white"
-        >
+    <Box id="projects" as={"section"} bg={"blackAlpha.900"} className="section observe_view">
+      <Container as={"section"} py={200}>
+        <MotionBox initial={{ y: 100 }} whileInView={{ y: 0 }} color="white">
           <SectionTitle
             labelInFrontColor={"brand"}
             labelInFront={"Projects"}
             labelBehind={"My"}
           />
-        </Box>
-        <Text
+        </MotionBox>
+        <MotionText
           as={motion.p}
           initial={{ y: 100 }}
           whileInView={{ y: 0 }}
           fontWeight={400}
-          textColor={"whiteAlpha.900"}
+          color={"whiteAlpha.900"}
           lineHeight={"28px"}
           my={"24px"}
           fontSize={"14px"}
@@ -73,7 +73,7 @@ const ProjectsSection = () => {
           stage... that shaped me today. The integration of diverse technical
           skills from front-end to back-end collectively brings together a
           spectrum of talents to ensure comprehensive and efficient development.
-        </Text>
+        </MotionText>
 
         <SimpleGrid columns={{ base: 1, sm: 2, md: 2, lg: 2 }} gap={5}>
           {_projects.map((project, index) => {
@@ -93,10 +93,9 @@ const ProjectCard = React.memo(
       "linear-gradient(180deg, rgb(0 0 0 / 39%) 17.71%, rgb(0 0 0 / 76%) 71.87%)";
 
     return (
-      <GridItem
+      <MotionGridItem
         w="full"
         role="group"
-        as={motion.div}
         mt={5}
         initial={{ x: index % 2 == 0 ? -100 : 100 }}
         whileInView={{ x: 0 }}
@@ -136,7 +135,7 @@ const ProjectCard = React.memo(
             left={0}
           >
             <Text
-              textColor={"rgba(246,246,246,0.6)"}
+              color={"rgba(246,246,246,0.6)"}
               fontSize={"12px"}
               fontWeight={"300"}
             >
@@ -149,7 +148,7 @@ const ProjectCard = React.memo(
                 mb={"16px"}
                 fontSize={"16px"}
                 fontWeight={400}
-                textColor={"white"}
+                color={"white"}
               >
                 {project.title}
               </Text>
@@ -157,17 +156,13 @@ const ProjectCard = React.memo(
                 {project.startDate !== "" ? (
                   <div>
                     <Text
-                      textColor={"rgba(246,246,246,0.6)"}
+                      color={"rgba(246,246,246,0.6)"}
                       fontSize={"12px"}
                       fontWeight={"300"}
                     >
                       Start
                     </Text>
-                    <Text
-                      textColor={"white"}
-                      fontWeight={"300"}
-                      fontSize={"12px"}
-                    >
+                    <Text color={"white"} fontWeight={"300"} fontSize={"12px"}>
                       {project.startDate}
                     </Text>
                   </div>
@@ -177,18 +172,14 @@ const ProjectCard = React.memo(
                 {project.endDate !== "" ? (
                   <div className="mt-5">
                     <Text
-                      textColor={"rgba(246,246,246,0.6)"}
+                      color={"rgba(246,246,246,0.6)"}
                       fontSize={"12px"}
                       fontWeight={"300"}
                     >
                       End
                     </Text>
 
-                    <Text
-                      textColor={"white"}
-                      fontWeight={"300"}
-                      fontSize={"12px"}
-                    >
+                    <Text color={"white"} fontWeight={"300"} fontSize={"12px"}>
                       {project.endDate}
                     </Text>
                   </div>
@@ -200,65 +191,62 @@ const ProjectCard = React.memo(
           </Flex>
         </Box>
         <Flex mt="5">
-          {project.link !== "" ? (
-            <motion.div
+          {project.link !== "" && (
+            // <motion.div
+
+            //   style={{ width: "fit-content" }}
+            // >
+            <MotionButton
               whileTap={{ scale: 0.9 }}
-              style={{ width: "fit-content" }}
+              py={4}
+              px={6}
+              _hover={{ bg: "brand", borderColor: "brand" }}
+              color={"white"}
+              transitionDuration={".3s"}
+              borderWidth={1}
+              borderColor={"white"}
+              bg={"transparent"}
+              fontWeight={"normal"}
+              fontSize={"14"}
+              me="2"
+              borderRadius={"full"}
+              asChild
             >
-              <Button
-                py={4}
-                px={6}
-                _hover={{ bg: "brand", borderColor: "brand" }}
-                textColor={"white"}
-                transitionDuration={".3s"}
-                borderWidth={1}
-                borderColor={"white"}
-                bg={"transparent"}
-                fontWeight={"normal"}
-                fontSize={"14"}
-                me="2"
-                borderRadius={"full"}
-                as={Link}
-                target="_blank"
-                href={project.link!!}
-              >
+              <Link target="_blank" href={project.link!!}>
                 View
-              </Button>
-            </motion.div>
-          ) : (
-            <></>
+              </Link>
+            </MotionButton>
+            // </motion.div>
           )}
-          {project.githubUrl !== "" ? (
-            <motion.div
-              whileTap={{ scale: 0.9 }}
-              style={{ width: "fit-content" }}
+          {project.githubUrl !== "" && (
+            // <motion.div
+            //   whileTap={{ scale: 0.9 }}
+            //   style={{ width: "fit-content" }}
+            // >
+            <MotionButton
+              py={4}
+              px={6}
+              bg={"transparent"}
+              _hover={{ bg: "brand", borderColor: "brand" }}
+              color={"white"}
+              transitionDuration={".3s"}
+              borderWidth={1}
+              borderColor={"white"}
+              fontWeight={"normal"}
+              fontSize={"14"}
+              borderRadius={"full"}
+              asChild
             >
-              <Button
-                py={4}
-                px={6}
-                bg={"transparent"}
-                _hover={{ bg: "brand", borderColor: "brand" }}
-                textColor={"white"}
-                transitionDuration={".3s"}
-                borderWidth={1}
-                borderColor={"white"}
-                fontWeight={"normal"}
-                fontSize={"14"}
-                borderRadius={"full"}
-                as={Link}
-                target="_blank"
-                href={project.githubUrl}
-              >
+              <Link target="_blank" href={project.githubUrl}>
                 GitHub
-              </Button>
-            </motion.div>
-          ) : (
-            <></>
+              </Link>
+            </MotionButton>
+            // </motion.div>
           )}
         </Flex>
-      </GridItem>
+      </MotionGridItem>
     );
   }
 );
 
-ProjectCard.displayName = "ProjectCard"
+ProjectCard.displayName = "ProjectCard";

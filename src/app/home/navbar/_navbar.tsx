@@ -100,7 +100,7 @@ export default function Navbar({activeSection}: {activeSection: string}) {
       className={style.nav}
       w={"full"}
       py={4}
-      mdDown={{px:3}}
+      px={3}
       // bg={{ base: "brand", lg: "none" }}
       // boxShadow={{ base: "md", lg: "none" }}
     >

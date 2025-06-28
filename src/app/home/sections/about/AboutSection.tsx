@@ -4,11 +4,16 @@ import { Box, Flex, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import epicdevlerImg from "../../../../../public/epicdevler.png";
 import Container from "@/app/components/container";
-
+import Link from "next/link";
 
 const AboutSection = () => {
   return (
-    <Box id="about" as={"section"} bg={"blackAlpha.900"} className="section observe_view">
+    <Box
+      id="about"
+      as={"section"}
+      bg={"blackAlpha.900"}
+      className="section observe_view"
+    >
       <Container maxW={"6xl"} py={100} px={10}>
         <Flex
           flexWrap={"wrap-reverse"}
@@ -22,8 +27,7 @@ const AboutSection = () => {
             whileInView={{
               x: 0,
             }}
-            maxW={{base:'full', md:"lg"}}
-            
+            maxW={{ base: "full", md: "lg" }}
           >
             <SectionTitle
               labelInBehindColor="white"
@@ -36,41 +40,36 @@ const AboutSection = () => {
               fontWeight={400}
               lineHeight={"28px"}
               my={"24px"}
-              fontSize={"14px"}
+              fontSize={["md", null, "large"]}
               color={"white"}
             >
               Hi, I’m Nwadike Philip — a Mechatronics Engineering Technology
               student and a passionate software developer.
               <br />
-              I build practical, user-focused solutions that bridge hardware and
-              software.
+              I create practical, user-friendly software that solves problems
+              and delivers real value.
               <br />
               <br />
-              My core skills include Android app development with{" "}
-              <strong>Kotlin</strong> and <strong>Jetpack Compose</strong>, as
-              well as modern web development with <strong>React.js</strong> and{" "}
-              <strong>Next.js</strong>.<br />
-              I enjoy designing clean architectures, writing maintainable code,
-              and solving real-world problems with technology.
+              My core skills include building Android applications with{" "}
+              <strong>Kotlin</strong> and <strong>Jetpack Compose</strong>,
+              developing modern web apps with <strong>React.js</strong> and{" "}
+              <strong>Next.js</strong>, and designing clean, maintainable code
+              architecture.
+              <br />
+              I’m also comfortable working with tools like Firebase, REST APIs,
+              and Git for smooth, collaborative development.
               <br />
               <br />
-              Some of my recent projects range from a smart voting system and a
-              fintech app with offline-first capabilities to{" "}
-              <strong>KeepUp</strong>, a productivity app that helps students
-              stay organized and on schedule.
-              <br />
-              I believe in using tech to make everyday life easier and more
-              efficient.
+              I love taking ideas from concept to deployment, whether it’s a
+              mobile app, a responsive website, or a feature-rich platform.
               <br />
               <br />
-              When I’m not coding, I’m exploring ideas that combine sustainable
-              technology with real community impact.
-              <br />
-              I’m always open to new opportunities to learn, collaborate, and
-              build meaningful products.
+              I’m always open to new challenges and opportunities to grow as a
+              developer, collaborate with great teams, and build software that
+              makes a difference.
               <br />
               <br />
-              Let’s connect and create something valuable together.
+              Let’s connect and bring ideas to life together.
             </Text>
             <MotionButton
               whileTap={{ scale: 0.9 }}
@@ -79,9 +78,9 @@ const AboutSection = () => {
               _hover={{ bg: "brand" }}
               rounded={"full"}
               variant={"outline"}
-              // textColor={"white"}
+              asChild
             >
-              Contact Me
+              <Link href="#contact">Get in Touch</Link>
             </MotionButton>
           </MotionBox>
 

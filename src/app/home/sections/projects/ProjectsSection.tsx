@@ -99,6 +99,7 @@ const ProjectCard = React.memo(
         mt={5}
         initial={{ x: index % 2 == 0 ? -100 : 100 }}
         whileInView={{ x: 0 }}
+        viewport={{ once: true, amount: 0.1 }}
       >
         <Box w="full" borderRadius={"8px"} pos={"relative"} h={"290px"}>
           <Image

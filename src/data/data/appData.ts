@@ -24,6 +24,7 @@ export type WorkExperience = {
 export type Technology = {
     name: string,
     imgUrl?: string | undefined,
+    core?: boolean,
 }
 
 type APP_DATA_TYPE = {
@@ -236,6 +237,7 @@ As a freelance Front-End Developer, I specialize in building **responsive, scala
         {
             name: "Kotlin",
             imgUrl: "",
+            core: true
         },
         {
             name: "React",
@@ -244,10 +246,12 @@ As a freelance Front-End Developer, I specialize in building **responsive, scala
         {
             name: "Next.Js",
             imgUrl: "",
+            core: true
         },
         {
             name: "GitHub",
             imgUrl: "",
+            core: true
         },
         {
             name: "Figma",
@@ -276,6 +280,7 @@ As a freelance Front-End Developer, I specialize in building **responsive, scala
         {
             name: "React",
             imgUrl: "",
+            core: true
         },
         {
             name: "HTML",
@@ -292,6 +297,7 @@ As a freelance Front-End Developer, I specialize in building **responsive, scala
         {
             name: "TypeScript",
             imgUrl: "",
+            core: true
         },
     ]
 }

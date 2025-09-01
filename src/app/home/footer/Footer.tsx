@@ -5,7 +5,8 @@ import SocialIcon from "@/app/components/_social_icons";
 import {leckerliOne} from "@/app/fonts";
 import { GithubIcon, LinkedinIcon, TwitterIcon } from "lucide-react";
 
-export default function Footer() {    
+export default function Footer() {  
+    const currentYear = new Date().getFullYear()
 
     const socialItems = [
         {
@@ -36,7 +37,7 @@ export default function Footer() {
                             fontSize={14}
                             textAlign={{md: 'center', lg: 'left'}}
                         >
-                            © 2023
+                            © 2023-{currentYear}
                             <Text as={'span'} ms={1} className={leckerliOne.className}>
                                 aminnali
                             </Text>
@@ -95,7 +96,7 @@ export default function Footer() {
                             fontSize={14}
                             textAlign={'center'}
                         >
-                            © 2023
+                            © 2023-{currentYear}
                             <Text as={'span'} ms={1} className={leckerliOne.className}>
                                 aminnali
                             </Text>

@@ -8,7 +8,7 @@ import WorkSection from "@/app/home/sections/work/WorkSection";
 import { APP_DATA } from "@/data/data/appData";
 import { Box } from "@chakra-ui/react";
 import { MotionConfig } from "motion/react";
-import Navbar from "./home/navbar/_navbar";
+import Navbar from "./home/navbar/Navbar";
 import { act, Suspense, useEffect, useState } from "react";
 import Loading from "./loading";
 

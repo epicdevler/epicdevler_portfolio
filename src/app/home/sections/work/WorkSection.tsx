@@ -101,7 +101,7 @@ export function WorkItem({
         mb={APP_DATA.experience.length - 1 == index ? 2 : 5}
       >
         <Box w="full">
-          <HStack>
+          <HStack onClick={handleToggle} cursor={'pointer'} borderBottomWidth={'thin'} pb={3} mb={3}>
             <Text fontWeight={"bold"} fontSize={"lg"} w="full">
               {item.role}
             </Text>
@@ -110,7 +110,6 @@ export function WorkItem({
               h={"fit-content"}
               color={"white"}
               aria-label="toggle"
-              _hover={{}}
               variant={"ghost"}
               onClick={handleToggle}
               w={"fit-content"}
@@ -152,9 +151,10 @@ export function WorkItem({
           </Flex>
         </Box>
 
-        {
-          <Collapsible.Root>
-            <Collapsible.Trigger>Open</Collapsible.Trigger>
+        { 
+          <Collapsible.Root open={show} onOpenChange={() => {
+            handleToggle()
+          }}>            
             <Collapsible.Content>
               <MarkdownPreview
                 disableCopy={true}

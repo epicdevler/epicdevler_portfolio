@@ -1,8 +1,7 @@
 import SectionTitle from "@/app/components/_section_title";
 import Container from "@/app/components/container";
-import { Box, HStack, SimpleGrid, Text } from "@chakra-ui/react";
+import { Badge, Box, Float, HStack, SimpleGrid, Text } from "@chakra-ui/react";
 import Image from "next/image";
-
 
 import {
   MotionBox,
@@ -62,6 +61,7 @@ export default function TechnologiesSection({
                     colSpan={"auto"}
                   >
                     <HStack
+                      pos={"relative"}
                       transitionDuration={".2s"}
                       _hover={{
                         bg: "whiteAlpha.100",
@@ -82,6 +82,10 @@ export default function TechnologiesSection({
                         alt={tech.name}
                       />
                       <Text>{tech.name}</Text>
+                      {
+                        tech.core && <Badge>Major</Badge>
+                      }
+
                     </HStack>
                   </MotionGridItem>
                 );

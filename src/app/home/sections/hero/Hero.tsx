@@ -1,6 +1,6 @@
 import Container from "@/app/components/container";
 import { MotionBox, MotionText, MotionVStack } from "@/app/components/motion";
-import { Box, Center, Heading, HStack, Text } from "@chakra-ui/react";
+import { Badge, Box, Center, Group, Heading, HStack, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import style from "./hero.module.css";
 
@@ -26,14 +26,19 @@ export default function HeroSection() {
           transition={{ duration: 0.6, delay: 0 }}
           viewport={{ once: true, amount: 0.1 }}
         >
+          <Group w='full' justifyContent={'center'}>
+            <Badge size='lg' rounded='full'>Web Developer</Badge>
+            <Badge size='lg' rounded='full'>Android Developer</Badge>
+          </Group> 
           <Heading
+          mt={3}
             color='white'
             as={"h1"}
             fontWeight={"black"}
             size={["4xl", "6xl"]}            
             maxW={"3xl"}
           >
-            Passionately Developing Apps That Improves Lives
+            Passionately Developing Apps That Improves Processes
             {/* Apps that improve lives */}
           </Heading>
         </MotionBox>

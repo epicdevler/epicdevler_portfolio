@@ -21,7 +21,7 @@ import { toaster } from "@/components/ui/toaster";
 import * as dotenv from "dotenv";
 import { MailIcon, PhoneIcon } from "lucide-react";
 import Link from "next/link";
-import Footer from "../../footer/_footer";
+import Footer from "../../footer/Footer";
 
 dotenv.config();
 

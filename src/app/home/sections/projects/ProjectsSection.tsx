@@ -1,16 +1,10 @@
 import SectionTitle from "@/app/components/_section_title";
+import Container from "@/app/components/container";
 import { jua } from "@/app/fonts";
 import { Project } from "@/data/data/appData";
-import {
-  Box,
-  Flex,
-  SimpleGrid,
-  Text
-} from "@chakra-ui/react";
+import { Box, ButtonGroup, Card, Flex, SimpleGrid, Text } from "@chakra-ui/react";
 import { motion } from "motion/react";
 import Link from "next/link";
-import Container from "@/app/components/container";
-
 
 import {
   MotionBox,
@@ -44,11 +38,27 @@ const _projects: Project[] = [
     githubUrl: "https://github.com/epicdevler/csp-foodapp.git",
     link: "https://decutleries.vercel.app/",
   },
+  {
+    type: "Web",
+    title: "myInstitute | High Institute Course Registration System",
+    startDate: "Aug 2023",
+    endDate: "Nov 2023",
+    imgUrl: "/projects/myInstitute.png",
+    alt: "MyInstitute Login Page Snapshot",
+    descr: "",
+    githubUrl: "https://github.com/epicdevler/myInstitute.git",
+    link: "https://myInstitute.vercel.app/",
+  },
 ];
 
 const ProjectsSection = () => {
   return (
-    <Box id="projects" as={"section"} bg={"blackAlpha.900"} className="section observe_view">
+    <Box
+      id="projects"
+      as={"section"}
+      bg={"blackAlpha.900"}
+      className="section observe_view"
+    >
       <Container as={"section"} py={200}>
         <MotionBox initial={{ y: 100 }} whileInView={{ y: 0 }} color="white">
           <SectionTitle
@@ -94,50 +104,26 @@ const ProjectCard = React.memo(
 
     return (
       <MotionGridItem
+        colSpan={2}
         w="full"
         role="group"
-        mt={5}
         initial={{ x: index % 2 == 0 ? -100 : 100 }}
         whileInView={{ x: 0 }}
-        viewport={{ once: true, amount: 0.1 }}
+        viewport={{ once: true, amount: 'some' }}
       >
-        <Box w="full" borderRadius={"8px"} pos={"relative"} h={"290px"}>
-          <Image
+        <Card.Root flexDirection={"row"}>
+          <Box asChild w='3/12' objectPosition={'left'} objectFit={'cover'}>
+            <Image
             width={100}
             height={100}
-            style={{
-              height: "100%",
-              width: "100%",
-              borderRadius: "8px",
-              objectFit: "cover",
-              objectPosition: "end",
-            }}
-            loading="lazy"
             src={project.imgUrl}
             alt=""
           />
-          <Flex
-            w="full"
-            height={"full"}
-            alignItems={"start"}
-            transitionProperty={"background"}
-            transitionDuration={".5s"}
-            _hover={{
-              backdropFilter: "blur(0px)",
-            }}
-            borderRadius={"8px"}
-            flexDirection={"column"}
-            justifyContent={"space-between"}
-            p={"10px"}
-            backdropFilter={"blur(2px)"}
-            background={gradientBackground}
-            pos={"absolute"}
-            top={0}
-            left={0}
-          >
+          </Box>
+          <Card.Body>
             <Text
               color={"rgba(246,246,246,0.6)"}
-              fontSize={"12px"}
+              fontSize={"sm"}
               fontWeight={"300"}
             >
               {project.type}
@@ -153,98 +139,89 @@ const ProjectCard = React.memo(
               >
                 {project.title}
               </Text>
-              <Flex w="full" justifyContent={"space-between"}>
-                {project.startDate !== "" ? (
-                  <div>
-                    <Text
-                      color={"rgba(246,246,246,0.6)"}
-                      fontSize={"12px"}
-                      fontWeight={"300"}
-                    >
-                      Start
-                    </Text>
-                    <Text color={"white"} fontWeight={"300"} fontSize={"12px"}>
-                      {project.startDate}
-                    </Text>
-                  </div>
-                ) : (
-                  <></>
-                )}
-                {project.endDate !== "" ? (
-                  <div className="mt-5">
-                    <Text
-                      color={"rgba(246,246,246,0.6)"}
-                      fontSize={"12px"}
-                      fontWeight={"300"}
-                    >
-                      End
-                    </Text>
+              {project.startDate !== "" && (
+                <div>
+                  <Text
+                    color={"rgba(246,246,246,0.6)"}
+                    fontSize={"sm"}
+                    fontWeight={"300"}
+                  >
+                    Start
+                  </Text>
+                  <Text color={"white"} fontWeight={"300"} fontSize={"md"}>
+                    {project.startDate}
+                  </Text>
+                </div>
+              )}
+              {project.endDate !== "" && (
+                <div className="mt-5">
+                  <Text
+                    color={"rgba(246,246,246,0.6)"}
+                    fontSize={"sm"}
+                    fontWeight={"300"}
+                  >
+                    End
+                  </Text>
 
-                    <Text color={"white"} fontWeight={"300"} fontSize={"12px"}>
-                      {project.endDate}
-                    </Text>
-                  </div>
-                ) : (
-                  <></>
-                )}
-              </Flex>
+                  <Text color={"white"} fontWeight={"300"} fontSize={"md"}>
+                    {project.endDate}
+                  </Text>
+                </div>
+              )}
             </Box>
-          </Flex>
-        </Box>
-        <Flex mt="5">
-          {project.link !== "" && (
-            // <motion.div
+            <ButtonGroup mt="5">
+              {project.link !== "" && (
+                // <motion.div
 
-            //   style={{ width: "fit-content" }}
-            // >
-            <MotionButton
-              whileTap={{ scale: 0.9 }}
-              py={4}
-              px={6}
-              _hover={{ bg: "brand", borderColor: "brand" }}
-              color={"white"}
-              transitionDuration={".3s"}
-              borderWidth={1}
-              borderColor={"white"}
-              bg={"transparent"}
-              fontWeight={"normal"}
-              fontSize={"14"}
-              me="2"
-              borderRadius={"full"}
-              asChild
-            >
-              <Link target="_blank" href={project.link!!}>
-                View
-              </Link>
-            </MotionButton>
-            // </motion.div>
-          )}
-          {project.githubUrl !== "" && (
-            // <motion.div
-            //   whileTap={{ scale: 0.9 }}
-            //   style={{ width: "fit-content" }}
-            // >
-            <MotionButton
-              py={4}
-              px={6}
-              bg={"transparent"}
-              _hover={{ bg: "brand", borderColor: "brand" }}
-              color={"white"}
-              transitionDuration={".3s"}
-              borderWidth={1}
-              borderColor={"white"}
-              fontWeight={"normal"}
-              fontSize={"14"}
-              borderRadius={"full"}
-              asChild
-            >
-              <Link target="_blank" href={project.githubUrl}>
-                GitHub
-              </Link>
-            </MotionButton>
-            // </motion.div>
-          )}
-        </Flex>
+                //   style={{ width: "fit-content" }}
+                // >
+                <MotionButton                  
+                  py={4}
+                  px={6}
+                  _hover={{ bg: "brand", borderColor: "brand" }}
+                  color={"white"}
+                  transitionDuration={".3s"}
+                  borderWidth={'thin'}
+                  borderColor={"white"}
+                  bg={"transparent"}
+                  fontWeight={"normal"}
+                  
+                  rounded={"full"}
+                  asChild
+                >
+                  <Link target="_blank" href={project.link!!}>
+                    View
+                  </Link>
+                </MotionButton>
+                // </motion.div>
+              )}
+              {project.githubUrl !== "" && (
+                // <motion.div
+                //   whileTap={{ scale: 0.9 }}
+                //   style={{ width: "fit-content" }}
+                // >
+                <MotionButton
+                  py={4}
+                  px={6}
+                  bg={"transparent"}
+                  _hover={{ bg: "brand", borderColor: "brand" }}
+                  color={"white"}
+                  transitionDuration={".3s"}
+                  borderWidth={1}
+                  borderColor={"white"}
+                  fontWeight={"normal"}
+                  rounded={"full"}
+                  asChild
+                >
+                  <Link target="_blank" href={project.githubUrl}>
+                    GitHub
+                  </Link>
+                </MotionButton>
+                // </motion.div>
+              )}
+            </ButtonGroup>
+          </Card.Body>
+        </Card.Root>
       </MotionGridItem>
     );
   }

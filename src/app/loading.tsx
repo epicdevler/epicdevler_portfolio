@@ -15,8 +15,7 @@ export default function Loading() {
       <Spinner />
       <Text fontSize={"larger"}>
         Nwadike Philip
-        <Text as={"span"} className={leckerliOne.className}>
-          {" "}
+        <Text as={"span"} className={leckerliOne.className}>          
           (epicdevler)
         </Text>
       </Text>

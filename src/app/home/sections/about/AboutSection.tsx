@@ -43,33 +43,35 @@ const AboutSection = () => {
               fontSize={["md", null, "large"]}
               color={"white"}
             >
-              Hi, I’m Nwadike Philip — a Mechatronics Engineering Technology
-              student and a passionate software developer.
+              Hi, I&#39;m Nwadike Philip, a software developer with a focus on
+              building user-friendly and impactful apps. I specialize in
+              creating Android applications with <strong>Kotlin</strong> and{" "}
+              <strong>Jetpack Compose</strong>, and developing modern web apps
+              using <strong>React.js</strong> and <strong>Next.js</strong>.
               <br />
               I create practical, user-friendly software that solves problems
               and delivers real value.
               <br />
               <br />
-              My core skills include building Android applications with{" "}
-              <strong>Kotlin</strong> and <strong>Jetpack Compose</strong>,
-              developing modern web apps with <strong>React.js</strong> and{" "}
-              <strong>Next.js</strong>, and designing clean, maintainable code
-              architecture.
-              <br />
-              I’m also comfortable working with tools like Firebase, REST APIs,
-              and Git for smooth, collaborative development.
+              I enjoy turning ideas into reality, from concept to deployment,
+              whether it&#39;s a mobile app, a responsive website or app. My
+              approach is built on writing clean, maintainable code and
+              designing software that lasts.
               <br />
               <br />
-              I love taking ideas from concept to deployment, whether it’s a
-              mobile app, a responsive website, or a feature-rich platform.
+              My toolkit includes <strong>Firebase</strong>,{" "}
+              <strong>REST APIs</strong>, and <strong>Git</strong>, enabling
+              smooth collaboration and scalable solutions. Beyond the code,
+              I&#39;m always open to learning, exploring new technologies, and
+              working with great teams to build products that make a difference.
               <br />
               <br />
-              I’m always open to new challenges and opportunities to grow as a
-              developer, collaborate with great teams, and build software that
+              I&#39;m always open to new challenges and opportunities to grow as
+              a developer, collaborate with great teams, and build software that
               makes a difference.
               <br />
               <br />
-              Let’s connect and bring ideas to life together.
+              Let&#39;s connect and bring ideas to life together.
             </Text>
             <MotionButton
               whileTap={{ scale: 0.9 }}
@@ -88,7 +90,7 @@ const AboutSection = () => {
             initial={{
               x: 150,
             }}
-            whileInView={{
+            animate={{
               x: 0,
             }}
             marginY={{ base: 16, md: "0" }}

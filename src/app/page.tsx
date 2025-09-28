@@ -56,14 +56,14 @@ export default function Home() {
     <Suspense fallback={<Loading />}>
       <Box w="100%" overflowX={"hidden"}>
         <Navbar activeSection={activeSection} />
-        <MotionConfig transition={{ duration: 0.3 }}>
+        {/* <MotionConfig transition={{ duration: 0.3 }}> */}
           <HeroSection />
-          <AboutSection />
           <TechnologiesSection technologies={appData.technologies} />
+          <AboutSection />
           <WorkSection workItems={appData.experience} />
           <ProjectsSection />
           <ContactSection />
-        </MotionConfig>
+        {/* </MotionConfig> */}
       </Box>
     </Suspense>
   );

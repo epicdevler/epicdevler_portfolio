@@ -2,7 +2,14 @@ import SectionTitle from "@/app/components/_section_title";
 import Container from "@/app/components/container";
 import { jua } from "@/app/fonts";
 import { Project } from "@/data/data/appData";
-import { Box, ButtonGroup, Card, Flex, SimpleGrid, Text } from "@chakra-ui/react";
+import {
+  Box,
+  ButtonGroup,
+  Card,
+  Flex,
+  SimpleGrid,
+  Text,
+} from "@chakra-ui/react";
 import { motion } from "motion/react";
 import Link from "next/link";
 
@@ -41,8 +48,8 @@ const _projects: Project[] = [
   {
     type: "Web",
     title: "myInstitute | High Institute Course Registration System",
-    startDate: "Aug 2023",
-    endDate: "Nov 2023",
+    startDate: "Aug 2025",
+    endDate: "Aug 2025",
     imgUrl: "/projects/myInstitute.png",
     alt: "MyInstitute Login Page Snapshot",
     descr: "",
@@ -109,16 +116,17 @@ const ProjectCard = React.memo(
         role="group"
         initial={{ x: index % 2 == 0 ? -100 : 100 }}
         whileInView={{ x: 0 }}
-        viewport={{ once: true, amount: 'some' }}
+        viewport={{ once: true, amount: "some" }}
       >
-        <Card.Root flexDirection={"row"}>
-          <Box asChild w='3/12' objectPosition={'left'} objectFit={'cover'}>
-            <Image
-            width={100}
-            height={100}
-            src={project.imgUrl}
-            alt=""
-          />
+        <Card.Root flexDirection={"row"} rounded="2xl">
+          <Box
+            asChild
+            w="3/12"
+            objectPosition={"left"}
+            objectFit={"cover"}
+            roundedStart={"2xl"}
+          >
+            <Image width={100} height={100} src={project.imgUrl} alt="" />
           </Box>
           <Card.Body>
             <Text
@@ -175,17 +183,16 @@ const ProjectCard = React.memo(
 
                 //   style={{ width: "fit-content" }}
                 // >
-                <MotionButton                  
+                <MotionButton
                   py={4}
                   px={6}
                   _hover={{ bg: "brand", borderColor: "brand" }}
                   color={"white"}
                   transitionDuration={".3s"}
-                  borderWidth={'thin'}
+                  borderWidth={"thin"}
                   borderColor={"white"}
                   bg={"transparent"}
                   fontWeight={"normal"}
-                  
                   rounded={"full"}
                   asChild
                 >

@@ -21,7 +21,11 @@ import MarkdownPreview from "@uiw/react-markdown-preview";
 import Link from "next/link";
 import { useState } from "react";
 
-const WorkSection = ({ workItems }: { workItems: WorkExperience[] }) => {
+export default function WorkSection({
+  workItems,
+}: {
+  workItems: WorkExperience[];
+}) {
   return (
     <Box
       id="work"
@@ -57,9 +61,7 @@ const WorkSection = ({ workItems }: { workItems: WorkExperience[] }) => {
       </Container>
     </Box>
   );
-};
-
-export default WorkSection;
+}
 
 export function WorkItem({
   index,
@@ -77,8 +79,9 @@ export function WorkItem({
       gap={2}
       initial={{ y: 100 }}
       whileInView={{ y: 0 }}
+      alignItems={"flex-start"}
     >
-      <VStack gap={0}>
+      <VStack gap={0} h="full">
         <Center p={2} rounded={"full"} bg={"whiteAlpha.100"}>
           <Avatar.Root>
             <Avatar.Fallback name={item.role} />
@@ -87,9 +90,9 @@ export function WorkItem({
         </Center>
         <Box
           h="full"
-          width={"1"}
+          width={"4"}
           rounded={"full"}
-          background={"whiteAlpha.100"}
+          background={"whiteAlpha.800"}
         />
       </VStack>
 
@@ -97,11 +100,18 @@ export function WorkItem({
         rounded={"md"}
         background={"whiteAlpha.100"}
         w="full"
-        p={3}
         mb={APP_DATA.experience.length - 1 == index ? 2 : 5}
       >
         <Box w="full">
-          <HStack onClick={handleToggle} cursor={'pointer'} borderBottomWidth={'thin'} pb={3} mb={3}>
+          <HStack
+            p={4}
+            onClick={handleToggle}
+            _hover={{ bg: "whiteAlpha.200" }}
+            transition={"background 0.3s ease"}
+            cursor={"pointer"}
+            borderBottomWidth={"thin"}            
+            mb={3}
+          >
             <Text fontWeight={"bold"} fontSize={"lg"} w="full">
               {item.role}
             </Text>
@@ -117,12 +127,12 @@ export function WorkItem({
               {show == true ? <ChevronUpIcon /> : <ChevronDownIcon />}
             </IconButton>
           </HStack>
-          <HStack flexWrap={"wrap"} mb={3} fontSize={"sm"} gap={[1, null, 3]}>
+          <HStack px={4} flexWrap={"wrap"} mb={3} fontSize={"sm"} gap={[1, null, 3]}>
             <Text fontWeight={"semibold"}>{item.company}</Text>
             <Text hideBelow={"md"}>-</Text>
             <Text>{item.year}</Text>
           </HStack>
-          <Flex flexWrap={"wrap"}>
+          <Flex flexWrap={"wrap"} px={4} pb={4}>
             {item.categories.map((category, index) => {
               return category.refUrl != undefined ? (
                 <Text key={index} _hover={{ color: "brand" }} asChild>
@@ -151,11 +161,14 @@ export function WorkItem({
           </Flex>
         </Box>
 
-        { 
-          <Collapsible.Root open={show} onOpenChange={() => {
-            handleToggle()
-          }}>            
-            <Collapsible.Content>
+        {
+          <Collapsible.Root
+            open={show}
+            onOpenChange={() => {
+              handleToggle();
+            }}
+          >
+            <Collapsible.Content p={4}>
               <MarkdownPreview
                 disableCopy={true}
                 source={item.description}

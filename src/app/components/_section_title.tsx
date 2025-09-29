@@ -1,4 +1,4 @@
-import style from './_section_title.module.css';
+import style from '@/app/styles/_section_title.module.css';
 import {leckerliOne} from "@/app/fonts";
 import {Box, Heading, Text} from '@chakra-ui/react'
 

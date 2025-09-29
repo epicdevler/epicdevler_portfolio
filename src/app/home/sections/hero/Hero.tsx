@@ -1,3 +1,4 @@
+'use client"';
 import Container from "@/app/components/container";
 import { MotionText } from "@/app/components/motion";
 import {
@@ -31,10 +32,10 @@ export default function HeroSection() {
         flexDir={"column"}
       >
         <motion.div
-          initial={{ scale: 0.6 }}
+          initial={{ scale: 0.8 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.6, delay: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
+          viewport={{ once: true }}
         >
           <Group w="full" justifyContent={"center"} hidden>
             <Badge size="lg" rounded="full">
@@ -60,18 +61,20 @@ export default function HeroSection() {
         <motion.div
           initial={{
             y: 100,
+            opacity: 0,
           }}
           animate={{
             y: 0,
+            opacity: 1,
           }}
-          viewport={{ once: true, amount: 0.1 }}
+          viewport={{ once: true }}
         >
           <VStack>
             <Text
               mt={7}
               color={"whiteAlpha.800"}
               fontSize="medium"
-              maxW={{ base: "full", md: "md" }}
+              maxW={{ base: "full", md: "sm" }}
               className={style.brief_intro}
             >
               Helping individuals and businesses turn concepts into digital

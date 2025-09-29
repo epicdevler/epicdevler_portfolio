@@ -56,8 +56,45 @@ const navLinks = fullNavLinks.filter((value) => {
   }
 });
 
-export default function Navbar({activeSection}: {activeSection: string}) {
+export default function Navbar() {
   const [isToggled, setIsToggled] = useState<boolean>(false);
+
+  const [activeSection, setActiveSection] = useState<string>("");
+
+  const scrollEvent = () => {
+    const a = document.querySelectorAll(".observe_view");
+
+    if (a.length === 0) {
+      return;
+    }
+
+    a.forEach((element) => {
+      const rect = element.getBoundingClientRect();
+      const windowHeight =
+        window.innerHeight || document.documentElement.clientHeight;
+      const elementTop = rect.top + 200;
+      const elementBottom = rect.bottom;
+      const isVisible = elementTop < windowHeight && elementBottom >= 0;
+      if (isVisible) {
+        setActiveSection(
+          element.id === "stacks" || element.id === "work"
+            ? "about"
+            : element.id
+        );
+      }
+    });
+  };
+
+  useEffect(() => {
+    scrollEvent();
+    // Initial check
+    window.addEventListener("scroll", scrollEvent);
+
+    // Cleanup event listener on unmount
+    return () => {
+      window.removeEventListener("scroll", scrollEvent);
+    };
+  }, []);
 
   const socialItems = [
     {
@@ -111,11 +148,11 @@ export default function Navbar({activeSection}: {activeSection: string}) {
         activeSection={activeSection}
       />
       <Container
-        boxShadow={{ base: "md", lg: "md" }}        
+        boxShadow={{ base: "md", lg: "md" }}
         rounded={{ base: "full", lg: "full" }}
         dropShadow={"md"}
         bg={"brand"}
-        py={{mdDown:'2'}}
+        py={{ mdDown: "2" }}
       >
         <Flex alignItems={"center"} flexDirection={"row-reverse"}>
           <HStack>
@@ -135,7 +172,7 @@ export default function Navbar({activeSection}: {activeSection: string}) {
           <Spacer />
           <HStack hideBelow={"md"}>
             {navLinks.map((link, index) => {
-              const active = activeSection === link.label.toLocaleLowerCase()
+              const active = activeSection === link.label.toLocaleLowerCase();
 
               console.log("active", active, link.label, activeSection);
               return (
@@ -151,7 +188,6 @@ export default function Navbar({activeSection}: {activeSection: string}) {
             })}
           </HStack>
           <HStack>
-
             <IconButton
               hideFrom={"md"}
               variant={"ghost"}

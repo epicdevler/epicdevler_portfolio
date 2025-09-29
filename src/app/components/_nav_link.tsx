@@ -1,7 +1,7 @@
-import Link from "next/link";
-import style from "./_nav_link.module.css";
 import { Box, Text } from "@chakra-ui/react";
-import { MouseEvent, MouseEventHandler } from "react";
+import Link from "next/link";
+import { MouseEventHandler } from "react";
+import style from "@/app/styles/_nav_link.module.css";
 
 export default function NavLink({
   label,

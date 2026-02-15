@@ -2,7 +2,7 @@ import SectionTitle from "@/app/components/_section_title";
 import { MotionBox, MotionButton } from "@/app/components/motion";
 import { Box, Flex, Text } from "@chakra-ui/react";
 import Image from "next/image";
-import epicdevlerImg from "../../../../../public/epicdevler.png";
+import epicdevlerImg from "../../../../../public/epicdevler.webp";
 import Container from "@/app/components/container";
 import Link from "next/link";
 

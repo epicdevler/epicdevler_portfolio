@@ -33,7 +33,7 @@ const _projects: Project[] = [
     title: "Aminote (minote)",
     startDate: "Aug 2022",
     endDate: "Continues Development",
-    imgUrl: "/projects/minote_graphics.png",
+    imgUrl: "/projects/minote_graphics.webp",
     imgAlt: "Aminote Image Graphic",
     githubUrl: "https://github.com/epicdevler/aminote.git",
   },
@@ -42,7 +42,7 @@ const _projects: Project[] = [
     title: "FoodApp | Resturant Ordering System",
     startDate: "Aug 2023",
     endDate: "Nov 2023",
-    imgUrl: "/projects/foodApp_graphics.png",
+    imgUrl: "/projects/foodApp_graphics.webp",
     imgAlt: "FoodApp Image Graphic",
     githubUrl: "https://github.com/epicdevler/csp-foodapp.git",
     liveUrl: "https://decutleries.vercel.app/",
@@ -52,7 +52,7 @@ const _projects: Project[] = [
     title: "myInstitute | Course Registration System for Higher Institutes",
     startDate: "Aug 2025",
     endDate: "Aug 2025",
-    imgUrl: "/projects/myInstitute.png",
+    imgUrl: "/projects/myInstitute.webp",
     imgAlt: "MyInstitute Login Page Snapshot",
     githubUrl: "https://github.com/epicdevler/myInstitute.git",
     liveUrl: "https://myInstitute.vercel.app/",
@@ -164,15 +164,12 @@ const ProjectCard = React.memo(
               {project.title}
             </Text>
 
-            <HStack gap={6} color="fg.muted" fontWeight={"300"} fontSize={"md"}>
-              {project.startDate && (
-                <Text>
+             {project.startDate && (
+                <Text color="fg.muted" fontWeight={"300"} fontSize={"sm"} mt={1}>
                   {project.startDate}{" "}
                   {project.endDate && `- ${project.endDate}`}
                 </Text>
               )}
-              {/* {project.endDate && <Text>End {project.endDate}</Text>} */}
-            </HStack>
           </Card.Body>
           <Card.Footer p={4}>
             {project.githubUrl && (

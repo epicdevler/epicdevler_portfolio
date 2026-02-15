@@ -24,7 +24,6 @@ export default function SocialIcon({
       borderWidth={showBorder ? 1 : 0}
       borderColor={"whiteAlpha.400"}
       color={"white"}
-      padding={"4"}
       rounded="full"
       aria-label={alt}
       _hover={{ bg: hoverBg, color: hoverContentColor }}

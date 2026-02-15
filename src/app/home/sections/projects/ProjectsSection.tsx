@@ -3,10 +3,13 @@ import Container from "@/app/components/container";
 import { jua } from "@/app/fonts";
 import { Project } from "@/data/data/appData";
 import {
+  Badge,
   Box,
   ButtonGroup,
   Card,
   Flex,
+  Float,
+  HStack,
   SimpleGrid,
   Text,
 } from "@chakra-ui/react";
@@ -17,44 +20,52 @@ import {
   MotionBox,
   MotionButton,
   MotionGridItem,
+  MotionIconButton,
   MotionText,
 } from "@/app/components/motion";
 import Image from "next/image";
 import React from "react";
+import { LuGithub, LuLink2 } from "react-icons/lu";
 
 const _projects: Project[] = [
   {
-    type: "Android",
+    tags: ["Android"],
     title: "Aminote (minote)",
     startDate: "Aug 2022",
     endDate: "Continues Development",
     imgUrl: "/projects/minote_graphics.png",
-    alt: "Aminote Image Graphic",
-    descr: "",
+    imgAlt: "Aminote Image Graphic",
     githubUrl: "https://github.com/epicdevler/aminote.git",
-    link: "",
   },
   {
-    type: "Web",
+    tags: ["Web"],
     title: "FoodApp | Resturant Ordering System",
     startDate: "Aug 2023",
     endDate: "Nov 2023",
     imgUrl: "/projects/foodApp_graphics.png",
-    alt: "FoodApp Image Graphic",
-    descr: "",
+    imgAlt: "FoodApp Image Graphic",
     githubUrl: "https://github.com/epicdevler/csp-foodapp.git",
-    link: "https://decutleries.vercel.app/",
+    liveUrl: "https://decutleries.vercel.app/",
   },
   {
-    type: "Web",
-    title: "myInstitute | High Institute Course Registration System",
+    tags: ["Web"],
+    title: "myInstitute | Course Registration System for Higher Institutes",
     startDate: "Aug 2025",
     endDate: "Aug 2025",
     imgUrl: "/projects/myInstitute.png",
-    alt: "MyInstitute Login Page Snapshot",
-    descr: "",
+    imgAlt: "MyInstitute Login Page Snapshot",
     githubUrl: "https://github.com/epicdevler/myInstitute.git",
-    link: "https://myInstitute.vercel.app/",
+    liveUrl: "https://myInstitute.vercel.app/",
+  },
+  {
+    tags: ["Web", "Client"],
+    title: "ErrandKing Logistics - Logistics Service",
+    // startDate: "Aug 2025",
+    // endDate: "Aug 2025",
+    imgUrl: "/projects/errandking.com.preview.webp",
+    imgAlt: "Errandking site preview",
+    // githubUrl: "https://github.com/epicdevler/myInstitute.git",
+    liveUrl: "https://errandking.com",
   },
 ];
 
@@ -92,8 +103,8 @@ const ProjectsSection = () => {
           spectrum of talents to ensure comprehensive and efficient development.
         </MotionText>
 
-        <SimpleGrid columns={{ base: 1, sm: 2, md: 2, lg: 2 }} gap={5}>
-          {_projects.map((project, index) => {
+        <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} gap={5}>
+          {_projects.toReversed().map((project, index) => {
             return <ProjectCard key={index} index={index} project={project} />;
           })}
         </SimpleGrid>
@@ -111,127 +122,102 @@ const ProjectCard = React.memo(
 
     return (
       <MotionGridItem
-        colSpan={2}
-        w="full"
         role="group"
         initial={{ x: index % 2 == 0 ? -100 : 100 }}
         whileInView={{ x: 0 }}
+        h="full"
         viewport={{ once: true, amount: "some" }}
       >
-        <Card.Root flexDirection={"row"} rounded="2xl">
-          <Box
-            asChild
-            w="3/12"
-            objectPosition={"left"}
-            objectFit={"cover"}
-            roundedStart={"2xl"}
-          >
-            <Image width={100} height={100} src={project.imgUrl} alt="" />
-          </Box>
-          <Card.Body>
-            <Text
-              color={"rgba(246,246,246,0.6)"}
-              fontSize={"sm"}
-              fontWeight={"300"}
-            >
-              {project.type}
-            </Text>
-            <Box w={"full"}>
-              <Text
-                w="full"
-                className={jua.className}
-                mb={"16px"}
-                fontSize={"16px"}
-                fontWeight={400}
-                color={"white"}
-              >
-                {project.title}
-              </Text>
-              {project.startDate !== "" && (
-                <div>
-                  <Text
-                    color={"rgba(246,246,246,0.6)"}
-                    fontSize={"sm"}
-                    fontWeight={"300"}
-                  >
-                    Start
-                  </Text>
-                  <Text color={"white"} fontWeight={"300"} fontSize={"md"}>
-                    {project.startDate}
-                  </Text>
-                </div>
-              )}
-              {project.endDate !== "" && (
-                <div className="mt-5">
-                  <Text
-                    color={"rgba(246,246,246,0.6)"}
-                    fontSize={"sm"}
-                    fontWeight={"300"}
-                  >
-                    End
-                  </Text>
-
-                  <Text color={"white"} fontWeight={"300"} fontSize={"md"}>
-                    {project.endDate}
-                  </Text>
-                </div>
-              )}
+        <Card.Root rounded="2xl" h="full" overflow={"hidden"}>
+          <Card.Header p={0} pos="relative">
+            <Box asChild w="full" objectFit={"cover"} roundedBottom={"md"}>
+              <Image
+                width={720}
+                height={720}
+                quality={100}
+                src={project.imgUrl}
+                alt={project.imgAlt}
+              />
             </Box>
-            <ButtonGroup mt="5">
-              {project.link !== "" && (
-                // <motion.div
 
-                //   style={{ width: "fit-content" }}
-                // >
-                <MotionButton
-                  py={4}
-                  px={6}
-                  _hover={{ bg: "brand", borderColor: "brand" }}
-                  color={"white"}
-                  transitionDuration={".3s"}
-                  borderWidth={"thin"}
-                  borderColor={"white"}
-                  bg={"transparent"}
-                  fontWeight={"normal"}
-                  rounded={"full"}
-                  asChild
-                >
-                  <Link target="_blank" href={project.link!!}>
-                    View
-                  </Link>
-                </MotionButton>
-                // </motion.div>
+            {/* <Float offsetX={6} offsetPosition="right" offsetY={4} > */}
+            <HStack pos="absolute" right={0} m={2}>
+              {project.tags.map((tag) => {
+                return (
+                  <Badge key={tag} size="sm" rounded="full" w="fit">
+                    {tag}
+                  </Badge>
+                );
+              })}
+            </HStack>
+            {/* </Float> */}
+          </Card.Header>
+
+          <Card.Body p={4}>
+            <Text
+              w="full"
+              className={jua.className}
+              fontSize={"16px"}
+              fontWeight={400}
+              color={"white"}
+            >
+              {project.title}
+            </Text>
+
+            <HStack gap={6} color="fg.muted" fontWeight={"300"} fontSize={"md"}>
+              {project.startDate && (
+                <Text>
+                  {project.startDate}{" "}
+                  {project.endDate && `- ${project.endDate}`}
+                </Text>
               )}
-              {project.githubUrl !== "" && (
-                // <motion.div
-                //   whileTap={{ scale: 0.9 }}
-                //   style={{ width: "fit-content" }}
-                // >
-                <MotionButton
-                  py={4}
-                  px={6}
-                  bg={"transparent"}
-                  _hover={{ bg: "brand", borderColor: "brand" }}
-                  color={"white"}
-                  transitionDuration={".3s"}
-                  borderWidth={1}
-                  borderColor={"white"}
-                  fontWeight={"normal"}
-                  rounded={"full"}
-                  asChild
-                >
-                  <Link target="_blank" href={project.githubUrl}>
-                    GitHub
-                  </Link>
-                </MotionButton>
-                // </motion.div>
-              )}
-            </ButtonGroup>
+              {/* {project.endDate && <Text>End {project.endDate}</Text>} */}
+            </HStack>
           </Card.Body>
+          <Card.Footer p={4}>
+            {project.githubUrl && (
+              <MotionIconButton
+                bg={"transparent"}
+                _hover={{ bg: "brand", borderColor: "brand", color: "white" }}
+                transitionDuration={".3s"}
+                fontWeight={"normal"}
+                rounded={"full"}
+                asChild
+                size="sm"
+                variant={"outline"}
+              >
+                <Link target="_blank" href={project.githubUrl}>
+                  <LuGithub />
+                </Link>
+              </MotionIconButton>
+            )}
+
+            {project.liveUrl && (
+              // <motion.div
+
+              //   style={{ width: "fit-content" }}
+              // >
+              <MotionIconButton
+                _hover={{ bg: "brand", borderColor: "brand", color: "white" }}
+                transitionDuration={".3s"}
+                bg={"transparent"}
+                fontWeight={"normal"}
+                rounded={"full"}
+                size={"sm"}
+                asChild
+                variant={"outline"}
+              >
+                <Link target="_blank" href={project.liveUrl}>
+                  <LuLink2 />
+                </Link>
+              </MotionIconButton>
+              // </motion.div>
+            )}
+          </Card.Footer>
         </Card.Root>
       </MotionGridItem>
     );
-  }
+  },
 );
 
 ProjectCard.displayName = "ProjectCard";

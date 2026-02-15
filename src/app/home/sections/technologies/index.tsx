@@ -1,6 +1,6 @@
 import SectionTitle from "@/app/components/_section_title";
 import Container from "@/app/components/container";
-import { Badge, Box, Float, HStack, SimpleGrid, Text } from "@chakra-ui/react";
+import { Badge, Box, HStack, SimpleGrid, Text } from "@chakra-ui/react";
 import Image from "next/image";
 
 import {
@@ -82,10 +82,7 @@ export default function TechnologiesSection({
                         alt={tech.name}
                       />
                       <Text>{tech.name}</Text>
-                      {
-                        tech.core && <Badge>Major</Badge>
-                      }
-
+                      {tech.core && <Badge>Major</Badge>}
                     </HStack>
                   </MotionGridItem>
                 );
@@ -104,8 +101,8 @@ export default function TechnologiesSection({
               <MotionText
                 whileTap={{ scale: 0.9 }}
                 asChild
-                fontWeight={400}
-                border={"1px solid white"}
+                fontWeight={400}                
+                borderWidth={"thin"}
                 rounded={"full"}
                 p={1.5}
               >

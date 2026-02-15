@@ -1,13 +1,13 @@
 export type Project = {
-  type: string;
-  title: string;
-  startDate: string;
-  endDate: string;
   imgUrl: string;
-  alt: string;
-  descr: string;
-  githubUrl: string;
-  link?: string;
+  imgAlt: string;
+  tags: string[];
+  title: string;
+  descr?: string;
+  startDate?: string;
+  endDate?: string;
+  liveUrl?: string;
+  githubUrl?: string;
 };
 type Category = {
   title: string;
@@ -35,20 +35,16 @@ type APP_DATA_TYPE = {
 export const APP_DATA: APP_DATA_TYPE = {
   experience: [
     {
-      role: "Intern",
+      role: "Technical Intern",
       company: "Cedars Productivity Center",
-      year: "2020-2023",
+      year: "2020 - 2023",
       categories: [
         {
-          title: "App",
+          title: "Font-End Development",
           refUrl: undefined,
         },
         {
-          title: "Web Developer",
-          refUrl: undefined,
-        },
-        {
-          title: "Programming Instructor",
+          title: "Instructor",
           refUrl: undefined,
         },
         {
@@ -58,8 +54,28 @@ export const APP_DATA: APP_DATA_TYPE = {
       ],
       description: `
 #### **Summary:**  
-As an intern at Cedars Productivity Centre, I actively contributed to the development of Android applications and web-based solutions while also assisting in IT system support. Additionally, I served as an instructor, teaching the fundamentals of computing with a focus on HTML, CSS, JavaScript, and PowerPoint.  
+Built foundational engineering expertise while contributing to software projects, technical training programs, and IT infrastructure support. Operated in a hybrid role combining development execution, technical mentoring, and operational troubleshooting.
 
+**Core Contributions**
+
+* Developed web applications and supported UI improvements across internal projects.
+* Assisted in debugging, performance tuning, and interface refinement.
+* Delivered structured training sessions covering HTML, CSS, JavaScript, and presentation tools.
+* Mentored beginner developers through hands-on coding sessions.
+* Provided system support, network configuration assistance, and troubleshooting.
+
+**Business Value Delivered**
+
+* Accelerated learner onboarding into programming fundamentals.
+* Strengthened internal technical operations through proactive support.
+* Contributed to improved usability of internal tools and applications.
+
+**Technologies Used**
+
+HTML · CSS · JavaScript · Kotlin · Android Frameworks · System Diagnostics · Networking Basics
+
+
+<!--
 #### **Key Responsibilities:**  
 
 ##### **Android & Web Development:**  
@@ -88,32 +104,42 @@ As an intern at Cedars Productivity Centre, I actively contributed to the develo
     {
       role: "Software Developer",
       company: "Freelance",
-      year: "2023-2025",
+      year: "2023 - Till Date",
       categories: [
         {
-          title: "Logistics",
+          title: "Front-End Engineering",
           refUrl: undefined,
         },
         {
-          title: "Ride Hailing",
+          title: "Web Applications",
           refUrl: undefined,
         },
         {
-          title: "Staff Management",
+          title: "Scalable Systems",
           refUrl: undefined,
         },
         {
-          title: "Student Management",
-          refUrl: undefined,
-        },
-        {
-          title: "Inventory Management",
+          title: "Client Solutions",
           refUrl: undefined,
         },
       ],
       description: `
 #### **Summary:**  
-As a freelance Android Developer, I design and develop mobile applications tailored to various industries, including **logistics, ride-hailing, staff management, student management, and inventory management**. My expertise lies in building high-performance, scalable Android applications while ensuring seamless API integration and backend connectivity. While I am not a UI/UX designer, I collaborate with UI/UX professionals when required to implement user-friendly interfaces.  
+Delivered production-grade responsive web  solutions, translating business workflows into performant digital products. Specialized in front-end architecture, API-driven interfaces, and scalable UI systems that support real-time operations.	
+
+**Strategic Contributions**
+
+* Engineered responsive web applications using modern frameworks and modular architecture patterns.
+* Built data-driven interfaces for logistics, ride-hailing, inventory, education, and workforce systems.
+* Implemented robust API integrations.
+* Designed scalable component structures optimized for maintainability and performance.
+* Deployed live platforms using cloud hosting and CI-based workflows.
+
+
+**Technology Stack**
+
+React · Next.js · TypeScript · REST APIs · Supabase · Firebase · Zustand · TanStack Query · Git · Cloud Deployments
+<!--
 
 #### **Key Responsibilities:**  
 
@@ -158,7 +184,7 @@ As a freelance Android Developer, I design and develop mobile applications tailo
 - Delivered multiple Android and Web applications across different industries, improving efficiency in logistics, inventory, and staff management.  
 - Enhanced ride-hailing platforms with optimized **driver-rider matching algorithms**.  
 - Successfully built offline-first applications to ensure seamless operation in low-connectivity environments.  
-
+-->
             `,
     },
   ],

@@ -11,13 +11,14 @@ const AboutSection = () => {
     <Box
       id="about"
       as={"section"}
-      bg={"blackAlpha.900"}
+      // bg={"blackAlpha.900"}
       className="section observe_view"
     >
       <Container maxW={"6xl"} py={100} px={10}>
         <Flex
-          flexWrap={"wrap-reverse"}
+          flexDir={["column-reverse", null, "row"]}
           alignItems={"center"}
+          gapX={10}
           justifyContent={"space-between"}
         >
           <MotionBox
@@ -27,7 +28,7 @@ const AboutSection = () => {
             whileInView={{
               x: 0,
             }}
-            maxW={{ base: "full", md: "lg" }}
+            maxW={{ base: "full" }}
           >
             <SectionTitle
               labelInBehindColor="white"
@@ -36,7 +37,6 @@ const AboutSection = () => {
               labelBehind={"Me"}
             />
             <Text
-              as={"p"}
               fontWeight={400}
               lineHeight={"28px"}
               my={"24px"}
@@ -45,26 +45,25 @@ const AboutSection = () => {
             >
               Hi, I&#39;m Nwadike Philip, a software developer with a focus on
               building user-friendly and impactful apps. I specialize in
-              creating Android applications with <strong>Kotlin</strong> and{" "}
-              <strong>Jetpack Compose</strong>, and developing modern web apps
-              using <strong>React.js</strong> and <strong>Next.js</strong>.
+              developing modern web apps using <strong>React.js</strong> and{" "}
+              <strong>Next.js</strong> and android applications with{" "}
+              <strong>Kotlin</strong> and <strong>Jetpack Compose</strong>.
               <br />
-              I create practical, user-friendly software that solves problems
-              and delivers real value.
+              I create practical, user-friendly software that delivers value.
               <br />
               <br />
               I enjoy turning ideas into reality, from concept to deployment,
               whether it&#39;s a mobile app, a responsive website or app. My
-              approach is built on writing clean, maintainable code and
-              designing software that lasts.
+              approach is built on designing and writing clean, maintainable and
+              scalable code
               <br />
-              <br />
+              {/*  <br />
               My toolkit includes <strong>Firebase</strong>,{" "}
               <strong>REST APIs</strong>, and <strong>Git</strong>, enabling
               smooth collaboration and scalable solutions. Beyond the code,
               I&#39;m always open to learning, exploring new technologies, and
               working with great teams to build products that make a difference.
-              <br />
+              <br /> */}
               <br />
               I&#39;m always open to new challenges and opportunities to grow as
               a developer, collaborate with great teams, and build software that
@@ -75,7 +74,6 @@ const AboutSection = () => {
             </Text>
             <MotionButton
               whileTap={{ scale: 0.9 }}
-              p={7}
               fontWeight={"normal"}
               _hover={{ bg: "brand" }}
               rounded={"full"}
@@ -93,21 +91,21 @@ const AboutSection = () => {
             animate={{
               x: 0,
             }}
-            marginY={{ base: 16, md: "0" }}
-            width={{ base: "250px", sm: "350px" }}
             aspectRatio={"1"}
             mx={{ base: "auto", lg: "0" }}
+            minH={"sm"}
+            objectFit={"cover"}
+            rounded={"lg"}
+            p={2}
+            w={"full"}
+            bg="bg.muted"
+            maxW="sm"
+            asChild
           >
             <Image
               src={epicdevlerImg}
-              alt=""
-              style={{
-                borderRadius: "100%",
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                objectPosition: "center",
-              }}
+              alt="Image of Philip Nwadike"
+              style={{ borderRadius: "20px" }}
             />
           </MotionBox>
         </Flex>

@@ -81,18 +81,13 @@ export default function HeroSection() {
               products built to last.
             </Text>
             <HStack mt={7} gap={1}>
-              <Text
-                style={{
-                  fontWeight: "normal",
-                  fontSize: "14px",
-                }}
-              >
-                My{" "}
+              <Text fontSize={"md"} fontWeight={"normal"}>
+                My
               </Text>
               <motion.p whileTap={{ scale: 0.9 }}>
                 <Text
                   fontWeight={400}
-                  border={"1px solid white"}
+                  borderWidth={"thin"}
                   rounded={"full"}
                   p={1.5}
                   asChild

@@ -81,11 +81,11 @@ export function WorkItem({
       whileInView={{ y: 0 }}
       alignItems={"flex-start"}
     >
-      <VStack gap={0} h="full">
+     {/*  <VStack gap={0} h="full">
         <Center p={2} rounded={"full"} bg={"whiteAlpha.100"}>
           <Avatar.Root>
             <Avatar.Fallback name={item.role} />
-            {/* <Avatar.Image src="https://bit.ly/sage-adebayo" /> */}
+            <Avatar.Image src="https://bit.ly/sage-adebayo" />
           </Avatar.Root>
         </Center>
         <Box
@@ -95,7 +95,7 @@ export function WorkItem({
           background={"whiteAlpha.800"}
         />
       </VStack>
-
+ */}
       <Box
         rounded={"md"}
         background={"whiteAlpha.100"}

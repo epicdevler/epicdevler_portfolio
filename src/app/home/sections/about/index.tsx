@@ -1,8 +1,7 @@
 import SectionTitle from "@/app/components/_section_title";
-import { MotionBox, MotionButton } from "@/app/components/motion";
-import { Box, Flex, Text } from "@chakra-ui/react";
+// import { Box, Button } from "@/app/components/";
+import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import Image from "next/image";
-import epicdevlerImg from "../../../../../public/epicdevler.webp";
 import Container from "@/app/components/container";
 import Link from "next/link";
 
@@ -21,27 +20,26 @@ const AboutSection = () => {
           gapX={10}
           justifyContent={"space-between"}
         >
-          <MotionBox
-            initial={{
+          <Box
+            /* initial={{
               x: -150,
             }}
             whileInView={{
               x: 0,
-            }}
+            }} */
             maxW={{ base: "full" }}
           >
             <SectionTitle
-              labelInBehindColor="white"
+              
               labelInFrontColor={"brand"}
-              labelInFront={"About"}
-              labelBehind={"Me"}
+              labelInFront={"Me"}
+              labelBehind={"About"}
             />
             <Text
               fontWeight={400}
               lineHeight={"28px"}
               my={"24px"}
-              fontSize={["md", null, "large"]}
-              color={"white"}
+              fontSize={["md", null, "large"]}              
             >
               Hi, I&#39;m Nwadike Philip, a software developer with a focus on
               building user-friendly and impactful apps. I specialize in
@@ -72,8 +70,8 @@ const AboutSection = () => {
               <br />
               Let&#39;s connect and bring ideas to life together.
             </Text>
-            <MotionButton
-              whileTap={{ scale: 0.9 }}
+            <Button
+              // whileTap={{ scale: 0.9 }}
               fontWeight={"normal"}
               _hover={{ bg: "brand" }}
               rounded={"full"}
@@ -81,16 +79,16 @@ const AboutSection = () => {
               asChild
             >
               <Link href="#contact">Get in Touch</Link>
-            </MotionButton>
-          </MotionBox>
+            </Button>
+          </Box>
 
-          <MotionBox
-            initial={{
-              x: 150,
-            }}
-            animate={{
-              x: 0,
-            }}
+          <Box
+            // initial={{
+            //   x: 150,
+            // }}
+            // animate={{
+            //   x: 0,
+            // }}
             aspectRatio={"1"}
             mx={{ base: "auto", lg: "0" }}
             minH={"sm"}
@@ -103,11 +101,13 @@ const AboutSection = () => {
             asChild
           >
             <Image
-              src={epicdevlerImg}
+              src={"/epicdevler.webp"}
+              width={1020}
+              height={1020}
               alt="Image of Philip Nwadike"
               style={{ borderRadius: "20px" }}
             />
-          </MotionBox>
+          </Box>
         </Flex>
       </Container>
     </Box>

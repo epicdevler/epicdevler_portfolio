@@ -1,7 +1,6 @@
 import { Box, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import { MouseEventHandler } from "react";
-import style from "@/app/styles/_nav_link.module.css";
 
 export default function NavLink({
   label,
@@ -16,25 +15,30 @@ export default function NavLink({
   isFirstChild?: boolean;
   onClick?: undefined | MouseEventHandler<HTMLParagraphElement>;
 }) {
-  const isActiveState = isActive ? style.active : "";
   return (
     <Box
-      className={`${style.list} ${isActiveState}`}
-      borderColor={"white"}
-      borderRadius={"full"}
+      // className={` ${isActiveState}`}
+      display={"flex"}
+      flexDir={"column"}
+      rounded={"full"}
     >
       <Text
         onClick={onClick}
         asChild
         style={{ padding: ".9em", color: "white" }}
+        textAlign={"center"}
       >
         <Link href={href}>{label}</Link>
       </Text>
-      {
-        <Box
-          className={`${style.line}`} /* bg={isActive ? 'white' :"transparent"} */
-        ></Box>
-      }
+      <Box
+        // className={`${style.line}`} /* bg={isActive ? 'white' :"transparent"} */
+        bg="white"
+        width={isActive ? "1/12": 0}
+        mx={"auto"}
+        h={1}
+        rounded={"full"}
+        transition={"width .2s ease-in-out"}
+      />
     </Box>
   );
 }

@@ -25,6 +25,7 @@ export type Technology = {
   name: string;
   imgUrl?: string | undefined;
   core?: boolean;
+  type?: string;
 };
 
 type APP_DATA_TYPE = {
@@ -191,71 +192,60 @@ React · Next.js · TypeScript · REST APIs · Supabase · Firebase · Zustand �
   technologies: [
     {
       name: "Python",
-      imgUrl: "",
     },
-    {
-      name: "Kotlin",
-      imgUrl: "",
-      core: true,
-    },
-    {
-      name: "React",
-      imgUrl: "",
-    },
+    
     {
       name: "Next.Js",
-      imgUrl: "",
       core: true,
+      type: "Front End",
     },
     {
       name: "GitHub",
-      imgUrl: "",
       core: true,
+      type: "Version Control",
+    },
+    {
+      name: "Kotlin",
+      core: true,
+      type: "Mobile",
     },
     {
       name: "Figma",
-      imgUrl: "",
+      type: "Design",
     },
     {
       name: "Git",
-      imgUrl: "",
+      type: "Version Control",
     },
     {
       name: "Ktor",
-      imgUrl: "",
+      type: "RESTfull API",
     },
     {
       name: "Firebase",
-      imgUrl: "",
+      type: "DaaS",
     },
     {
       name: "MongoDB",
-      imgUrl: "",
+      type: "DaaS",
     },
     {
       name: "FastAPI",
-      imgUrl: "",
+      type: "RESTfull API",
     },
     {
       name: "React",
-      imgUrl: "",
       core: true,
+      type: "Front End",
     },
-    {
-      name: "HTML",
-      imgUrl: "",
-    },
-    {
-      name: "CSS",
-      imgUrl: "",
-    },
-    {
-      name: "Gradle",
-      imgUrl: "",
-    },
+
+    // {
+    //   name: "Gradle",
+    //   imgUrl: "",
+    //   type: "B"
+    // },
     {
       name: "TypeScript",
-      imgUrl: "",
       core: true,
     },
   ],

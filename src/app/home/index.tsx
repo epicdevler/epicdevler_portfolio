@@ -1,11 +1,11 @@
 import { Box } from "@chakra-ui/react";
 import Navbar from "./navbar/Navbar";
 import AboutSection from "./sections/about";
-import ContactSection from "./sections/contact/ContactSection";
-import HeroSection from "./sections/hero/Hero";
-import ProjectsSection from "./sections/projects/ProjectsSection";
+import ContactSection from "./sections/contact";
+import HeroSection from "./sections/hero";
+import ProjectsSection from "./sections/projects";
 import TechnologiesSection from "./sections/technologies";
-import WorkSection from "./sections/work/WorkSection";
+import WorkSection from "./sections/work";
 import { APP_DATA } from "@/data/data/appData";
 
 const appData = APP_DATA;

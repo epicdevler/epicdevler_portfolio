@@ -6,15 +6,17 @@ import {
   Flex,
   HStack,
   IconButton,
-  Spacer,
+  Separator,
   Text,
+  useBreakpointValue,
   VStack,
 } from "@chakra-ui/react";
-import { MouseEventHandler, useEffect, useState } from "react";
+import { MouseEventHandler, useCallback, useEffect, useState } from "react";
 import style from "./_navbar.module.css";
 
 import Container from "@/app/components/container";
 import { leckerliOne } from "@/app/fonts";
+import { ColorModeButton } from "@/components/ui/color-mode";
 import {
   GithubIcon,
   LinkedinIcon,
@@ -22,6 +24,8 @@ import {
   TwitterIcon,
   XIcon,
 } from "lucide-react";
+import useActiveSection from "@/app/hooks/useActiveSection";
+import { LuGithub, LuLinkedin, LuTwitter } from "react-icons/lu";
 
 const fullNavLinks = [
   {
@@ -56,73 +60,37 @@ const navLinks = fullNavLinks.filter((value) => {
   }
 });
 
+const socialItems = [
+  {
+    url: "https://www.github.com/epicdevler",
+    imgUrl: LuGithub,
+    imgAlt: "GitHub Logo",
+    hoverBg: undefined,
+    hoverContentColor: undefined,
+  },
+  {
+    url: "https://www.linkedin.com/in/nwadikephilip",
+    imgUrl: LuLinkedin,
+    imgAlt: "LinkedIn Logo",
+    hoverBg: undefined,
+    hoverContentColor: undefined,
+  },
+  {
+    url: "https://www.twitter.com/epicdevler",
+    imgUrl: LuTwitter,
+    imgAlt: "X Logo",
+    hoverBg: undefined,
+    hoverContentColor: undefined,
+  },
+];
+
 export default function Navbar() {
   const [isToggled, setIsToggled] = useState<boolean>(false);
+  const forceCloseNav = useBreakpointValue({ base: false, md: true });
 
-  const [activeSection, setActiveSection] = useState<string>("");
+  const { activeSection } = useActiveSection();
 
-  const scrollEvent = () => {
-    const a = document.querySelectorAll(".observe_view");
-
-    if (a.length === 0) {
-      return;
-    }
-
-    a.forEach((element) => {
-      const rect = element.getBoundingClientRect();
-      const windowHeight =
-        window.innerHeight || document.documentElement.clientHeight;
-      const elementTop = rect.top + 200;
-      const elementBottom = rect.bottom;
-      const isVisible = elementTop < windowHeight && elementBottom >= 0;
-      if (isVisible) {
-        setActiveSection(
-          element.id === "stacks" || element.id === "work"
-            ? "about"
-            : element.id
-        );
-      }
-    });
-  };
-
-  useEffect(() => {
-    scrollEvent();
-    // Initial check
-    window.addEventListener("scroll", scrollEvent);
-
-    // Cleanup event listener on unmount
-    return () => {
-      window.removeEventListener("scroll", scrollEvent);
-    };
-  }, []);
-
-  const socialItems = [
-    {
-      url: "https://www.github.com/epicdevler",
-      imgUrl: GithubIcon,
-      imgAlt: "GitHub Logo",
-      hoverBg: undefined,
-      hoverContentColor: undefined,
-    },
-    {
-      url: "https://www.linkedin.com/in/nwadikephilip",
-      imgUrl: LinkedinIcon,
-      imgAlt: "LinkedIn Logo",
-      hoverBg: undefined,
-      hoverContentColor: undefined,
-    },
-    {
-      url: "https://www.twitter.com/epicdevler",
-      imgUrl: TwitterIcon,
-      imgAlt: "X Logo",
-      hoverBg: undefined,
-      hoverContentColor: undefined,
-    },
-  ];
-
-  const handleNavToggle = () => {
-    setIsToggled(!isToggled);
-  };
+  const handleNavToggle = () => setIsToggled(!isToggled);
 
   function handleNavItemClick(event: {
     currentTarget: any;
@@ -137,44 +105,38 @@ export default function Navbar() {
       className={style.nav}
       w={"full"}
       py={4}
+      // bg='red'
       px={3}
+
       // bg={{ base: "brand", lg: "none" }}
       // boxShadow={{ base: "md", lg: "none" }}
     >
-      <FullScreenNav
-        onToggle={isToggled}
-        onNavItemClicked={handleNavItemClick}
-        unToggle={handleNavToggle}
-        activeSection={activeSection}
-      />
       <Container
         boxShadow={{ base: "md", lg: "md" }}
-        rounded={{ base: "full", lg: "full" }}
+        rounded={"3xl"}
         dropShadow={"md"}
         bg={"brand"}
         py={{ mdDown: "2" }}
       >
-        <Flex alignItems={"center"} flexDirection={"row-reverse"}>
+        <Flex alignItems={"center"} gap={4} justifyContent={"space-between"}>
           <HStack>
             {socialItems.map((item, index) => {
               return (
                 <SocialIcon
-                  hoverBg={item.hoverBg}
-                  hoverContentColor={item.hoverContentColor}
+                  // hoverBg={item.hoverBg}
+                  // hoverContentColor={item.hoverContentColor}
+                  color={"white"}
                   key={index}
                   href={item.url}
-                  iconUrl={item.imgUrl}
+                  icon={item.imgUrl}
                   alt={item.imgAlt}
                 />
               );
             })}
           </HStack>
-          <Spacer />
           <HStack hideBelow={"md"}>
             {navLinks.map((link, index) => {
               const active = activeSection === link.label.toLocaleLowerCase();
-
-              console.log("active", active, link.label, activeSection);
               return (
                 <NavLink
                   key={link.label}
@@ -187,12 +149,20 @@ export default function Navbar() {
               );
             })}
           </HStack>
+
+          <Separator />
           <HStack>
+            <ColorModeButton
+              rounded={"full"}
+              _hover={{ bg: "bg.muted/20" }}
+              color={"white"}
+            />
             <IconButton
               hideFrom={"md"}
               variant={"ghost"}
               rounded={"full"}
-              _hover={{}}
+              _hover={{ bg: "bg.muted/20" }}
+              color="white"
               onClick={handleNavToggle}
               aria-label={"toggle icon"}
             >
@@ -200,6 +170,15 @@ export default function Navbar() {
             </IconButton>
           </HStack>
         </Flex>
+
+        {!forceCloseNav && isToggled && (
+          <FullScreenNav
+            onToggle={isToggled}
+            onNavItemClicked={handleNavItemClick}
+            unToggle={handleNavToggle}
+            activeSection={activeSection}
+          />
+        )}
       </Container>
     </Box>
   );
@@ -229,19 +208,22 @@ export function FullScreenNav({
 
   return (
     <VStack
-      aria-modal="true"
-      align={"end"}
-      backgroundColor={"brand"}
-      hideFrom={"md"}
-      className={style.fullScreenNav}
-      style={{ scale: scale }}
+      // aria-modal="true"
+      // align={"end"}
+      h={onToggle ? "fit" : 0}
+      overflow={"hidden"}
+      transition={"all .2s ease-in-out"}
+      // hideFrom={"md"}
+      // className={style.fullScreenNav}
+      // style={{ scale: scale }}
       borderRadius={borderRadius}
-      py={3}
-      px={3}
+      py={onToggle ? 3 : undefined}
+      // px={3}
     >
       <IconButton
         variant={"ghost"}
         p={1}
+        hidden
         rounded={"full"}
         color={"white"}
         _hover={{}}
@@ -256,6 +238,7 @@ export function FullScreenNav({
         w={"full"}
         textAlign={"center"}
         p={0}
+        hidden
         fontSize={"3xl"}
         className={leckerliOne.className}
         color={"white"}
@@ -265,7 +248,7 @@ export function FullScreenNav({
 
       {navLinks.map((link) => {
         return (
-          <Box key={link.label} width={"full"} textAlign={"center"}>
+          <Box key={link.label} width={"full"}>
             <NavLink
               onClick={onNavItemClicked}
               label={link.label}

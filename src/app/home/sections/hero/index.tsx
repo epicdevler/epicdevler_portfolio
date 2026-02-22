@@ -1,6 +1,4 @@
-'use client"';
 import Container from "@/app/components/container";
-import { MotionText } from "@/app/components/motion";
 import {
   Badge,
   Box,
@@ -11,31 +9,34 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { motion } from "motion/react";
 import Link from "next/link";
-import style from "./hero.module.css";
+
+// import { Box, Text } from "@/app/components/";
 
 export default function HeroSection() {
   return (
     <Box
       as="header"
-      className={`section observe_view ${style.hero}`}
+      className={`section observe_view `}
       id={"home"}
+      borderBottomWidth={"thick"}
+      minH={"dvh"}
+      bg="bg.muted"
     >
       <Container
         h="full"
         pb={100}
-        pt={170}
+        pt={200}
         textAlign={"center"}
-        color={"white"}
+        // color={"white"}
         as={Center}
         flexDir={"column"}
       >
-        <motion.div
-          initial={{ scale: 0.8 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.6, delay: 0 }}
-          viewport={{ once: true }}
+        <Box
+          // initial={{ scale: 0.8 }}
+          // animate={{ scale: 1 }}
+          // transition={{ duration: 0.6, delay: 0 }}
+          // viewport={{ once: true }}
         >
           <Group w="full" justifyContent={"center"} hidden>
             <Badge size="lg" rounded="full">
@@ -47,36 +48,31 @@ export default function HeroSection() {
           </Group>
           <Heading
             mt={3}
-            color="white"
+            // color="white"
             as={"h1"}
             fontWeight={"black"}
             size={["4xl", "6xl"]}
+            className="fade-down"
             maxW={"4xl"}
           >
             Developing Modern Web and Mobile Apps That Work
             {/* Apps that improve lives */}
           </Heading>
-        </motion.div>
+        </Box>
 
-        <motion.div
-          initial={{
-            y: 100,
-            opacity: 0,
-          }}
-          animate={{
-            y: 0,
-            opacity: 1,
-          }}
-          viewport={{ once: true }}
+        <Box
+          // initial={{
+          //   y: 100,
+          //   opacity: 0,
+          // }}
+          // animate={{
+          //   y: 0,
+          //   opacity: 1,
+          // }}
+          // viewport={{ once: true }}
         >
-          <VStack>
-            <Text
-              mt={7}
-              color={"whiteAlpha.800"}
-              fontSize="medium"
-              maxW={{ base: "full", md: "sm" }}
-              className={style.brief_intro}
-            >
+          <VStack className="fade-up">
+            <Text mt={7} maxW={{ base: "full", md: "sm" }} fontSize={"lg"}>
               Helping individuals and businesses turn concepts into digital
               products built to last.
             </Text>
@@ -84,20 +80,19 @@ export default function HeroSection() {
               <Text fontSize={"md"} fontWeight={"normal"}>
                 My
               </Text>
-              <motion.p whileTap={{ scale: 0.9 }}>
-                <Text
-                  fontWeight={400}
-                  borderWidth={"thin"}
-                  rounded={"full"}
-                  p={1.5}
-                  asChild
-                >
-                  <Link href={"#myStacks"}> Tools?</Link>
-                </Text>
-              </motion.p>
+              <Text
+                fontWeight={400}
+                borderWidth={"thin"}
+                rounded={"full"}
+                p={1.5}
+                asChild
+                // whileTap={{ scale: 0.9 }}
+              >
+                <Link href={"#myStacks"}> Tools?</Link>
+              </Text>
             </HStack>
           </VStack>
-        </motion.div>
+        </Box>
       </Container>
     </Box>
   );

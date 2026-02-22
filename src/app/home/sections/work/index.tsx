@@ -3,6 +3,7 @@ import SectionTitle from "@/app/components/_section_title";
 import {
   Avatar,
   Box,
+  CardRoot,
   Center,
   Collapsible,
   Flex,
@@ -15,7 +16,7 @@ import {
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 
 import Container from "@/app/components/container";
-import { MotionBox, MotionHStack } from "@/app/components/motion";
+// import { Box, HStack } from "@/app/components/";
 import { APP_DATA, WorkExperience } from "@/data/data/appData";
 import MarkdownPreview from "@uiw/react-markdown-preview";
 import Link from "next/link";
@@ -30,13 +31,13 @@ export default function WorkSection({
     <Box
       id="work"
       as={"section"}
-      bg={"blackAlpha.900"}
-      color={"white"}
+      // bg={"blackAlpha.900"}
+      // color={"white"}
       className="section observe_view"
     >
       <Container py={100}>
         <SimpleGrid columns={[1, null, 1]}>
-          <MotionBox initial={{ x: -100 }} whileInView={{ x: 0 }}>
+          <Box /* initial={{ x: -100 }} whileInView={{ x: 0 }} */>
             <SectionTitle labelInFront={"Experience"} labelBehind={"Work"} />
             <Text
               maxW={"lg"}
@@ -49,7 +50,7 @@ export default function WorkSection({
               different backgrounds within and outside an organization, national
               and internationally.
             </Text>
-          </MotionBox>
+          </Box>
           <Box pt={50}>
             <VStack gap={0}>
               {workItems.map((item, index) => {
@@ -74,11 +75,11 @@ export function WorkItem({
 
   const handleToggle = () => setShow(!show);
   return (
-    <MotionHStack
+    <HStack
       w={"full"}
       gap={2}
-      initial={{ y: 100 }}
-      whileInView={{ y: 0 }}
+      // initial={{ y: 100 }}
+      // whileInView={{ y: 0 }}
       alignItems={"flex-start"}
     >
      {/*  <VStack gap={0} h="full">
@@ -96,9 +97,9 @@ export function WorkItem({
         />
       </VStack>
  */}
-      <Box
+      <CardRoot
         rounded={"md"}
-        background={"whiteAlpha.100"}
+        background={"bg.subtle"}
         w="full"
         mb={APP_DATA.experience.length - 1 == index ? 2 : 5}
       >
@@ -106,7 +107,7 @@ export function WorkItem({
           <HStack
             p={4}
             onClick={handleToggle}
-            _hover={{ bg: "whiteAlpha.200" }}
+            _hover={{ bg: "bg.muted" }}
             transition={"background 0.3s ease"}
             cursor={"pointer"}
             borderBottomWidth={"thin"}            
@@ -117,8 +118,7 @@ export function WorkItem({
             </Text>
             <IconButton
               p={1}
-              h={"fit-content"}
-              color={"white"}
+              h={"fit-content"}              
               aria-label="toggle"
               variant={"ghost"}
               onClick={handleToggle}
@@ -181,7 +181,7 @@ export function WorkItem({
             </Collapsible.Content>
           </Collapsible.Root>
         }
-      </Box>
-    </MotionHStack>
+      </CardRoot>
+    </HStack>
   );
 }

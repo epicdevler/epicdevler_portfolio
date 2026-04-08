@@ -34,5 +34,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 /src/app/context/
-/src/app/hooks/
 /src/app/components/DotRing/
+src/app/hooks/useMousePosition.tsx

@@ -1,5 +1,3 @@
-
-
 import { poppins } from "@/app/fonts";
 import { Provider } from "@/components/ui/provider";
 import { Toaster } from "@/components/ui/toaster";
@@ -72,7 +70,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
-      <body className={poppins.variable} style={{ overflowX: "hidden", scrollBehavior: "smooth" }}>
+      <body
+        className={poppins.variable}
+        style={{ overflowX: "hidden", scrollBehavior: "smooth" }}
+      >
         <Provider enableSystem={true} storageKey="epd-theme">
           {children}
           <Toaster />

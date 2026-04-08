@@ -8,7 +8,7 @@ export default function SocialIcon({
   alt = "",
   ...rest
 }: {
-  href: string;
+  href?: string;
   icon: ComponentType<SVGProps<SVGSVGElement>>;
   alt?: string;
 } & Omit<IconButtonProps, "children">) {
@@ -20,13 +20,17 @@ export default function SocialIcon({
       // color={"white"}
       rounded={"none"}
       aria-label={alt}
-      _hover={{bg: "bg.emphasized"}}
-      asChild
+      _hover={{ bg: "bg.emphasized" }}
+      asChild={!!href}
       {...rest}
     >
-      <Link href={href} target={"_blank"}>
-        {IconUrl && <IconUrl />}
-      </Link>
+      {href ? (
+        <Link href={href} target={"_blank"}>
+          {IconUrl && <IconUrl />}
+        </Link>
+      ) : (
+        IconUrl && <IconUrl />
+      )}
     </IconButton>
   );
 }

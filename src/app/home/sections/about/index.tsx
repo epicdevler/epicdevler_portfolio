@@ -80,7 +80,7 @@ const AboutSection = () => {
               variant={"outline"}
               asChild
             >
-              <Link href="#contact">Get in Touch</Link>
+              <Link href="/#contact">Get in Touch</Link>
             </Button>
           </Box>
 

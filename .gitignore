@@ -33,7 +33,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-/src/app/context/
-/src/app/components/DotRing/dot-ring.tsx
-/src/app/components/DotRing/DotRing.css
-src/app/hooks/useMousePosition.tsx

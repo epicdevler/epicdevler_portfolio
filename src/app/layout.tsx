@@ -6,7 +6,6 @@ import { Toaster } from "@/components/ui/toaster";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
-import DotRing from "@/components/DotRing/dot-ring";
 export const metadata: Metadata = {
   title: "Nwadike Philip | epicdevler",
   description: "Nwadike Phiip's Portfolio",
@@ -76,7 +75,6 @@ export default function RootLayout({
       <body className={poppins.variable} style={{ overflowX: "hidden", scrollBehavior: "smooth" }}>
         <Provider enableSystem={true} storageKey="epd-theme">
           {children}
-          {/* <DotRing /> */}
           <Toaster />
         </Provider>
         <Analytics />

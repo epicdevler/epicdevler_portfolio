@@ -120,7 +120,7 @@ export default function TechnologiesSection({
                 rounded={"full"}
                 p={1.5}
               >
-                <Link href={"#projects"}>done?</Link>
+                <Link href={"/#projects"}>done?</Link>
               </Text>
               <Text>with this technologies</Text>
             </Center>

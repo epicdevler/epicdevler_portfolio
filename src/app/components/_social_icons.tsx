@@ -18,7 +18,7 @@ export default function SocialIcon({
       variant={"ghost"}
       // borderColor={"whiteAlpha.400"}
       // color={"white"}
-      rounded="full"
+      rounded={"none"}
       aria-label={alt}
       _hover={{ bg: "bg.muted/20" }}
       asChild

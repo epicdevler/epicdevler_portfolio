@@ -1,4 +1,4 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Button, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import { MouseEventHandler } from "react";
 
@@ -13,7 +13,7 @@ export default function NavLink({
   href: string;
   isActive?: boolean;
   isFirstChild?: boolean;
-  onClick?: undefined | MouseEventHandler<HTMLParagraphElement>;
+  onClick?: () => void;
 }) {
   return (
     <Box
@@ -22,18 +22,20 @@ export default function NavLink({
       flexDir={"column"}
       rounded={"full"}
     >
-      <Text
+      <Button
         onClick={onClick}
         asChild
-        style={{ padding: ".9em", color: "white" }}
+        rounded={"none"}
         textAlign={"center"}
+        variant={"ghost"}
+
       >
         <Link href={href}>{label}</Link>
-      </Text>
+      </Button>
       <Box
         // className={`${style.line}`} /* bg={isActive ? 'white' :"transparent"} */
         bg="white"
-        width={isActive ? "1/12": 0}
+        width={isActive ? "1/12" : 0}
         mx={"auto"}
         h={1}
         rounded={"full"}

@@ -35,9 +35,10 @@ export default function Footer() {
       as={"footer"}
       // className="fp-auto-height-responsive"
       py={3}
-      bg={"brand"}
+      bg={"bg.muted"}
+      borderTopWidth={"thin"}
     >
-      <Container maxW={"container.lg"} px={100} color={"white"}>
+      <Container maxW={"container.lg"} px={100} >
         <SimpleGrid
           hideBelow={"md"}
           columns={3}
@@ -68,7 +69,6 @@ export default function Footer() {
                 return (
                   <SocialIcon
                     key={index}
-                    color={"white"}
                     href={item.url}
                     icon={item.imgUrl}
                     alt={item.imgAlt}

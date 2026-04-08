@@ -73,8 +73,10 @@ const AboutSection = () => {
             <Button
               // whileTap={{ scale: 0.9 }}
               fontWeight={"normal"}
-              _hover={{ bg: "brand" }}
-              rounded={"full"}
+              bg={"brand"}
+              color="white"
+              _hover={{bg: "brand/90"}}
+              rounded={"none"}
               variant={"outline"}
               asChild
             >
@@ -89,6 +91,7 @@ const AboutSection = () => {
             // animate={{
             //   x: 0,
             // }}
+            hidden
             aspectRatio={"1"}
             mx={{ base: "auto", lg: "0" }}
             minH={"sm"}

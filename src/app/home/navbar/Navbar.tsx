@@ -92,55 +92,29 @@ export default function Navbar() {
 
   const handleNavToggle = () => setIsToggled(!isToggled);
 
-  function handleNavItemClick(event: {
-    currentTarget: any;
-    preventDefault: () => void;
-  }) {
-    const label = event.currentTarget.innerText;
-  }
-
   return (
     <Box
       as={"nav"}
       className={style.nav}
       w={"full"}
-      py={4}
-      // bg='red'
-      px={3}
-
+      borderBottomWidth={"thin"}
+      bg="bg.muted"
       // bg={{ base: "brand", lg: "none" }}
       // boxShadow={{ base: "md", lg: "none" }}
     >
       <Container
-        boxShadow={{ base: "md", lg: "md" }}
-        rounded={"3xl"}
-        dropShadow={"md"}
-        bg={"brand"}
-        py={{ mdDown: "2" }}
+        // boxShadow={{ base: "md", lg: "md" }}
+        // dropShadow={"md"}
+        // bg={"brand"}
+        py={2}
       >
         <Flex alignItems={"center"} gap={4} justifyContent={"space-between"}>
-          <HStack>
-            {socialItems.map((item, index) => {
-              return (
-                <SocialIcon
-                  // hoverBg={item.hoverBg}
-                  // hoverContentColor={item.hoverContentColor}
-                  color={"white"}
-                  key={index}
-                  href={item.url}
-                  icon={item.imgUrl}
-                  alt={item.imgAlt}
-                />
-              );
-            })}
-          </HStack>
           <HStack hideBelow={"md"}>
             {navLinks.map((link, index) => {
               const active = activeSection === link.label.toLocaleLowerCase();
               return (
                 <NavLink
                   key={link.label}
-                  onClick={handleNavItemClick}
                   href={link.href}
                   label={link.label}
                   isFirstChild={index == 0}
@@ -149,20 +123,28 @@ export default function Navbar() {
               );
             })}
           </HStack>
-
-          <Separator />
           <HStack>
-            <ColorModeButton
-              rounded={"full"}
-              _hover={{ bg: "bg.muted/20" }}
-              color={"white"}
-            />
+            {socialItems.map((item, index) => {
+              return (
+                <SocialIcon
+                  // hoverBg={item.hoverBg}
+                  // hoverContentColor={item.hoverContentColor}
+                  // color={"white"}
+                  key={index}
+                  href={item.url}
+                  icon={item.imgUrl}
+                  alt={item.imgAlt}
+                />
+              );
+            })}
+          </HStack>
+
+          <HStack hideFrom={"md"}>
             <IconButton
-              hideFrom={"md"}
               variant={"ghost"}
-              rounded={"full"}
+              rounded={"none"}
               _hover={{ bg: "bg.muted/20" }}
-              color="white"
+              // color="white"
               onClick={handleNavToggle}
               aria-label={"toggle icon"}
             >
@@ -174,7 +156,7 @@ export default function Navbar() {
         {!forceCloseNav && isToggled && (
           <FullScreenNav
             onToggle={isToggled}
-            onNavItemClicked={handleNavItemClick}
+            // onNavItemClicked={handleNavItemClick}
             unToggle={handleNavToggle}
             activeSection={activeSection}
           />
@@ -193,7 +175,7 @@ export function FullScreenNav({
   activeSection: string;
   onToggle: boolean;
   unToggle: () => void;
-  onNavItemClicked: MouseEventHandler<HTMLParagraphElement>;
+  onNavItemClicked?: MouseEventHandler<HTMLParagraphElement>;
 }) {
   const [scale, setScale] = useState(0);
   const [borderRadius, setBorderRadius] = useState(0);
@@ -250,7 +232,7 @@ export function FullScreenNav({
         return (
           <Box key={link.label} width={"full"}>
             <NavLink
-              onClick={onNavItemClicked}
+              // onClick={onNavItemClicked}
               label={link.label}
               href={link.href}
               isActive={activeSection === link.label.toLocaleLowerCase()}

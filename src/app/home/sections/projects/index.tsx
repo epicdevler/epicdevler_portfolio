@@ -126,13 +126,13 @@ const ProjectCard = ({
       role="group"
       h="full"
     >
-      <Card.Root rounded="2xl" h="full" overflow={"hidden"} className="group">
+      <Card.Root rounded="none" h="full" overflow={"hidden"} className="group">
         <Card.Header p={0} pos="relative" overflow={"hidden"} h={"42"}>
           <Box
             asChild
             w="full"
             objectFit={"cover"}
-            roundedBottom={"md"}
+            rounded={"none"}
             transition={"scale .3s ease-in-out"}
             _groupHover={{ scale: 1.08, objectPosition: "left" }}
           >
@@ -175,10 +175,10 @@ const ProjectCard = ({
               _hover={{ bg: "brand", borderColor: "brand", color: "white" }}
               transitionDuration={".3s"}
               fontWeight={"normal"}
-              rounded={"full"}
+              rounded={"none"}
               asChild
               size="sm"
-              variant={"outline"}
+              variant={"ghost"}
             >
               <Link target="_blank" href={project.githubUrl}>
                 <LuGithub />
@@ -196,10 +196,10 @@ const ProjectCard = ({
               transitionDuration={".3s"}
               bg={"transparent"}
               fontWeight={"normal"}
-              rounded={"full"}
+              rounded={"none"}
               size={"sm"}
               asChild
-              variant={"outline"}
+              variant={"ghost"}
             >
               <Link target="_blank" href={project.liveUrl}>
                 <LuLink2 />

@@ -74,7 +74,6 @@ export default function TechnologiesSection({
                         // bg={"whiteAlpha.50"}
                         w="full"
                         h={"full"}
-                        rounded={"md"}
                         p={2}
                       >
                         <Image
@@ -108,7 +107,7 @@ export default function TechnologiesSection({
                 rounded={"full"}
                 p={1.5}
               >
-                <Link href={"#myStacks"}>done?</Link>
+                <Link href={"#projects"}>done?</Link>
               </Text>
               <Text>with this technologies</Text>
             </Center>

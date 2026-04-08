@@ -39,13 +39,7 @@ export default function WorkSection({
         <SimpleGrid columns={[1, null, 1]}>
           <Box /* initial={{ x: -100 }} whileInView={{ x: 0 }} */>
             <SectionTitle labelInFront={"Experience"} labelBehind={"Work"} />
-            <Text
-              maxW={"lg"}
-              fontWeight={400}
-              lineHeight={"28px"}
-              my={"24px"}
-              fontSize={"14px"}
-            >
+            <Text maxW={"lg"} fontWeight={400} hidden my={"24px"}>
               I have gained valueable insight colloborating with teams of
               different backgrounds within and outside an organization, national
               and internationally.
@@ -82,7 +76,7 @@ export function WorkItem({
       // whileInView={{ y: 0 }}
       alignItems={"flex-start"}
     >
-     {/*  <VStack gap={0} h="full">
+      {/*  <VStack gap={0} h="full">
         <Center p={2} rounded={"full"} bg={"whiteAlpha.100"}>
           <Avatar.Root>
             <Avatar.Fallback name={item.role} />
@@ -110,7 +104,7 @@ export function WorkItem({
             _hover={{ bg: "bg.muted" }}
             transition={"background 0.3s ease"}
             cursor={"pointer"}
-            borderBottomWidth={"thin"}            
+            borderBottomWidth={"thin"}
             mb={3}
           >
             <Text fontWeight={"bold"} fontSize={"lg"} w="full">
@@ -118,7 +112,7 @@ export function WorkItem({
             </Text>
             <IconButton
               p={1}
-              h={"fit-content"}              
+              h={"fit-content"}
               aria-label="toggle"
               variant={"ghost"}
               onClick={handleToggle}
@@ -127,7 +121,14 @@ export function WorkItem({
               {show == true ? <ChevronUpIcon /> : <ChevronDownIcon />}
             </IconButton>
           </HStack>
-          <HStack px={4} flexWrap={"wrap"} mb={3} fontSize={"sm"} gap={[1, null, 3]}>
+          <HStack
+            color="fg.muted"
+            px={4}
+            flexWrap={"wrap"}
+            mb={3}
+            fontSize={"sm"}
+            gap={[1, null, 3]}
+          >
             <Text fontWeight={"semibold"}>{item.company}</Text>
             <Text hideBelow={"md"}>-</Text>
             <Text>{item.year}</Text>
@@ -175,7 +176,6 @@ export function WorkItem({
                 style={{
                   background: "transparent",
                   marginTop: "32px",
-                  color: "white",
                 }}
               />
             </Collapsible.Content>

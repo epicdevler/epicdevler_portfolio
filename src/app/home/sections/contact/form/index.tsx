@@ -1,8 +1,18 @@
 "use client";
 // import { MotionButton } from "@/app/components/motion";
 import { toaster } from "@/components/ui/toaster";
-import { Box, Button, Flex, Input, Text, Textarea } from "@chakra-ui/react";
-import { FormEvent, useState, useTransition } from "react";
+import {
+  Alert,
+  Box,
+  Button,
+  Flex,
+  Input,
+  Presence,
+  Text,
+  Textarea,
+  VStack,
+} from "@chakra-ui/react";
+import { FormEvent, SubmitEventHandler, useState, useTransition } from "react";
 
 const showToast = (
   status: "error" | "info" | "warning" | "success" | "loading" | undefined,
@@ -24,46 +34,20 @@ export default function ContactForm() {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [error, setError] = useState<string>();
 
-  function validateName(value: string): string | null {
-    let error = null;
-    if (!value) {
-      error = "Full Name is required";
+  const handleSubmit: SubmitEventHandler<HTMLDivElement> = async (e) => {
+    e.preventDefault();
+    setError(undefined);
+
+    if (!fullName) return setError("Enter your full name");
+    if (!email) return setError("Your email is required");
+    if (!message) return setError("Expecting your message");
+
+    if (!previewMsg) {
+      return setPreviewMsg(true);
     }
-    return error;
-  }
-
-  function validateEmail(value: string): string | null {
-    let error = null;
-    if (!value) {
-      error = "Email is required";
-    }
-    return error;
-  }
-
-  function validateMessage(value: string): string | null {
-    let error = null;
-    if (!value) {
-      error = "Message is required";
-    }
-    return error;
-  }
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     startTrans(() => {
-      e.preventDefault();
-
-      if (!fullName)
-        return showToast("error", "Invalid input", "Enter your fullname");
-      if (!email)
-        return showToast("error", "Invalid input", "Your email is required");
-      if (!message)
-        return showToast("error", "Invalid input", "Expecting your message");
-
-      if (!previewMsg) {
-        return setPreviewMsg(true);
-      }
-
       fetch("https://getform.io/f/amddzedb", {
         method: "POST",
         headers: {
@@ -94,83 +78,94 @@ export default function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Flex flexDirection={"column"}>
-        <Input
-          value={fullName}
-          focusRingColor={"brand"}
-          fontSize={14}
-          //   borderColor={"whiteAlpha.200"}
-          //   _placeholder={{ color: "whiteAlpha.800" }}
-          borderRadius={"lg"}
-          type="text"
-          placeholder={"Full Name"}
-          onChange={(e) => {
-            setFullName(e.target.value);
-          }}
-        />
-        <Input
-          value={email}
-          focusRingColor={"brand"}
-          fontSize={14}
-          //   borderColor={"whiteAlpha.200"}
-          //   _placeholder={{ color: "whiteAlpha.800" }}
-          rounded={"lg"}
-          type="email"
-          placeholder={"Email Address"}
-          my={5}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        />
-        <Textarea
-          value={message}
-          focusRingColor={"brand"}
-          fontSize={14}
-          //   borderColor={"whiteAlpha.200"}
-          //   _placeholder={{ color: "whiteAlpha.800" }}
-          rounded={"lg"}
-          placeholder={"Message"}
-          name="message"
-          id="message"
-          rows={5}
-          resize={"none"}
-          onChange={(e) => {
-            setMessage(e.target.value);
-          }}
-        />
+    <VStack as="form" onSubmit={handleSubmit} flexDirection={"column"}>
+      <Presence
+        w="full"
+        present={!!error}
+        animationName={{ _open: "scale-in", _closed: "scale-out" }}
+      >
+        <Alert.Root status={"error"}>
+          <Alert.Indicator />
+          <Alert.Content>{error}</Alert.Content>
+        </Alert.Root>
+      </Presence>
+      <Input
+        value={fullName}
+        focusRingColor={"brand"}
+        fontSize={14}
+        //   borderColor={"whiteAlpha.200"}
+        //   _placeholder={{ color: "whiteAlpha.800" }}
+        rounded={"none"}
+        type="text"
+        placeholder={"Full Name"}
+        onChange={e => {
+          setError(undefined);
+          setFullName(e.target.value);
+        }}
+      />
+      <Input
+        value={email}
+        focusRingColor={"brand"}
+        fontSize={14}
+        //   borderColor={"whiteAlpha.200"}
+        //   _placeholder={{ color: "whiteAlpha.800" }}
+        rounded={"none"}
+        type="email"
+        placeholder={"Email Address"}
+        my={5}
+        onChange={e => {
+          setError(undefined);
+          setEmail(e.target.value);
+        }}
+      />
+      <Textarea
+        value={message}
+        focusRingColor={"brand"}
+        fontSize={14}
+        //   borderColor={"whiteAlpha.200"}
+        //   _placeholder={{ color: "whiteAlpha.800" }}
+        rounded={"none"}
+        placeholder={"Message"}
+        name="message"
+        id="message"
+        rows={5}
+        resize={"none"}
+        onChange={(e) => {
+          setError(undefined);
+          setMessage(e.target.value);
+        }}
+      />
 
-        <Text hidden={!previewMsg} py={3}>
-          Hello, I&rsquo;m {fullName} and here is my email{" "}
-          <Text as={"span"} color={"brand"}>
-            {email}
-          </Text>
-          <br />
-          <br />
-          My Message:
-          <br />
-          {message}
+      <Text hidden={!previewMsg} py={3}>
+        Hello, I&rsquo;m {fullName} and here is my email{" "}
+        <Text as={"span"} color={"brand"}>
+          {email}
         </Text>
+        <br />
+        <br />
+        My Message:
+        <br />
+        {message}
+      </Text>
 
-        {/* <Box> */}
-          <Button
-            // whileTap={{ scale: 0.9 }}
-            loading={isSubmitting}
-            type="submit"
-            mt={10}
-            w="full"
-            bg={"brand"}
-            _hover={{}}
-            _active={{}}
-            color={"white"}
-            fontWeight={400}
-            fontSize={14}
-            rounded={"xl"}
-          >
-            {!previewMsg ? "Preview Message" : "Send"}
-          </Button>
-        {/* </Box> */}
-      </Flex>
-    </form>
+      {/* <Box> */}
+      <Button
+        // whileTap={{ scale: 0.9 }}
+        loading={isSubmitting}
+        type="submit"
+        mt={10}
+        w="full"
+        bg={"brand"}
+        _hover={{}}
+        _active={{}}
+        color={"white"}
+        fontWeight={400}
+        fontSize={14}
+        rounded={"none"}
+      >
+        {!previewMsg ? "Preview Message" : "Send"}
+      </Button>
+      {/* </Box> */}
+    </VStack>
   );
 }

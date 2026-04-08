@@ -1,4 +1,4 @@
-import "./globals.css";
+
 
 import { poppins } from "@/app/fonts";
 import { Provider } from "@/components/ui/provider";
@@ -72,9 +72,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={poppins.variable} style={{ overflowX: "hidden" }}>
-        <Provider defaultTheme="dark" storageKey="epd-theme" >
+    <html lang="en" data-scroll-behavior="smooth">
+      <body className={poppins.variable} style={{ overflowX: "hidden", scrollBehavior: "smooth" }}>
+        <Provider enableSystem={true} storageKey="epd-theme">
           {children}
           {/* <DotRing /> */}
           <Toaster />

@@ -98,7 +98,7 @@ export default function ContactForm() {
         rounded={"none"}
         type="text"
         placeholder={"Full Name"}
-        onChange={e => {
+        onChange={(e) => {
           setError(undefined);
           setFullName(e.target.value);
         }}
@@ -113,7 +113,7 @@ export default function ContactForm() {
         type="email"
         placeholder={"Email Address"}
         my={5}
-        onChange={e => {
+        onChange={(e) => {
           setError(undefined);
           setEmail(e.target.value);
         }}

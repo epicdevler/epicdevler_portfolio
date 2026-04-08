@@ -1,7 +1,6 @@
+import { Box, Button, Text } from "@chakra-ui/react";
 import Link from "next/link";
-import style from "./_nav_link.module.css";
-import { Box, Text } from "@chakra-ui/react";
-import { MouseEvent, MouseEventHandler } from "react";
+import { MouseEventHandler } from "react";
 
 export default function NavLink({
   label,
@@ -14,27 +13,35 @@ export default function NavLink({
   href: string;
   isActive?: boolean;
   isFirstChild?: boolean;
-  onClick?: undefined | MouseEventHandler<HTMLParagraphElement>;
+  onClick?: () => void;
 }) {
-  const isActiveState = isActive ? style.active : "";
   return (
     <Box
-      className={`${style.list} ${isActiveState}`}
-      borderColor={"white"}
-      borderRadius={"full"}
+      // className={` ${isActiveState}`}
+      display={"flex"}
+      flexDir={"column"}
+      rounded={"full"}
     >
-      <Text
+      <Button
         onClick={onClick}
         asChild
-        style={{ padding: ".9em", color: "white" }}
+        rounded={"none"}
+        textAlign={"center"}
+        variant={"ghost"}
+        _hover={{bg: "bg.emphasized"}}
+
       >
         <Link href={href}>{label}</Link>
-      </Text>
-      {
-        <Box
-          className={`${style.line}`} /* bg={isActive ? 'white' :"transparent"} */
-        ></Box>
-      }
+      </Button>
+      <Box
+        // className={`${style.line}`} /* bg={isActive ? 'white' :"transparent"} */
+        bg="brand"
+        width={isActive ? "1/12" : 0}
+        mx={"auto"}
+        h={1}
+        rounded={"full"}
+        transition={"width .2s ease-in-out"}
+      />
     </Box>
   );
 }

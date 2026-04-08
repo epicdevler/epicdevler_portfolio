@@ -33,6 +33,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-/src/app/context/
-/src/app/hooks/
-/src/app/components/DotRing/

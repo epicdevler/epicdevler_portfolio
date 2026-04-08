@@ -1,65 +1,82 @@
 export type Project = {
-    type: string,
-    title: string,
-    startDate: string,
-    endDate: string,
-    imgUrl: string,
-    alt: string,
-    descr: string,
-    githubUrl: string,
-    link?: string,
-}
+  imgUrl: string;
+  imgAlt: string;
+  tags: string[];
+  title: string;
+  descr?: string;
+  startDate?: string;
+  endDate?: string;
+  liveUrl?: string;
+  githubUrl?: string;
+};
 type Category = {
-    title: string,
-    refUrl: string | undefined
-}
+  title: string;
+  refUrl: string | undefined;
+};
 export type WorkExperience = {
-    role: string,
-    company: string,
-    year: string,
-    categories: Category[],
-    description: string
-  }
+  role: string;
+  company: string;
+  year: string;
+  categories: Category[];
+  description: string;
+};
 
 export type Technology = {
-    name: string,
-    imgUrl?: string | undefined,
-}
+  name: string;
+  imgUrl?: string | undefined;
+  core?: boolean;
+  type?: string;
+};
 
 type APP_DATA_TYPE = {
-    experience: WorkExperience[],
-    technologies: Technology[]
-}
+  experience: WorkExperience[];
+  technologies: Technology[];
+};
 
 export const APP_DATA: APP_DATA_TYPE = {
-    experience: [
+  experience: [
+    {
+      role: "Technical Intern",
+      company: "Cedars Productivity Center",
+      year: "2020 - 2023",
+      categories: [
         {
-            role: "Intern",
-            company: "Cedars Productivity Center",
-            year: "2020-2023",
-            categories: [
-                {
-                    title: "App",
-                    refUrl: undefined
-                },
-                {
-                    title: "Web Developer",
-                    refUrl: undefined
-                },
-                {
-                    title: "Programming Instructor",
-                    refUrl: undefined
-                },
-                {
-                    title: "IT System Support",
-                    refUrl: undefined
-                },
-            ],
-            description: 
-            `
+          title: "Font-End Development",
+          refUrl: undefined,
+        },
+        {
+          title: "Instructor",
+          refUrl: undefined,
+        },
+        {
+          title: "IT System Support",
+          refUrl: undefined,
+        },
+      ],
+      description: `
 #### **Summary:**  
-As an intern at Cedars Productivity Centre, I actively contributed to the development of Android applications and web-based solutions while also assisting in IT system support. Additionally, I served as an instructor, teaching the fundamentals of computing with a focus on HTML, CSS, JavaScript, and PowerPoint.  
+Built foundational engineering expertise while contributing to software projects, technical training programs, and IT infrastructure support. Operated in a hybrid role combining development execution, technical mentoring, and operational troubleshooting.
 
+**Core Contributions**
+
+* Developed web applications and supported UI improvements across internal projects.
+* Assisted in debugging, performance tuning, and interface refinement.
+* Delivered structured training sessions covering HTML, CSS, JavaScript, and presentation tools.
+* Mentored beginner developers through hands-on coding sessions.
+* Provided system support, network configuration assistance, and troubleshooting.
+
+**Business Value Delivered**
+
+* Accelerated learner onboarding into programming fundamentals.
+* Strengthened internal technical operations through proactive support.
+* Contributed to improved usability of internal tools and applications.
+
+**Technologies Used**
+
+HTML · CSS · JavaScript · Kotlin · Android Frameworks · System Diagnostics · Networking Basics
+
+
+<!--
 #### **Key Responsibilities:**  
 
 ##### **Android & Web Development:**  
@@ -84,37 +101,46 @@ As an intern at Cedars Productivity Centre, I actively contributed to the develo
 - **IT Support:** System troubleshooting, basic networking.  
 - **Teaching & Training:** Course structuring, practical demonstrations.  
 `,
+    },
+    {
+      role: "Software Developer",
+      company: "Freelance",
+      year: "2023 - Till Date",
+      categories: [
+        {
+          title: "Front-End Engineering",
+          refUrl: undefined,
         },
         {
-            role: "Android Developer",
-            company: "Freelance",
-            year: "2020-2023",
-            categories: [
-                {
-                    title: "Logistics",
-                    refUrl: undefined
-                },
-                {
-                    title: "Ride Hailing",
-                    refUrl: undefined
-                },
-                {
-                    title: "Staff Management",
-                    refUrl: undefined
-                },
-                {
-                    title: "Student Management",
-                    refUrl: undefined
-                },
-                {
-                    title: "Inventory Management",
-                    refUrl: undefined
-                },
-            ],
-            description: 
-            `
+          title: "Web Applications",
+          refUrl: undefined,
+        },
+        {
+          title: "Scalable Systems",
+          refUrl: undefined,
+        },
+        {
+          title: "Client Solutions",
+          refUrl: undefined,
+        },
+      ],
+      description: `
 #### **Summary:**  
-As a freelance Android Developer, I design and develop mobile applications tailored to various industries, including **logistics, ride-hailing, staff management, student management, and inventory management**. My expertise lies in building high-performance, scalable Android applications while ensuring seamless API integration and backend connectivity. While I am not a UI/UX designer, I collaborate with UI/UX professionals when required to implement user-friendly interfaces.  
+Delivered production-grade responsive web  solutions, translating business workflows into performant digital products. Specialized in front-end architecture, API-driven interfaces, and scalable UI systems that support real-time operations.	
+
+**Strategic Contributions**
+
+* Engineered responsive web applications using modern frameworks and modular architecture patterns.
+* Built data-driven interfaces for logistics, ride-hailing, inventory, education, and workforce systems.
+* Implemented robust API integrations.
+* Designed scalable component structures optimized for maintainability and performance.
+* Deployed live platforms using cloud hosting and CI-based workflows.
+
+
+**Technology Stack**
+
+React · Next.js · TypeScript · REST APIs · Supabase · Firebase · Zustand · TanStack Query · Git · Cloud Deployments
+<!--
 
 #### **Key Responsibilities:**  
 
@@ -138,8 +164,8 @@ As a freelance Android Developer, I design and develop mobile applications tailo
 
 ##### **4. Collaboration & Project Management**  
 - Worked closely with clients to understand business needs and translate them into functional applications.  
-- When UI/UX designs were not provided, collaborated with UI/UX designers to ensure intuitive user interfaces.  
-- Utilized **Git** for version control and collaborated with teams through **GitHub/GitLab**.  
+- Collaborated with UI/UX designers to ensure intuitive user interfaces.  
+- Utilized **Git** for version control and collaborated with teams through **GitHub**.  
 
 ##### **5. Performance Optimization & Testing**  
 - Conducted unit and integration testing to ensure app stability and performance.  
@@ -147,151 +173,80 @@ As a freelance Android Developer, I design and develop mobile applications tailo
 - Published and maintained applications on the **Google Play Store**.  
 
 #### **Skills & Technologies Used:**  
-- **Languages:** Kotlin, Java  
-- **Frameworks & Tools:** Jetpack Compose, ViewModel, LiveData, Coroutines, Room Database  
-- **Backend & API Integration:** Retrofit, Firebase, GraphQL  
-- **Architecture:** MVVM, Clean Architecture  
+- **Languages:** Kotlin, TypeScript  
+- **Frameworks & Tools:** Jetpack Compose, React.js, ViewModel, Axios, Zustand, LiveData, Coroutines, TanStackQuery, Room Database  
+- **Backend & API Integration:** Retrofit,, GraphQL, RESTful APIs  
+- **Cloud Services:** Firebase, AWS, MongoDB
+- **Architecture:** MVVM, Clean Architecture, Repository Pattern
 - **Testing & Optimization:** JUnit, Espresso, LeakCanary  
-- **Version Control:** Git, GitHub, GitLab  
+- **Version Control:** Git, GitHub,  
 
 #### **Key Achievements:**  
-- Delivered multiple Android applications across different industries, improving efficiency in logistics, inventory, and staff management.  
+- Delivered multiple Android and Web applications across different industries, improving efficiency in logistics, inventory, and staff management.  
 - Enhanced ride-hailing platforms with optimized **driver-rider matching algorithms**.  
 - Successfully built offline-first applications to ensure seamless operation in low-connectivity environments.  
-
+-->
             `,
-        },
-        {
-            role: "Front End Developer",
-            company: "Freelance",
-            year: "2020-2023",
-            categories: [
-                {
-                    title: "City Directory",
-                    refUrl: undefined
-                },
-                {
-                    title: "Business Websites",
-                    refUrl: undefined
-                }
-            ],
-            description: 
-            `
-#### **Summary:**  
-As a freelance Front-End Developer, I specialize in building **responsive, scalable, and interactive** web applications, including **city directories and business websites (single and multi-page)**. I leverage modern web technologies such as **React.js, Next.js, and Chakra UI** to create seamless user experiences with optimized performance and accessibility.  
+    },
+  ],
+  technologies: [
+    {
+      name: "Python",
+    },
+    
+    {
+      name: "Next.Js",
+      core: true,
+      type: "Front End",
+    },
+    {
+      name: "GitHub",
+      core: true,
+      type: "Version Control",
+    },
+    {
+      name: "Kotlin",
+      core: true,
+      type: "Mobile",
+    },
+    {
+      name: "Figma",
+      type: "Design",
+    },
+    {
+      name: "Git",
+      type: "Version Control",
+    },
+    {
+      name: "Ktor",
+      type: "RESTfull API",
+    },
+    {
+      name: "Firebase",
+      type: "DaaS",
+    },
+    {
+      name: "MongoDB",
+      type: "DaaS",
+    },
+    {
+      name: "FastAPI",
+      type: "RESTfull API",
+    },
+    {
+      name: "React",
+      core: true,
+      type: "Front End",
+    },
 
-#### **Key Responsibilities:**  
-
-##### **1. Front-End Web Development**  
-- Built responsive and interactive **city directories** and **business websites** using **React.js and Next.js**.  
-- Used **Chakra UI**, **Tailwind CSS**, and **SCSS** for fast, consistent, and visually appealing designs.  
-- Ensured **cross-browser compatibility and mobile responsiveness** for a smooth user experience.  
-
-##### **2. City Directory Development**  
-- Developed **city directory web applications** with real-time search, filtering, and business listing functionalities.  
-- Integrated **Google Maps API** for location-based services.  
-- Optimized **large datasets** to ensure fast performance and seamless user interactions.  
-
-##### **3. Business Website Development**  
-- Built **single-page and multi-page** business websites tailored to client needs.  
-- Integrated **CMS solutions** (WordPress, Strapi, Sanity) for easy content management.  
-- Implemented **SEO best practices** to improve website visibility on search engines.  
-
-##### **4. API & Backend Integration**  
-- Connected front-end applications with **RESTful APIs** and **GraphQL** for dynamic data retrieval.  
-- Integrated **Firebase and Supabase** for authentication, real-time databases, and cloud storage.  
-- Utilized **Next.js API routes** and **server-side rendering (SSR)** for improved performance.  
-
-##### **5. Performance Optimization & Testing**  
-- Optimized applications using **Core Web Vitals** to ensure high performance.  
-- Conducted testing with **Jest, React Testing Library, and Cypress** for stability and reliability.  
-- Debugged and enhanced website speed and UX by implementing **lazy loading, code splitting, and caching**.  
-
-##### **6. Collaboration & Project Management**  
-- Worked closely with **clients** to understand their business goals and deliver tailored solutions.  
-- When UI/UX designs were not provided, collaborated with **UI/UX designers** to ensure user-friendly interfaces.  
-- Managed projects using **Git, GitHub, and project tracking tools** (Trello, Jira).  
-
-#### **Skills & Technologies Used:**  
-- **Languages & Frameworks:** JavaScript, TypeScript, React.js, Next.js  
-- **UI Libraries & Styling:** Chakra UI, Tailwind CSS, Bootstrap, SCSS  
-- **State Management:** Redux, React Context API  
-- **Backend & APIs:** Firebase, Supabase, Node.js, GraphQL, RESTful APIs  
-- **Performance & Testing:** Core Web Vitals, Jest, Cypress, React Testing Library  
-- **Version Control & Deployment:** Git, GitHub, Vercel, Netlify  
-
-#### **Key Achievements:**  
-- Developed **high-performance city directories**, improving local business discovery.  
-- Designed and launched multiple **responsive business websites**, increasing online engagement.  
-- Implemented **SEO-friendly, fast-loading applications** using Next.js and Chakra UI.  
-
-            `,
-        },
-    ],
-    technologies: [
-        {
-            name: "Python",
-            imgUrl: "",
-        },
-        {
-            name: "Kotlin",
-            imgUrl: "",
-        },
-        {
-            name: "React",
-            imgUrl: "",
-        },
-        {
-            name: "Next.Js",
-            imgUrl: "",
-        },
-        {
-            name: "GitHub",
-            imgUrl: "",
-        },
-        {
-            name: "Figma",
-            imgUrl: "",
-        },
-        {
-            name: "Git",
-            imgUrl: "",
-        },
-        {
-            name: "Ktor",
-            imgUrl: "",
-        },
-        {
-            name: "Firebase",
-            imgUrl: "",
-        },
-        {
-            name: "MongoDB",
-            imgUrl: "",
-        },
-        {
-            name: "FastAPI",
-            imgUrl: "",
-        },
-        {
-            name: "React",
-            imgUrl: "",
-        },
-        {
-            name: "HTML",
-            imgUrl: "",
-        },
-        {
-            name: "CSS",
-            imgUrl: "",
-        },
-        {
-            name: "Gradle",
-            imgUrl: "",
-        },
-        {
-            name: "TypeScript",
-            imgUrl: "",
-        },
-    ]
-}
+    // {
+    //   name: "Gradle",
+    //   imgUrl: "",
+    //   type: "B"
+    // },
+    {
+      name: "TypeScript",
+      core: true,
+    },
+  ],
+};

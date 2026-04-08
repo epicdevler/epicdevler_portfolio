@@ -1,38 +1,36 @@
-import { IconButton } from "@chakra-ui/react";
+import { IconButton, IconButtonProps } from "@chakra-ui/react";
 import Link from "next/link";
 import { ComponentType, SVGProps } from "react";
 
 export default function SocialIcon({
   href,
-  iconUrl,
+  icon: iconUrl,
   alt = "",
-  showBorder = false,
-  hoverBg = "whiteAlpha.700",
-  hoverContentColor = "black",
+  ...rest
 }: {
-  href: string;
-  iconUrl: ComponentType<SVGProps<SVGSVGElement>>;
+  href?: string;
+  icon: ComponentType<SVGProps<SVGSVGElement>>;
   alt?: string;
-  showBorder?: boolean;
-  hoverBg?: string;
-  hoverContentColor?: string;
-}) {
+} & Omit<IconButtonProps, "children">) {
   const IconUrl = iconUrl;
   return (
     <IconButton
-      bg={"transparent"}
-      borderWidth={showBorder ? 1 : 0}
-      borderColor={"whiteAlpha.400"}
-      color={"white"}
-      padding={"4"}
-      rounded="full"
+      variant={"ghost"}
+      // borderColor={"whiteAlpha.400"}
+      // color={"white"}
+      rounded={"none"}
       aria-label={alt}
-      _hover={{ bg: hoverBg, color: hoverContentColor }}
-      asChild
+      _hover={{ bg: "bg.emphasized" }}
+      asChild={!!href}
+      {...rest}
     >
-      <Link href={href} target={"_blank"}>
-        {IconUrl && <IconUrl />}
-      </Link>
+      {href ? (
+        <Link href={href} target={"_blank"}>
+          {IconUrl && <IconUrl />}
+        </Link>
+      ) : (
+        IconUrl && <IconUrl />
+      )}
     </IconButton>
   );
 }

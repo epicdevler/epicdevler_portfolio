@@ -1,4 +1,4 @@
-import { Center, Spinner, Text } from "@chakra-ui/react";
+import { Center, Span, Spinner, Text } from "@chakra-ui/react";
 import { leckerliOne } from "./fonts";
 
 export default function Loading() {
@@ -8,16 +8,15 @@ export default function Loading() {
       textAlign={"center"}
       flexDir={"column"}
       gap={"3"}
-      h={"100vh"}
-      color={"white"}
-      bg={"black"}
+      h={"dvh"}
+      bg={"bg.muted"}
     >
       <Spinner />
       <Text fontSize={"larger"}>
-        Nwadike Philip
-        <Text as={"span"} className={leckerliOne.className}>          
+        Nwadike Philip{" "}
+        <Span as={"span"} className={leckerliOne.className}>
           (epicdevler)
-        </Text>
+        </Span>
       </Text>
     </Center>
   );

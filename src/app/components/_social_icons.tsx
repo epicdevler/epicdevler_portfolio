@@ -20,7 +20,7 @@ export default function SocialIcon({
       // color={"white"}
       rounded={"none"}
       aria-label={alt}
-      _hover={{ bg: "bg.muted/20" }}
+      _hover={{bg: "bg.emphasized"}}
       asChild
       {...rest}
     >

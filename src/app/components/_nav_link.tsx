@@ -28,13 +28,14 @@ export default function NavLink({
         rounded={"none"}
         textAlign={"center"}
         variant={"ghost"}
+        _hover={{bg: "bg.emphasized"}}
 
       >
         <Link href={href}>{label}</Link>
       </Button>
       <Box
         // className={`${style.line}`} /* bg={isActive ? 'white' :"transparent"} */
-        bg="white"
+        bg="brand"
         width={isActive ? "1/12" : 0}
         mx={"auto"}
         h={1}

@@ -9,7 +9,7 @@ import WorkSection from "./sections/work";
 import { APP_DATA } from "@/data/data/appData";
 
 const appData = APP_DATA;
-export default function Home() {
+export default function HomePageContent() {
   return (
     <>
       <Box w="100%" overflowX={"hidden"}>

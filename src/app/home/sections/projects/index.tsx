@@ -74,7 +74,7 @@ const _projects: Project[] = [
 const ProjectsSection = () => {
   return (
     <Box id="projects" as={"section"} className="section observe_view">
-      <Container as={"section"} py={200}>
+      <Container as={"section"} py={[100, null, 200]}>
         <Box /* initial={{ y: 100 }} whileInView={{ y: 0 }} */>
           <SectionTitle
             labelInFrontColor={"brand"}
@@ -120,9 +120,9 @@ const ProjectCard = ({
 }) => {
   return (
     <GridItem
-    // initial={{ x: index % 2 == 0 ? -100 : 100 }}
-    // viewport={{ once: true, amount: "some" }}
-    // whileInView={{ x: 0 }}
+      // initial={{ x: index % 2 == 0 ? -100 : 100 }}
+      // viewport={{ once: true, amount: "some" }}
+      // whileInView={{ x: 0 }}
       role="group"
       h="full"
     >
@@ -168,7 +168,7 @@ const ProjectCard = ({
             </Text>
           )}
         </Card.Body>
-        <Card.Footer p={4}>
+        <Card.Footer justifyContent={"end"} px={2} pt={0} pb={2}>
           {project.githubUrl && (
             <IconButton
               bg={"transparent"}

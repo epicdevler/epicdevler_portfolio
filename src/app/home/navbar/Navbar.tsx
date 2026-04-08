@@ -143,7 +143,7 @@ export default function Navbar() {
             <IconButton
               variant={"ghost"}
               rounded={"none"}
-              _hover={{ bg: "bg.muted/20" }}
+              _hover={{bg: "bg.emphasized"}}
               // color="white"
               onClick={handleNavToggle}
               aria-label={"toggle icon"}

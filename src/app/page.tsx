@@ -1,10 +1,5 @@
-import dynamic from "next/dynamic";
-import Loading from "./loading";
-
-const Page = dynamic(() => import("./home"), {  
-  loading: () => <Loading />,
-});
+import HomePageContent from "./home";
 
 export default function Home() {
-  return <Page />;
+  return <HomePageContent />;
 }

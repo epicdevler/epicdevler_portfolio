@@ -1,6 +1,15 @@
 import SectionTitle from "@/app/components/_section_title";
 import Container from "@/app/components/container";
-import { Badge, Box, Center, Float, GridItem, HStack, SimpleGrid, Text } from "@chakra-ui/react";
+import {
+  Badge,
+  Box,
+  Center,
+  Float,
+  GridItem,
+  HStack,
+  SimpleGrid,
+  Text,
+} from "@chakra-ui/react";
 import Image from "next/image";
 
 // import {
@@ -19,7 +28,7 @@ export default function TechnologiesSection({
 }) {
   return (
     <Box
-      id="stacks"
+      id="myStacks"
       as={"section"}
       // color={"white"}
       h="full"
@@ -27,14 +36,14 @@ export default function TechnologiesSection({
       className="section observe_view fade-up"
     >
       <Container py={100}>
-        <Box id="myStacks">
+        <Box>
           <Box
-            // initial={{
-            //   x: -100,
-            // }}
-            // whileInView={{
-            //   x: 0,
-            // }}
+          // initial={{
+          //   x: -100,
+          // }}
+          // whileInView={{
+          //   x: 0,
+          // }}
           >
             <SectionTitle labelInFront={"Stacks"} labelBehind={"Tech"} />
           </Box>
@@ -83,7 +92,11 @@ export default function TechnologiesSection({
                           alt={tech.name}
                         />
                         <Text>{tech.name}</Text>
-                        {tech.core && <Float offsetX={5}><Badge>Major</Badge></Float>}
+                        {tech.core && (
+                          <Float offsetX={5}>
+                            <Badge>Major</Badge>
+                          </Float>
+                        )}
                       </HStack>
                     </GridItem>
                   );

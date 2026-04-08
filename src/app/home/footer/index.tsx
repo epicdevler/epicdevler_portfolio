@@ -38,19 +38,16 @@ export default function Footer() {
       bg={"bg.muted"}
       borderTopWidth={"thin"}
     >
-      <Container maxW={"container.lg"} px={100} >
+      <Container maxW={"container.lg"} px={[4, null, 100]}>
         <SimpleGrid
-          hideBelow={"md"}
-          columns={3}
+          // hideBelow={"md"}
+          columns={[2, null, 3]}
           alignItems={"center"}
           justifyContent={"space-between"}
+          gap={4}
         >
           <GridItem>
-            <Text
-              fontWeight={400}
-              fontSize={14}
-              textAlign={{ md: "center", lg: "left" }}
-            >
+            <Text fontWeight={400} textAlign={["center", null, "left"]}>
               © 2023-
               <CurrentYear />
               <Text as={"span"} ms={1} className={leckerliOne.className}>
@@ -58,12 +55,12 @@ export default function Footer() {
               </Text>
             </Text>
           </GridItem>
-          <GridItem textAlign={"center"}>
-            <Text fontWeight={500} fontSize={14} textAlign={"center"}>
+          <GridItem textAlign={["right", null, "center"]}>
+            <Text fontWeight={500} fontSize={14}>
               Made with ❤️
             </Text>
           </GridItem>
-          <GridItem display={"flex"} justifyContent={"end"}>
+          <GridItem display={"flex"} justifyContent={["center", null, "end"]}>
             <HStack>
               {socialItems.map((item, index) => {
                 return (
@@ -76,43 +73,6 @@ export default function Footer() {
                 );
               })}
             </HStack>
-          </GridItem>
-        </SimpleGrid>
-
-        <SimpleGrid
-          hideFrom={"md"}
-          columns={1}
-          alignItems={"center"}
-          justifyContent={"center"}
-        >
-          <GridItem textAlign={"center"}>
-            <Text fontWeight={500} fontSize={14} textAlign={"center"}>
-              Made with ❤️
-            </Text>
-          </GridItem>
-          <GridItem display={"flex"} justifyContent={"center"} my={6}>
-            <HStack>
-              {socialItems.map((item, index) => {
-                return (
-                  <SocialIcon
-                    key={index}
-                    href={item.url}
-                    color={"white"}
-                    icon={item.imgUrl}
-                    alt={item.imgAlt}
-                  />
-                );
-              })}
-            </HStack>
-          </GridItem>
-          <GridItem>
-            <Text fontWeight={400} fontSize={14} textAlign={"center"}>
-              © 2023-
-              <CurrentYear />
-              <Text as={"span"} ms={1} className={leckerliOne.className}>
-                aminnali
-              </Text>
-            </Text>
           </GridItem>
         </SimpleGrid>
       </Container>

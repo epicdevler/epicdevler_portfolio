@@ -4,6 +4,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
+
+
 export const metadata: Metadata = {
   title: "Nwadike Philip | epicdevler",
   description: "Nwadike Phiip's Portfolio",
@@ -69,10 +71,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-scroll-behavior="smooth">
+    <html lang="en" data-scroll-behavior="smooth" style={{scrollBehavior: "smooth"}}>
       <body
         className={poppins.variable}
-        style={{ overflowX: "hidden", scrollBehavior: "smooth" }}
+        style={{ overflowX: "hidden" }}
       >
         <Provider enableSystem={true} storageKey="epd-theme">
           {children}

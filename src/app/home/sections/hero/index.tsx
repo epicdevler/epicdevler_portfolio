@@ -19,24 +19,24 @@ export default function HeroSection() {
       as="header"
       className={`section observe_view `}
       id={"home"}
-      borderBottomWidth={"thick"}
-      minH={"dvh"}
+      // borderBottomWidth={"thick"}
+      // minH={"dvh"}
       bg="bg.muted"
     >
       <Container
         h="full"
-        pb={100}
-        pt={200}
+        py={[240]}
+        minH={["dvh", null, "auto"]}
         textAlign={"center"}
         // color={"white"}
         as={Center}
         flexDir={"column"}
       >
         <Box
-          // initial={{ scale: 0.8 }}
-          // animate={{ scale: 1 }}
-          // transition={{ duration: 0.6, delay: 0 }}
-          // viewport={{ once: true }}
+        // initial={{ scale: 0.8 }}
+        // animate={{ scale: 1 }}
+        // transition={{ duration: 0.6, delay: 0 }}
+        // viewport={{ once: true }}
         >
           <Group w="full" justifyContent={"center"} hidden>
             <Badge size="lg" rounded="full">
@@ -51,25 +51,25 @@ export default function HeroSection() {
             // color="white"
             as={"h1"}
             fontWeight={"black"}
-            size={["4xl", "6xl"]}
-            className="fade-down"
+            size={["5xl", "7xl"]}
             maxW={"4xl"}
+            data-aos="fade-up"
           >
-            Developing Modern Web and Mobile Apps That Work
+            Developing Modern Web {/* and Mobile */} Apps That Work
             {/* Apps that improve lives */}
           </Heading>
         </Box>
 
         <Box
-          // initial={{
-          //   y: 100,
-          //   opacity: 0,
-          // }}
-          // animate={{
-          //   y: 0,
-          //   opacity: 1,
-          // }}
-          // viewport={{ once: true }}
+        // initial={{
+        //   y: 100,
+        //   opacity: 0,
+        // }}
+        // animate={{
+        //   y: 0,
+        //   opacity: 1,
+        // }}
+        // viewport={{ once: true }}
         >
           <VStack className="fade-up">
             <Text mt={7} maxW={{ base: "full", md: "sm" }} fontSize={"lg"}>
@@ -88,7 +88,7 @@ export default function HeroSection() {
                 asChild
                 // whileTap={{ scale: 0.9 }}
               >
-                <Link href={"#myStacks"}> Tools?</Link>
+                <Link href={"/#myStacks"}> Tools?</Link>
               </Text>
             </HStack>
           </VStack>

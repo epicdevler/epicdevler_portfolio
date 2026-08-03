@@ -1,6 +1,13 @@
 import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react";
 
 const config = defineConfig({
+  cssVarsPrefix: "pui",
+  globalCss: {
+    "::selection": {
+      bg: "primary",
+      color: "white",
+    },
+  },
   theme: {
     tokens: {
       colors: {

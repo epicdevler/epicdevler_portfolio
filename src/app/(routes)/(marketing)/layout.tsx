@@ -1,6 +1,6 @@
 import AppProvider from "@/app/providers/app-provider";
 import Footer from "@/components/footer/footer";
-import { geistMono, geistSans } from "@/components/theme/fonts";
+import { geistMono, geistSans } from "@/app/theme/fonts";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

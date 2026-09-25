@@ -1,10 +1,19 @@
 import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react";
+import { genPalette } from "./them-util";
+
+const palette = {
+  primary: "primary",
+  secondary: "secondary",
+  tertiary: "tertiary",
+  // accent: "lime",
+  // neutral: "cream",
+} as const;
 
 const config = defineConfig({
   cssVarsPrefix: "pui",
   globalCss: {
     "::selection": {
-      bg: "primary",
+      bg: "orange",
       color: "white",
     },
   },
@@ -104,9 +113,17 @@ const config = defineConfig({
           900: { value: "{colors.primary.900}" },
           950: { value: "{colors.primary.950}" },
         },
+        ...Object.fromEntries(
+          Object.entries(palette).map(([name, color]) => [
+            name,
+            genPalette(color),
+          ]),
+        ),
       },
     },
   },
 });
 
-export const SystemTheme = createSystem(defaultConfig, config);
+const SystemTheme = createSystem(defaultConfig, config);
+
+export default SystemTheme

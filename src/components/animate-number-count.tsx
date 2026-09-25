@@ -1,20 +1,18 @@
 import { FormatNumber } from "@chakra-ui/react";
-import { useMotionValue, useInView, animate } from "motion/react";
+import { animate, useInView, useMotionValue } from "motion/react";
 
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 
 type Props = {
-  ref: React.RefObject<any>;
+  ref: React.RefObject<Element | null>;
   targetCount: number;
 };
-
-type Returns = ReturnType<typeof useAnimateNumberCount>;
 
 /**
  *
  * @param  props - ref: The target element that triggers animation when in view
  * - targetCount: the final count
- * @returns {Return}
+ * @returns {ReturnType<typeof useAnimateNumberCount>}
  */
 export function useAnimateNumberCount(props: Props): { count: number } {
   const { ref, targetCount } = props;
@@ -39,7 +37,7 @@ export function useAnimateNumberCount(props: Props): { count: number } {
       unsubscribe();
       s.stop();
     };
-  }, [inView]);
+  }, [inView, targetCount, value]);
 
   return { count };
 }

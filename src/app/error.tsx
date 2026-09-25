@@ -2,8 +2,8 @@
 import NavigationBar from "@/components/navbar/navbar";
 import { ThemeProvider } from "@/components/provider";
 import { Button, Center, Container, Heading, Text } from "@chakra-ui/react";
-import { usePathname } from "next/navigation";
 import { useEffect } from "react";
+import SystemTheme from "./theme/theme";
 
 export default function ErrorPage({
   error,
@@ -16,9 +16,9 @@ export default function ErrorPage({
     // Log the error to an error reporting service
     console.error(error);
   }, [error]);
-  const slug = usePathname();
+  // const slug = usePathname();
   return (
-    <ThemeProvider>
+    <ThemeProvider systemTheme={SystemTheme}>
       <Container>
       <NavigationBar pos="relative" />
 

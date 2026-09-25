@@ -3,11 +3,12 @@ import NavigationBar from "@/components/navbar/navbar";
 import { ThemeProvider } from "@/components/provider";
 import { Center, Container, Heading, Text } from "@chakra-ui/react";
 import { usePathname } from "next/navigation";
+import SystemTheme from "./theme/theme";
 
 export default function NotFoundPage() {
   const slug = usePathname();
   return (
-    <ThemeProvider>
+    <ThemeProvider systemTheme={SystemTheme} >
       <Container>
       <NavigationBar pos="relative" />
 

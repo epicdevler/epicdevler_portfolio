@@ -1,4 +1,4 @@
-import { Abyssinica_SIL, Afacad, Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 
 export const geistSans = Geist({
   variable: "--font-geist-sans",

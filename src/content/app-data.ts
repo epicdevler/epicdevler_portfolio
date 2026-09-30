@@ -124,7 +124,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     summary:
       "Building and maintaining frontend systems, product interfaces and company web experiences.",
     highlights: [],
-    technologies: ["React", "Next.js", "TypeScript"],
+    technologies: ["React", "Next.js", "TypeScript", 'TanStack'],
   },
   {
     slug: "freelance",

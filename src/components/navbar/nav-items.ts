@@ -19,8 +19,24 @@ export const NAV_ITEMS: readonly NavItem[] = [
   { label: "Contact", sectionId: SECTION_IDS.contact, href: "/#contact" },
 ];
 
+/**
+ * Links shown inline on desktop. Contact is reached through the CTA pill,
+ * so it is omitted here (matches the design).
+ */
+export const DESKTOP_NAV_ITEMS: readonly NavItem[] = NAV_ITEMS.filter(
+  (item) => item.sectionId !== SECTION_IDS.contact,
+);
+
+/** Section ids observed for the active-link state. */
+export const NAV_SECTION_IDS: readonly SectionId[] = NAV_ITEMS.map(
+  (item) => item.sectionId,
+);
+
 /** Primary CTA shown at the end of the nav. */
 export const NAV_CTA = {
   label: "Let's build something",
   href: "/#contact",
 } as const;
+
+/** Target of the "Skip to content" link (the `<main>` landmark). */
+export const MAIN_CONTENT_ID = "main";

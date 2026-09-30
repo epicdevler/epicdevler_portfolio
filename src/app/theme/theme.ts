@@ -56,6 +56,28 @@ const config = defineConfig({
   },
 });
 
-const SystemTheme = createSystem(defaultConfig, config);
+/**
+ * Chakra ships `bg.inverted`, `fg.inverted` and `border.inverted` as leaf
+ * tokens. Deep-merging our nested `inverted.{DEFAULT,subtle,…}` groups onto a
+ * leaf keeps its `value` and silently drops every child token, so remove the
+ * defaults before merging.
+ */
+const withoutInvertedLeaves = (() => {
+  const colors = { ...defaultConfig.theme?.semanticTokens?.colors };
+  for (const group of ["bg", "fg", "border"] as const) {
+    const rest = { ...(colors[group] as Record<string, unknown>) };
+    delete rest.inverted;
+    colors[group] = rest as (typeof colors)[typeof group];
+  }
+  return {
+    ...defaultConfig,
+    theme: {
+      ...defaultConfig.theme,
+      semanticTokens: { ...defaultConfig.theme?.semanticTokens, colors },
+    },
+  };
+})();
+
+const SystemTheme = createSystem(withoutInvertedLeaves, config);
 
 export default SystemTheme;

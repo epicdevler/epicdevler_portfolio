@@ -29,9 +29,15 @@ export const PROJECTS: Project[] = [
     kind: "client",
     featured: true,
     image: {
-      src: "/projects/errandking.com.preview.webp",
-      alt: "ErrandKing Logistics website preview",
+      src: "/projects/errandking-desktop.webp",
+      alt: "ErrandKing homepage: pickup and delivery, made simple",
     },
+    gallery: [
+      {
+        src: "/projects/errandking-mobile.webp",
+        alt: "ErrandKing homepage on mobile",
+      },
+    ],
     placeholder: "ErrandKing — dashboard screenshot",
     liveUrl: "https://errandking.com",
   },

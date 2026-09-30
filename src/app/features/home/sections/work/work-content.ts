@@ -8,29 +8,38 @@ export const WORK_HEADER = {
   lead: "A selection of products, platforms and digital experiences I've helped shape and build.",
 } as const;
 
-/** Browser-bar URL pill on the featured panel. */
-export const FEATURED_URL_LABEL = "errandking / dashboard";
+/**
+ * Placeholder captions for mobile projects without screenshots yet.
+ * TODO(content): KeepUp has no screenshots — replace with a `gallery`.
+ */
+export const PHONE_PLACEHOLDERS: Record<string, readonly string[]> = {
+  keepup: ["KeepUp — feed", "KeepUp — class channel", "KeepUp — schedule"],
+};
 
-// TODO(content): KeepUp has no screenshots yet — these captions label the placeholders.
-export const KEEPUP_SCREENS = [
-  "KeepUp — feed",
-  "KeepUp — class channel",
-  "KeepUp — schedule",
-] as const;
+/** Featured articles, in display order. */
+const FEATURED_SLUGS = ["errandking", "keepup", "wastevest"] as const;
 
-const bySlug = (slug: string): Project | undefined =>
-  PROJECTS.find((p) => p.slug === slug);
+export const FEATURED_PROJECTS: Project[] = FEATURED_SLUGS.map((slug) =>
+  PROJECTS.find((p) => p.slug === slug),
+).filter((p): p is Project => Boolean(p));
 
-/** The three highlighted articles, in design order. */
-export const WORK_PROJECTS = {
-  featured: bySlug("errandking"),
-  phones: bySlug("keepup"),
-  split: bySlug("wastevest"),
-} as const;
-
-const HIGHLIGHTED = new Set(["errandking", "keepup", "wastevest"]);
+const FEATURED = new Set<string>(FEATURED_SLUGS);
 
 /** Everything else in app-data → compact "More work" list. */
 export const MORE_PROJECTS: Project[] = PROJECTS.filter(
-  (p) => !HIGHLIGHTED.has(p.slug),
+  (p) => !FEATURED.has(p.slug),
 );
+
+/** Browser-bar URL pill, e.g. "errandking.com". */
+export const urlLabel = (project: Project): string => {
+  if (!project.liveUrl) return project.slug;
+  try {
+    return new URL(project.liveUrl).host.replace(/^www\./, "");
+  } catch {
+    return project.slug;
+  }
+};
+
+/** Whether a project has long-form copy for the details dialog. */
+export const hasDetails = (project: Project): boolean =>
+  Boolean(project.contribution?.length || project.story);

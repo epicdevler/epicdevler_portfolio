@@ -1,5 +1,6 @@
 import { Box, Flex, Text, type BoxProps } from "@chakra-ui/react";
 import { Chip } from "@/components/ui/Chip";
+import { InterfaceWireframe } from "./InterfaceWireframe";
 
 /*
  * Decorative mini mock-ups for the hero "product map" canvas.
@@ -73,58 +74,9 @@ export function ProductCard() {
   );
 }
 
-const interfaceRows = [
-  { label: "Pickup · Ikeja", status: "Active" },
-  { label: "Delivery · Yaba", status: "Queued" },
-  { label: "Errand · Lekki", status: "Queued" },
-] as const;
-
+/** Animated wireframe: mobile sketch that re-flows into a desktop layout. */
 export function InterfaceCard() {
-  return (
-    <Flex
-      direction="column"
-      gap="6px"
-      bg="bg.canvas"
-      color="fg"
-      borderRadius="inset"
-      p="10px"
-      fontSize="11.5px"
-    >
-      <Flex
-        justify="space-between"
-        align="center"
-        pb="6px"
-        borderBottomWidth="1px"
-        borderColor="border.subtle"
-      >
-        <Box as="span" fontWeight="600">
-          Requests
-        </Box>
-        <Box
-          as="span"
-          bg="bg.solid"
-          color="fg.inverted.strong"
-          borderRadius="pill"
-          px="8px"
-          py="2px"
-          fontSize="10px"
-        >
-          + New
-        </Box>
-      </Flex>
-      {interfaceRows.map((row) => (
-        <Flex key={row.label} justify="space-between" align="center" gap="8px">
-          <Box as="span">{row.label}</Box>
-          <Chip
-            variant="status"
-            tone={row.status === "Active" ? "accent" : "neutral"}
-          >
-            {row.status}
-          </Chip>
-        </Flex>
-      ))}
-    </Flex>
-  );
+  return <InterfaceWireframe />;
 }
 
 function FlowLine() {

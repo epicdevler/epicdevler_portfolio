@@ -16,7 +16,7 @@ import style from "./_navbar.module.css";
 
 import Container from "@/app/components/container";
 import { leckerliOne } from "@/app/fonts";
-import { ColorModeButton } from "@/components/ui/color-mode";
+import { ColorModeButton } from "@/components/color-mode";
 import {
   GithubIcon,
   LinkedinIcon,

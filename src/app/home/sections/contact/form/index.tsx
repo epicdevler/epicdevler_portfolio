@@ -1,6 +1,6 @@
 "use client";
 // import { MotionButton } from "@/app/components/motion";
-import { toaster } from "@/components/ui/toaster";
+import { toaster } from "@/components/toaster";
 import {
   Alert,
   Box,

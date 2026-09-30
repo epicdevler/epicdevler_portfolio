@@ -1,14 +1,14 @@
-import { poppins } from "@/app/fonts";
-import { Provider } from "@/components/ui/provider";
-import { Toaster } from "@/components/ui/toaster";
+import AppProvider from "@/app/providers/app-provider";
+import Footer from "@/components/footer/footer";
+import { Toaster } from "@/components/toaster";
+import { geistMono, geistSans } from "@/app/theme/fonts";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 
-
 export const metadata: Metadata = {
   title: "Nwadike Philip | epicdevler",
-  description: "Nwadike Phiip's Portfolio",
+  description: "Nwadike Philip's Portfolio",
   keywords: [
     "Nwadike Philip",
     "epicdevler",
@@ -22,23 +22,9 @@ export const metadata: Metadata = {
   category: "portfolio",
   openGraph: {
     title: "Nwadike Philip | epicdevler",
-    description: "Nwadike Phiip's Portfolio",
+    description: "Nwadike Philip's Portfolio",
     url: "https://epicdevler.vercel.app",
     siteName: "Nwadike's Portfolio",
-
-    // images: [
-    //     {
-    //         url: 'https://nextjs.org/og.png', // Must be an absolute URL
-    //         width: 800,
-    //         height: 600,
-    //     },
-    //     {
-    //         url: 'https://nextjs.org/og-alt.png', // Must be an absolute URL
-    //         width: 1800,
-    //         height: 1600,
-    //         alt: 'My custom alt',
-    //     },
-    // ],
     locale: "en_US",
     type: "website",
   },
@@ -67,19 +53,22 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" style={{scrollBehavior: "smooth"}}>
-      <body
-        className={poppins.variable}
-        style={{ overflowX: "hidden" }}
-      >
-        <Provider enableSystem={true} storageKey="epd-theme">
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable}`}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
+      <body>
+        <AppProvider>
           {children}
+          <Footer />
           <Toaster />
-        </Provider>
+        </AppProvider>
         <Analytics />
         <SpeedInsights />
       </body>

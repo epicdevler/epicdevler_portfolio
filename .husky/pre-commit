@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+echo "Running pre-commit..."
+pnpm lint # Run if available in package scripts
+# pnpm test # Run if available in package scripts
+
+if [ $? -ne 0 ]; then
+  echo "❌ Precommit failed. Commit aborted."
+  exit 1
+fi
+
+echo "✅ Precommit passed."

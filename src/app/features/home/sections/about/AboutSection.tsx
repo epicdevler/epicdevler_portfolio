@@ -61,9 +61,9 @@ export function AboutSection() {
           gap="clamp(28px,3vw,40px)"
           pt="clamp(0px,4vw,56px)"
         >
-          <Heading as="h2" id={HEADING_ID} textStyle="display.lg" m="0">
+          {/* <Heading as="h2" id={HEADING_ID} textStyle="display.lg" m="0">
             {title}
-          </Heading>
+          </Heading> */}
 
           <Flex direction="column" gap="22px" maxW="720px">
             <Text

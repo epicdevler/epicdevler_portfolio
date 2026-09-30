@@ -6,6 +6,34 @@ import { MetaList } from "./MetaList";
 import { ProjectKicker } from "./ProjectKicker";
 import { RuleLink } from "./RuleLink";
 
+/** Mono label over body paragraphs — optional long-form project copy. */
+function DetailBlock({
+  label,
+  paragraphs,
+}: {
+  label: string;
+  paragraphs: string[];
+}) {
+  return (
+    <Box display="flex" flexDirection="column" gap="10px">
+      <Text textStyle="mono.sm" color="fg.muted" m="0">
+        {label}
+      </Text>
+      {paragraphs.map((paragraph) => (
+        <Text
+          key={paragraph}
+          fontSize="16px"
+          lineHeight="1.55"
+          color="fg.secondary"
+          m="0"
+        >
+          {paragraph}
+        </Text>
+      ))}
+    </Box>
+  );
+}
+
 /** 03 — ink top rule, 16:10 screenshot left, details right. */
 export function SplitProject({ project }: { project: Project }) {
   return (
@@ -43,6 +71,12 @@ export function SplitProject({ project }: { project: Project }) {
         <Text fontSize="18px" lineHeight="1.5" color="fg.body" m="0">
           {project.summary}
         </Text>
+        {project.contribution?.length ? (
+          <DetailBlock label="What I worked on" paragraphs={project.contribution} />
+        ) : null}
+        {project.story ? (
+          <DetailBlock label="Project story" paragraphs={[project.story]} />
+        ) : null}
         <Box display="flex" flexDirection="column">
           <MetaList
             items={[

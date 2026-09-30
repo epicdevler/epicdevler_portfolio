@@ -12,9 +12,9 @@ export const TOOLKIT_COPY = {
  * (user decision). Keys must match `TOOLKIT` labels.
  */
 const EXTRAS: Record<string, readonly string[]> = {
-  "Backend & Data": ["Python", "FastAPI", "Ktor", "Firebase", "MongoDB"],
+  "Backend & Data": [/* "Python", "FastAPI", "Ktor",  */"Firebase", "MongoDB"],
   Mobile: ["Android", "Gradle"],
-  "Tools & Infrastructure": ["GitHub", "Figma"],
+  "Tools & Infrastructure": ["GitHub", "Figma", "AWS Amplify"],
 };
 
 /** Design groups (from `TOOLKIT`) with the extras appended, de-duplicated. */

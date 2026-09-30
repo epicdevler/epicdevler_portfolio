@@ -25,10 +25,10 @@ const bySlug = (slug: string): Project | undefined =>
 export const WORK_PROJECTS = {
   featured: bySlug("errandking"),
   phones: bySlug("keepup"),
-  split: bySlug("myinstitute"),
+  split: bySlug("wastevest"),
 } as const;
 
-const HIGHLIGHTED = new Set(["errandking", "keepup", "myinstitute"]);
+const HIGHLIGHTED = new Set(["errandking", "keepup", "wastevest"]);
 
 /** Everything else in app-data → compact "More work" list. */
 export const MORE_PROJECTS: Project[] = PROJECTS.filter(

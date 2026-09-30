@@ -21,6 +21,10 @@ export type Project = {
   /** Mono category line, e.g. "LOGISTICS · DIGITAL PLATFORM". */
   category: string;
   summary: string;
+  /** "What I worked on" paragraphs, shown on highlighted articles. */
+  contribution?: string[];
+  /** Short project story, shown on highlighted articles. */
+  story?: string;
   role?: string;
   stack: string[];
   platforms: ProjectPlatform[];

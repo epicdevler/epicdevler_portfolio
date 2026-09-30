@@ -50,8 +50,39 @@ export const PROJECTS: Project[] = [
     placeholder: "KeepUp — feed",
   },
   {
-    slug: "myinstitute",
+    slug: "wastevest",
     index: "03",
+    title: "WasteVest",
+    category: "Climate · Investment · Digital Experience",
+    summary:
+      "A digital experience for an organization working at the intersection of waste management, environmental impact and investment.",
+    contribution: [
+      "I was involved in the design process alongside the original designer, helping determine layouts and shape sections of the website around the organization's story, value and how it communicates its work.",
+      "I then translated the approved Figma direction into a responsive production website, implemented the newsletter experience, and integrated a server-side USD/NGN exchange-rate service for dynamic currency switching. The website was deployed to AWS Amplify.",
+    ],
+    story:
+      "The challenge wasn't only to build the interface, but to make the website clearly communicate what WasteVest does, the value it creates, and why the organization matters. The result was a responsive web experience that combined the original visual direction with a clearer presentation of the organization's purpose and offering.",
+    role: "Product & Frontend Engineering · Design Collaboration",
+    stack: [
+      "Next.js",
+      "React",
+      "Figma",
+      "AWS Amplify",
+      "Server-side Currency Rates",
+    ],
+    platforms: ["Web"],
+    kind: "client",
+    // TODO(content): captured from the live site (newsletter modal open) — replace with an official screenshot.
+    image: {
+      src: "/projects/wastevest.webp",
+      alt: "WasteVest website homepage with the newsletter sign-up open",
+    },
+    placeholder: "WasteVest — homepage",
+    liveUrl: "https://wastevest.com",
+  },
+  {
+    slug: "myinstitute",
+    index: "04",
     title: "myInstitute",
     category: "Education · Web Application",
     summary:
@@ -70,7 +101,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "foodapp",
-    index: "04",
+    index: "05",
     title: "FoodApp",
     category: "Hospitality · Ordering System",
     summary:
@@ -89,11 +120,13 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "aminote",
-    index: "05",
+    index: "06",
     title: "Aminote (minote)",
     category: "Productivity · Android",
     summary:
-      "An Android note-taking app, under continuous development since 2022.",
+      "An Android note-taking app.",
+    // summary:
+    //   "An Android note-taking app, under continuous development since 2022.",
     role: "Mobile Engineering",
     stack: ["Kotlin", "Jetpack Compose"],
     platforms: ["Android"],
@@ -201,6 +234,12 @@ export const TOOLKIT: ToolkitGroup[] = [
     label: "Tools & Infrastructure",
     items: ["Git", "Docker", "Cloud Deployment"],
   },
+  {
+    label: "AI-assisted workflow",
+    items: [
+      "AI-assisted research, development, problem solving and process acceleration.",
+    ],
+  },
 ];
 
 /** Everything Philip has worked with (icons exist under /public/techs). */
@@ -222,9 +261,9 @@ export const TECHNOLOGIES: Technology[] = [
   { name: "CSS", group: "Frontend", icon: "/techs/CSS.svg" },
   { name: "Kotlin", group: "Mobile", icon: "/techs/Kotlin.svg", core: true },
   { name: "Android", group: "Mobile", icon: "/techs/android.svg" },
-  { name: "Ktor", group: "Backend & Data", icon: "/techs/Ktor.svg" },
-  { name: "FastAPI", group: "Backend & Data", icon: "/techs/FastAPI.svg" },
-  { name: "Python", group: "Backend & Data", icon: "/techs/Python.svg" },
+  // { name: "Ktor", group: "Backend & Data", icon: "/techs/Ktor.svg" },
+  // { name: "FastAPI", group: "Backend & Data", icon: "/techs/FastAPI.svg" },
+  // { name: "Python", group: "Backend & Data", icon: "/techs/Python.svg" },
   { name: "Firebase", group: "Backend & Data", icon: "/techs/Firebase.svg" },
   { name: "MongoDB", group: "Backend & Data", icon: "/techs/MongoDB.svg" },
   { name: "Git", group: "Tools & Infrastructure", icon: "/techs/Git.svg" },

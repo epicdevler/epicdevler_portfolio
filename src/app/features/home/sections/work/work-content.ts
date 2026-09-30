@@ -9,12 +9,10 @@ export const WORK_HEADER = {
 } as const;
 
 /**
- * Placeholder captions for mobile projects without screenshots yet.
- * TODO(content): KeepUp has no screenshots — replace with a `gallery`.
+ * Placeholder captions for mobile projects without a `gallery` yet, keyed by
+ * project slug.
  */
-export const PHONE_PLACEHOLDERS: Record<string, readonly string[]> = {
-  keepup: ["KeepUp — feed", "KeepUp — class channel", "KeepUp — schedule"],
-};
+export const PHONE_PLACEHOLDERS: Record<string, readonly string[]> = {};
 
 /** Featured articles, in display order. */
 const FEATURED_SLUGS = ["errandking", "keepup", "wastevest"] as const;

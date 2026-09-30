@@ -52,8 +52,13 @@ export const PROJECTS: Project[] = [
     stack: [],
     platforms: ["Mobile"],
     kind: "personal",
-    // No screenshots yet — the work section renders MediaSlot placeholders.
-    placeholder: "KeepUp — feed",
+    gallery: [
+      { src: "/projects/keepup-auth.webp", alt: "KeepUp welcome screen" },
+      { src: "/projects/keepup-signin.webp", alt: "KeepUp sign in screen" },
+      { src: "/projects/keepup-signup.webp", alt: "KeepUp create account screen" },
+    ],
+    placeholder: "KeepUp — auth",
+    liveUrl: "https://keepupwithyac.vercel.app",
   },
   {
     slug: "wastevest",

@@ -1,22 +1,37 @@
 "use client";
-import NavigationBar from "@/components/navbar/navbar";
+import { Navbar } from "@/components/navbar/Navbar";
 import { ThemeProvider } from "@/components/provider";
-import { Center, Container, Heading, Text } from "@chakra-ui/react";
+import { Button, Center, Heading, Text } from "@chakra-ui/react";
+import NextLink from "next/link";
 import { usePathname } from "next/navigation";
 import SystemTheme from "./theme/theme";
 
 export default function NotFoundPage() {
   const slug = usePathname();
   return (
-    <ThemeProvider systemTheme={SystemTheme} >
-      <Container>
-      <NavigationBar pos="relative" />
-
-      <Center flexDir={"column"} py={200}>
-        <Heading>404 Path: {slug}</Heading>
-        <Text>this page or resourse is not found</Text>
+    <ThemeProvider
+      systemTheme={SystemTheme}
+      forcedTheme="light"
+      defaultTheme="light"
+      enableSystem={false}
+    >
+      <Navbar />
+      <Center
+        as="main"
+        flexDir="column"
+        gap="6"
+        py="section"
+        px="gutter"
+        textAlign="center"
+      >
+        <Heading as="h1" textStyle="display.sm">
+          404 — {slug}
+        </Heading>
+        <Text color="fg.muted">This page or resource could not be found.</Text>
+        <Button asChild variant="outline" size="lg">
+          <NextLink href="/">Back to home</NextLink>
+        </Button>
       </Center>
-    </Container>
     </ThemeProvider>
   );
 }

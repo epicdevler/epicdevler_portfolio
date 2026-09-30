@@ -1,22 +1,27 @@
-"use client";
-import NavigationBar from "@/components/navbar/navbar";
-import { Center, Heading } from "@chakra-ui/react";
-import { motion } from "motion/react";
+import { Box } from "@chakra-ui/react";
+import { AboutSection } from "./sections/about/AboutSection";
+import { ApproachSection } from "./sections/approach/ApproachSection";
+import { CapabilitiesSection } from "./sections/capabilities/CapabilitiesSection";
+import { ContactSection } from "./sections/contact/ContactSection";
+import { DoSection } from "./sections/do/DoSection";
+import { ExperienceSection } from "./sections/experience/ExperienceSection";
+import { HeroSection } from "./sections/hero/HeroSection";
+import { ToolkitSection } from "./sections/toolkit/ToolkitSection";
+import { WorkSection } from "./sections/work/WorkSection";
 
+/** Home page composition (server component). Order matches the design. */
 export default function HomePageEntry() {
   return (
-    <>
-      <NavigationBar />
-      <Center minH="svh">
-        <Heading asChild pos={"relative"}>
-          <motion.h1
-            initial={{ top: 100, opacity: 0 }}
-            animate={{ top: 0, opacity: 1 }}
-          >
-            Hello World
-          </motion.h1>
-        </Heading>
-      </Center>
-    </>
+    <Box as="main" id="main">
+      <HeroSection />
+      <DoSection />
+      <WorkSection />
+      <CapabilitiesSection />
+      <ApproachSection />
+      <AboutSection />
+      <ToolkitSection />
+      <ExperienceSection />
+      <ContactSection />
+    </Box>
   );
 }

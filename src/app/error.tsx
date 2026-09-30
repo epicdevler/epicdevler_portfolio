@@ -1,7 +1,7 @@
 "use client";
-import NavigationBar from "@/components/navbar/navbar";
+import { Navbar } from "@/components/navbar/Navbar";
 import { ThemeProvider } from "@/components/provider";
-import { Button, Center, Container, Heading, Text } from "@chakra-ui/react";
+import { Button, Center, Heading, Text } from "@chakra-ui/react";
 import { useEffect } from "react";
 import SystemTheme from "./theme/theme";
 
@@ -16,26 +16,31 @@ export default function ErrorPage({
     // Log the error to an error reporting service
     console.error(error);
   }, [error]);
-  // const slug = usePathname();
+
   return (
-    <ThemeProvider systemTheme={SystemTheme}>
-      <Container>
-      <NavigationBar pos="relative" />
-
-      <Center flexDir={"column"} py={200}>
-        <Heading>Something went wrong</Heading>
-        <Text>{error.message}</Text>
-
-        <Button
-          onClick={
-            // Attempt to recover by re-fetching and re-rendering the segment
-            () => unstable_retry()
-          }
-        >
+    <ThemeProvider
+      systemTheme={SystemTheme}
+      forcedTheme="light"
+      defaultTheme="light"
+      enableSystem={false}
+    >
+      <Navbar />
+      <Center
+        as="main"
+        flexDir="column"
+        gap="6"
+        py="section"
+        px="gutter"
+        textAlign="center"
+      >
+        <Heading as="h1" textStyle="display.sm">
+          Something went wrong
+        </Heading>
+        <Text color="fg.muted">{error.message}</Text>
+        <Button variant="solid" size="lg" onClick={() => unstable_retry()}>
           Try again
         </Button>
       </Center>
-    </Container>
     </ThemeProvider>
   );
 }

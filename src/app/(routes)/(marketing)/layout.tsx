@@ -1,32 +1,40 @@
 import AppProvider from "@/app/providers/app-provider";
-import Footer from "@/components/footer/footer";
+import { Footer } from "@/components/footer/Footer";
+import { Navbar } from "@/components/navbar/Navbar";
 import { Toaster } from "@/components/toaster";
-import { geistMono, geistSans } from "@/app/theme/fonts";
+import { fontVariables } from "@/app/theme/fonts";
+import { SiteConfig } from "@/site-config";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 
+const siteTitle = `${SiteConfig.name} — ${SiteConfig.role}`;
+
 export const metadata: Metadata = {
-  title: "Nwadike Philip | epicdevler",
-  description: "Nwadike Philip's Portfolio",
+  metadataBase: new URL(SiteConfig.siteUrl),
+  title: siteTitle,
+  description: SiteConfig.description,
   keywords: [
+    "Philip Nwadike",
     "Nwadike Philip",
     "epicdevler",
     "Portfolio",
-    "devler",
-    "cedars",
-    "android developer",
-    "android",
+    "Software Engineer",
+    "Product Builder",
+    "Frontend Engineer",
+    "Next.js",
+    "React",
   ],
-  creator: "Nwadike Philip (epicdevler)",
+  creator: `${SiteConfig.name} (${SiteConfig.handle})`,
   category: "portfolio",
   openGraph: {
-    title: "Nwadike Philip | epicdevler",
-    description: "Nwadike Philip's Portfolio",
-    url: "https://epicdevler.vercel.app",
-    siteName: "Nwadike's Portfolio",
-    locale: "en_US",
+    title: siteTitle,
+    description: SiteConfig.description,
+    url: SiteConfig.siteUrl,
+    siteName: SiteConfig.name,
+    locale: SiteConfig.locale,
     type: "website",
+    images: [{ url: SiteConfig.profile.src, alt: SiteConfig.profile.alt }],
   },
   robots: {
     index: false,
@@ -59,12 +67,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable}`}
+      className={fontVariables}
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
       <body>
         <AppProvider>
+          <Navbar />
           {children}
           <Footer />
           <Toaster />

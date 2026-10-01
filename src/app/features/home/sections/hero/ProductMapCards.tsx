@@ -1,6 +1,6 @@
 import { Box, Flex, Text, type BoxProps } from "@chakra-ui/react";
 import { Chip } from "@/components/ui/Chip";
-import { InterfaceWireframe } from "./InterfaceWireframe";
+import { InterfaceWidthIndicator, InterfaceWireframe } from "./InterfaceWireframe";
 
 /*
  * Decorative mini mock-ups for the hero "product map" canvas.
@@ -77,6 +77,11 @@ export function ProductCard() {
 /** Animated wireframe: mobile sketch that re-flows into a desktop layout. */
 export function InterfaceCard() {
   return <InterfaceWireframe />;
+}
+
+/** Label-row adornment for the Interface card: the wireframe's current width. */
+export function InterfaceCardAside() {
+  return <InterfaceWidthIndicator />;
 }
 
 function FlowLine() {

@@ -1,37 +1,62 @@
 import { Box } from "@chakra-ui/react";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { MediaSlot } from "@/components/media/MediaSlot";
+import { brandColorFor } from "@/content/project-brands";
 import type { Project } from "@/content/types";
 import { PHONE_PLACEHOLDERS, urlLabel } from "./work-content";
 
-const panelGrid =
-  "linear-gradient({colors.border.grid.inverted} 1px, transparent 1px), linear-gradient(to right, {colors.border.grid.inverted} 1px, transparent 1px)";
+const gridLines = (line: string) =>
+  `linear-gradient(${line} 1px, transparent 1px), linear-gradient(to right, ${line} 1px, transparent 1px)`;
+
+const panelGrid = gridLines("{colors.border.grid.inverted}");
+
+/**
+ * Brand-tinted panel recipe. The brand hex is passed in through the
+ * `--work-brand` custom property (set inline per project) so these strings
+ * stay static and token references still resolve.
+ */
+const BRAND_VAR = "--work-brand";
+const brand = `var(${BRAND_VAR})`;
+const brandPanelBg = `color-mix(in oklab, ${brand} 22%, {colors.bg.inverted.panel})`;
+const brandGlow = `radial-gradient(ellipse 70% 60% at 50% 38%, color-mix(in oklab, ${brand} 24%, transparent), transparent 72%)`;
+const brandGrid = gridLines(
+  `color-mix(in oklab, color-mix(in oklab, ${brand} 35%, white) 5.5%, transparent)`,
+);
 
 const PHONE_OFFSETS = ["18%", "0", "9%"] as const;
 
 /**
  * Full-width dark panel with a faint 48px grid. Web projects get a browser
  * frame + overlapping phone; mobile projects get three staggered phones.
+ * With a brand colour (see `project-brands.ts`) the panel becomes a deep tint
+ * of it with a soft glow behind the frames; otherwise it stays plain ink.
  */
 export function FeaturedMedia({ project }: { project: Project }) {
   const isWeb = project.platforms.includes("Web");
+  const brandColor = brandColorFor(project.slug);
 
   return (
     <Box
       position="relative"
-      bg="bg.inverted.panel"
+      bgColor={brandColor ? brandPanelBg : "bg.inverted.panel"}
+      bgImage={brandColor ? brandGlow : undefined}
       borderRadius="panel"
       overflow="hidden"
       pt="clamp(20px, 5vw, 72px)"
       px="clamp(20px, 5vw, 72px)"
       pb={isWeb ? "0" : "clamp(20px, 5vw, 72px)"}
+      style={
+        brandColor
+          ? ({ [BRAND_VAR]: brandColor } as CSSProperties)
+          : undefined
+      }
     >
       <Box
         aria-hidden
         position="absolute"
         inset="0"
         pointerEvents="none"
-        bgImage={panelGrid}
+        bgImage={brandColor ? brandGrid : panelGrid}
         bgSize="48px 48px"
       />
       {isWeb ? <WebFrames project={project} /> : <PhoneFrames project={project} />}

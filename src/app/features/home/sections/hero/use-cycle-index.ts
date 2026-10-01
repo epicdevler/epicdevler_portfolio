@@ -9,6 +9,21 @@ function subscribeVisibility(onChange: () => void) {
 const getVisible = () => document.visibilityState === "visible";
 const getServerVisible = () => true;
 
+/**
+ * Whether a decorative loop tied to `ref` may run: not under
+ * prefers-reduced-motion, element on-screen and the document visible.
+ */
+function useLoopGate(ref: RefObject<Element | null>) {
+  const reduceMotion = useReducedMotion();
+  const inView = useInView(ref, { amount: 0.15 });
+  const documentVisible = useSyncExternalStore(
+    subscribeVisibility,
+    getVisible,
+    getServerVisible,
+  );
+  return { reduceMotion, running: !reduceMotion && inView && documentVisible };
+}
+
 type UseCycleIndexOptions = {
   count: number;
   intervalMs: number;
@@ -22,24 +37,51 @@ type UseCycleIndexOptions = {
  * Under prefers-reduced-motion it never advances and always returns 0.
  */
 export function useCycleIndex({ count, intervalMs, ref }: UseCycleIndexOptions) {
-  const reduceMotion = useReducedMotion();
-  const inView = useInView(ref, { amount: 0.15 });
-  const documentVisible = useSyncExternalStore(
-    subscribeVisibility,
-    getVisible,
-    getServerVisible,
-  );
+  const { reduceMotion, running } = useLoopGate(ref);
   const [active, setActive] = useState(0);
 
-  const running = !reduceMotion && inView && documentVisible && count > 1;
+  const enabled = running && count > 1;
 
   useEffect(() => {
-    if (!running) return;
+    if (!enabled) return;
     const timer = window.setInterval(() => {
       setActive((current) => (current + 1) % count);
     }, intervalMs);
     return () => window.clearInterval(timer);
-  }, [running, count, intervalMs]);
+  }, [enabled, count, intervalMs]);
 
   return reduceMotion ? 0 : active;
+}
+
+type UseTimelineStepOptions = {
+  /** How long each step is held, in ms. Must be a stable (module) constant. */
+  durations: readonly number[];
+  /** Step shown on first paint and under prefers-reduced-motion. */
+  start: number;
+  /** Element whose visibility gates the timeline. */
+  ref: RefObject<Element | null>;
+};
+
+/**
+ * Like useCycleIndex, but each step has its own duration. Loops over
+ * `durations`, pauses while `ref` is off-screen or the document is hidden,
+ * and stays on `start` under prefers-reduced-motion.
+ */
+export function useTimelineStep({ durations, start, ref }: UseTimelineStepOptions) {
+  const { reduceMotion, running } = useLoopGate(ref);
+  const [step, setStep] = useState(start);
+
+  const count = durations.length;
+  const enabled = running && count > 1;
+  const holdMs = durations[step] ?? 1000;
+
+  useEffect(() => {
+    if (!enabled) return;
+    const timer = window.setTimeout(() => {
+      setStep((current) => (current + 1) % count);
+    }, holdMs);
+    return () => window.clearTimeout(timer);
+  }, [enabled, step, count, holdMs]);
+
+  return reduceMotion ? start : step;
 }

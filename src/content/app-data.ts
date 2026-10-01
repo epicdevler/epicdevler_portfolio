@@ -83,11 +83,16 @@ export const PROJECTS: Project[] = [
     ],
     platforms: ["Web"],
     kind: "client",
-    // TODO(content): captured from the live site (newsletter modal open) — replace with an official screenshot.
     image: {
-      src: "/projects/wastevest.webp",
-      alt: "WasteVest website homepage with the newsletter sign-up open",
+      src: "/projects/wastevest-desktop.webp",
+      alt: "WasteVest homepage on desktop: dark navigation bar with the WasteVest logo and a Book a Consultation button above a full-width landscape hero headlined “Sustainability training, built for African business.” with Learn More and Join the movement buttons",
     },
+    gallery: [
+      {
+        src: "/projects/wastevest-mobile.webp",
+        alt: "WasteVest homepage on mobile: compact header with logo, Book a Consultation button and menu toggle above the stacked hero headline “Sustainability training, built for African business.” and its call-to-action buttons",
+      },
+    ],
     placeholder: "WasteVest — homepage",
     liveUrl: "https://wastevest.com",
   },
@@ -160,7 +165,7 @@ export const FEATURED_PROJECT = PROJECTS.find((p) => p.featured) ?? PROJECTS[0];
 export const EXPERIENCE: ExperienceItem[] = [
   {
     slug: "technoville",
-    company: "Technoville",
+    company: "Technoville Innovation Nigeria",
     focus: "Frontend Engineering",
     role: "Frontend Engineer",
     current: true,

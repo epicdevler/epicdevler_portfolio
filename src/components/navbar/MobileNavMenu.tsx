@@ -110,35 +110,49 @@ export function MobileNavMenu(
             <Drawer.Body px="gutter" py="32px">
               <nav aria-label="Primary mobile">
                 <Stack as="ul" listStyleType="none" gap="0">
-                  {NAV_ITEMS.map((item) => (
-                    <Box
-                      as="li"
-                      key={item.href}
-                      borderBottomWidth="1px"
-                      borderColor="border"
-                    >
-                      <ChakraLink
-                        asChild
-                        variant="nav"
-                        display="flex"
-                        py="16px"
-                        fontSize="clamp(24px, 6vw, 32px)"
-                        fontWeight="500"
-                        letterSpacing="-0.03em"
-                        lineHeight="1.1"
+                  {NAV_ITEMS.map((item) => {
+                    const isActive = active === item.sectionId;
+                    return (
+                      <Box
+                        as="li"
+                        key={item.href}
+                        borderBottomWidth="1px"
+                        borderColor="border"
                       >
-                        <NextLink
-                          href={item.href}
-                          onClick={handleLinkClick(item.href)}
-                          aria-current={
-                            active === item.sectionId ? "location" : undefined
-                          }
+                        <ChakraLink
+                          asChild
+                          variant="nav"
+                          display="flex"
+                          alignItems="center"
+                          gap="14px"
+                          py="16px"
+                          fontSize="clamp(24px, 6vw, 32px)"
+                          fontWeight="500"
+                          letterSpacing="-0.03em"
+                          lineHeight="1.1"
                         >
-                          {item.label}
-                        </NextLink>
-                      </ChakraLink>
-                    </Box>
-                  ))}
+                          <NextLink
+                            href={item.href}
+                            onClick={handleLinkClick(item.href)}
+                            aria-current={isActive ? "location" : undefined}
+                          >
+                            {item.label}
+                            {/* Decorative active marker (matches the logo
+                                square); aria-current carries the meaning. */}
+                            {isActive && (
+                              <Box
+                                as="span"
+                                aria-hidden
+                                flexShrink={0}
+                                boxSize="8px"
+                                bg="bg.accent"
+                              />
+                            )}
+                          </NextLink>
+                        </ChakraLink>
+                      </Box>
+                    );
+                  })}
                 </Stack>
               </nav>
 

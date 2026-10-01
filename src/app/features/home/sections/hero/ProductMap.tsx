@@ -1,24 +1,25 @@
 import { Box, VisuallyHidden } from "@chakra-ui/react";
 import { Reveal } from "@/components/motion/Reveal";
 import { PRODUCT_MAP_STAGES } from "./hero-content";
-import { ProductMapCanvas } from "./ProductMapCanvas";
+import { ProductMapCanvas, type ProductMapCardEntry } from "./ProductMapCanvas";
 import {
   DataCard,
   DeliveryCard,
   InterfaceCard,
+  InterfaceCardAside,
   ProblemCard,
   ProductCard,
   SystemCard,
 } from "./ProductMapCards";
 
-const CARDS = [
-  <ProblemCard key="problem" />,
-  <ProductCard key="product" />,
-  <InterfaceCard key="interface" />,
-  <SystemCard key="system" />,
-  <DataCard key="data" />,
-  <DeliveryCard key="delivery" />,
-] as const;
+const CARDS: readonly ProductMapCardEntry[] = [
+  { body: <ProblemCard /> },
+  { body: <ProductCard /> },
+  { body: <InterfaceCard />, labelAside: <InterfaceCardAside /> },
+  { body: <SystemCard /> },
+  { body: <DataCard /> },
+  { body: <DeliveryCard /> },
+];
 
 /** Dark "product map" panel shown full-width below the hero copy. */
 export function ProductMap() {

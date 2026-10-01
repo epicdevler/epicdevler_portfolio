@@ -5,9 +5,15 @@ import { useRef, type ReactNode } from "react";
 import { PRODUCT_MAP_CYCLE_MS, PRODUCT_MAP_STAGES } from "./hero-content";
 import { useCycleIndex } from "./use-cycle-index";
 
+export type ProductMapCardEntry = {
+  body: ReactNode;
+  /** Optional right-aligned adornment on the card's label row. */
+  labelAside?: ReactNode;
+};
+
 type ProductMapCanvasProps = {
-  /** Card bodies in stage order (see PRODUCT_MAP_STAGES). */
-  cards: readonly ReactNode[];
+  /** Cards in stage order (see PRODUCT_MAP_STAGES). */
+  cards: readonly ProductMapCardEntry[];
 };
 
 /** Per-card inner gap from the design (interface and data cards are tighter). */
@@ -67,7 +73,7 @@ export function ProductMapCanvas({ cards }: ProductMapCanvasProps) {
         }}
         gap="12px"
       >
-        {cards.map((body, index) => {
+        {cards.map(({ body, labelAside }, index) => {
           const stage = PRODUCT_MAP_STAGES[index];
           const isActive = index === active;
           return (
@@ -87,15 +93,27 @@ export function ProductMapCanvas({ cards }: ProductMapCanvasProps) {
               transition="border-color .6s"
               _motionReduce={{ transition: "none" }}
             >
-              <Text
-                as="span"
+              <Flex
+                justify="space-between"
+                align="baseline"
+                wrap="wrap"
+                columnGap="12px"
                 textStyle="mono.sm"
-                color={isActive ? "fg.accent.onDark" : "fg.inverted.subtle"}
-                transition="color .6s"
-                _motionReduce={{ transition: "none" }}
               >
-                {String(index + 1).padStart(2, "0")} · {stage?.name}
-              </Text>
+                <Text
+                  as="span"
+                  color={isActive ? "fg.accent.onDark" : "fg.inverted.subtle"}
+                  transition="color .6s"
+                  _motionReduce={{ transition: "none" }}
+                >
+                  {String(index + 1).padStart(2, "0")} · {stage?.name}
+                </Text>
+                {labelAside ? (
+                  <Box as="span" color="fg.accent.onDark" whiteSpace="nowrap">
+                    {labelAside}
+                  </Box>
+                ) : null}
+              </Flex>
               {body}
             </Flex>
           );

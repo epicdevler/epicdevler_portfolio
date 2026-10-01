@@ -39,6 +39,7 @@ export function FooterWordmark() {
         boxSize="clamp(12px, 1.6vw, 24px)"
         bg="bg.accent"
         mb="clamp(8px, 1vw, 14px)"
+        rounded={"full"}
       />
     </Flex>
   );

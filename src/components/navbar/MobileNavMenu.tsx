@@ -99,7 +99,7 @@ export function MobileNavMenu(
                 fontSize="16px"
                 letterSpacing="-0.01em"
               >
-                <Box as="span" aria-hidden boxSize="10px" bg="bg.accent" />
+                <Box as="span" aria-hidden boxSize="10px" bg="bg.accent" rounded={"full"} />
                 Menu
               </Drawer.Title>
               <Drawer.CloseTrigger asChild position="static">
@@ -146,6 +146,7 @@ export function MobileNavMenu(
                                 flexShrink={0}
                                 boxSize="8px"
                                 bg="bg.accent"
+                                rounded={"full"}
                               />
                             )}
                           </NextLink>

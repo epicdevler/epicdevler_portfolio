@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+echo "Running production build..."
+pnpm build
+
+if [ $? -ne 0 ]; then
+  echo "❌ Build failed. Push aborted."
+  exit 1
+fi
+
+echo "✅ Build passed."

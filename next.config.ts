@@ -1,13 +1,14 @@
-import { NextConfig } from "next";
+import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  experimental: {
-    turbopackFileSystemCacheForDev: false,
-  },
+  /* config options here */
   reactCompiler: true,
+  experimental: {
+    viewTransition: true,
+  },
   compiler: {
-    removeConsole: process.env.NODE_ENV != "production",
+    removeConsole: process.env.NODE_ENV == "production",
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;

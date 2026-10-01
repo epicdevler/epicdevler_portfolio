@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "pnpm chakra:typegren && next build",
+    "build": "pnpm chakra:typegen && next build",
     "start": "next start",
     "lint": "eslint",
     "chakra:typegen": "pnpm exec chakra typegen src/app/theme/theme.ts",

@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "pnpm chakra:typegren && next build",
     "start": "next start",
     "lint": "eslint",
-    "chakra:typegen": "pnpm dlx @chakra-ui/cli typegen src/app/theme/theme.ts",
+    "chakra:typegen": "pnpm exec chakra typegen src/app/theme/theme.ts",
     "chakra:i-snippets": "bash ./scripts/chakra-snippet.sh",
     "init-base-template": "git remote add upstream https://github.com/epicdevler/website_template.git",
     "update-from-base-template": "git pull upstream main",

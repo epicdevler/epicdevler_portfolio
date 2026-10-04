@@ -11,7 +11,7 @@ import { Eyebrow } from "./Eyebrow";
 export type SectionHeaderSize = "sm" | "md" | "lg" | "xl" | "contact";
 
 export type SectionHeaderProps = Omit<BoxProps, "title"> & {
-  eyebrow: ReactNode;
+  eyebrow?: ReactNode;
   title: ReactNode;
   lead?: ReactNode;
   /**
@@ -88,7 +88,7 @@ export function SectionHeader({
         {...rest}
       >
         <Box display="flex" flexDirection="column" gap="28px">
-          <Eyebrow onDark={onDark}>{eyebrow}</Eyebrow>
+          {eyebrow && <Eyebrow onDark={onDark}>{eyebrow}</Eyebrow>}
           {heading}
         </Box>
         {leadNode}
@@ -98,7 +98,7 @@ export function SectionHeader({
 
   return (
     <Box display="flex" flexDirection="column" gap="28px" {...rest}>
-      <Eyebrow onDark={onDark}>{eyebrow}</Eyebrow>
+      {eyebrow && <Eyebrow onDark={onDark}>{eyebrow}</Eyebrow>}
       {heading}
       {leadNode}
     </Box>

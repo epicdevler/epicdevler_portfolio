@@ -53,6 +53,7 @@ export function Navbar() {
                 boxSize="10px"
                 bg="bg.accent"
                 rounded={"full"}
+                hidden
               />
               {SiteConfig.name}
             </NextLink>

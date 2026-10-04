@@ -37,7 +37,9 @@ export function ContactSection() {
     >
       <Flex direction="column" gap="clamp(32px, 4vw, 52px)">
         {/* Decorative echo of the hero's six-stage track. */}
-        <Flex
+        
+        <Reveal>
+          <Flex
           aria-hidden="true"
           wrap="wrap"
           columnGap="20px"
@@ -45,17 +47,10 @@ export function ContactSection() {
           textStyle="mono.sm"
           color="fg.inverted.faint"
         >
-          <Box as="span" color="fg.accent.onDark">
+          {/* <Box as="span" color="fg.accent.onDark">
             ● {CONTACT_CONTENT.activeStage}
-          </Box>
-          {CONTACT_CONTENT.stages.map((stage) => (
-            <Box as="span" key={stage}>
-              {stage}
-            </Box>
-          ))}
-        </Flex>
-
-        <Reveal>
+          </Box> */}
+          
           <SectionHeader
             eyebrow={CONTACT_CONTENT.eyebrow}
             title={<span id="contact-heading">{CONTACT_CONTENT.title}</span>}
@@ -65,6 +60,8 @@ export function ContactSection() {
             maxW="1300px"
             color="fg.inverted.strong"
           />
+        </Flex>
+
         </Reveal>
 
         <Reveal

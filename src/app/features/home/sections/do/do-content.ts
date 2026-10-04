@@ -8,7 +8,7 @@ export type DoItem = {
 };
 
 export const DO_HEADER = {
-  eyebrow: "What I actually do",
+  eyebrow: "What I do",
   title: "From idea to working product.",
   lead: "I work across the layers that turn an idea into something people can actually use.",
 } as const;

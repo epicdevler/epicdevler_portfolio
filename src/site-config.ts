@@ -43,7 +43,7 @@ export const SiteConfig = {
   role: "Software Engineer · Product Builder",
   tagline: "Building useful things, one problem at a time.",
   description:
-    "Philip Nwadike is a software engineer and product builder who turns business ideas into practical digital products — from product structure and interface design to frontend systems, APIs and deployment.",
+    "Software engineer and product builder who turns business ideas into practical digital products — from product structure and interface design to frontend systems, APIs and deployment.",
   siteUrl: "https://epicdevler.vercel.app",
   locale: "en_US",
   logo: {},

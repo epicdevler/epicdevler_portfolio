@@ -99,7 +99,7 @@ export function MobileNavMenu(
                 fontSize="16px"
                 letterSpacing="-0.01em"
               >
-                <Box as="span" aria-hidden boxSize="10px" bg="bg.accent" rounded={"full"} />
+                <Box as="span" aria-hidden boxSize="10px" bg="bg.accent" rounded={"full"} hidden />
                 Menu
               </Drawer.Title>
               <Drawer.CloseTrigger asChild position="static">

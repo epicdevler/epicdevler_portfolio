@@ -40,16 +40,17 @@ export function AboutSection() {
             placeholderTone="tile"
             sizes="(min-width: 480px) 420px, calc(100vw - 40px)"
           />
-          <Flex
+          {/* <Flex
             textStyle="mono.md"
             color="fg.muted"
             justify="space-between"
             gap="12px"
             wrap="wrap"
+            hidden
           >
             <Text as="span">{caption.name}</Text>
             <Text as="span">{caption.role}</Text>
-          </Flex>
+          </Flex> */}
         </Reveal>
 
         {/* Right: headline, bio, currently exploring */}

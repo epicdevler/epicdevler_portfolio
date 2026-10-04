@@ -12,7 +12,7 @@ export function WorkSection() {
     <Section id={SECTION_IDS.work} tone="sand">
       <Reveal maxW="1100px">
         <SectionHeader
-          eyebrow={WORK_HEADER.eyebrow}
+          // eyebrow={WORK_HEADER.eyebrow}
           title={WORK_HEADER.title}
           lead={WORK_HEADER.lead}
           size="xl"
